@@ -1,10 +1,7 @@
 ﻿namespace Codespirals.Generic.Interfaces
 {
-    public interface ISignup : IHasUsername, IHasEmail
+    public interface ISignup : IHasUsername, IHasEmail, IHasPassword
     {
-        /// <summary>
-        /// A Hashed password
-        /// </summary>
-        public string Password { get; }
+
     }
 }

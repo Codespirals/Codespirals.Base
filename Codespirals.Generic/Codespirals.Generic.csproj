@@ -4,12 +4,12 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>$(AssemblyName)</Title>
-    <Version>0.1.5.24212</Version>
+    <Version>0.1.7.24212</Version>
     <Company>Codespirals</Company>
     <NeutralLanguage>en</NeutralLanguage>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <RepositoryUrl>..\..\NuGet_local</RepositoryUrl>
     <PackageIcon>spiral.png</PackageIcon>
+    <PackageOutputPath>..\..\..\NuGet_local</PackageOutputPath>
   </PropertyGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />
