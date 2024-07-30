@@ -10,9 +10,5 @@
         /// The objective form of these pronouns (Him, Her, Them, etc.)
         /// </summary>
         public string Objective { get; }
-        /// <summary>
-        /// A shortcut for stitching the subjective and objective form together in a standardized fashion
-        /// </summary>
-        public string FullPronouns { get; }
     }
 }
