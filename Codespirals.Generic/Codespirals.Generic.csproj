@@ -1,9 +1,35 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
-
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
+    <Title>$(AssemblyName)</Title>
+    <Version>0.1.5.24212</Version>
+    <Company>Codespirals</Company>
+    <NeutralLanguage>en</NeutralLanguage>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <RepositoryUrl>..\..\NuGet_local</RepositoryUrl>
+    <PackageIcon>spiral.png</PackageIcon>
   </PropertyGroup>
-
+  <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
+    <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />
+  </Target>
+  <ItemGroup>
+    <EmbeddedResource Remove="Resources\Images\Images.resx" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Remove="Resources\Images\spiral.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resources\Images\Images.resx">
+      <Generator>PublicResXFileCodeGenerator</Generator>
+      <LastGenOutput>Images.Designer.cs</LastGenOutput>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Resource>
+    <EmbeddedResource Include="Resources\Images\spiral.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
 </Project>
