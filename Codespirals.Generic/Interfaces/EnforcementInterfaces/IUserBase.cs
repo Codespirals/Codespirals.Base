@@ -1,10 +1,7 @@
 ﻿namespace Codespirals.Generic.Interfaces
 {
-    public interface IUserBase : IIdentifiable
+    public interface IUserBase : IIdentifiable, IHasUsername
     {
-        /// <summary>
-        /// The username of this user
-        /// </summary>
-        public string Username { get; }
+
     }
 }

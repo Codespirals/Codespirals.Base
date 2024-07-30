@@ -7,6 +7,6 @@
         /// <summary>
         /// A list of <see cref="IMoneyItem"/> items
         /// </summary>
-        public ICollection<TCurrency> Entries { get; }
+        public ICollection<TEntries> Entries { get; }
     }
 }

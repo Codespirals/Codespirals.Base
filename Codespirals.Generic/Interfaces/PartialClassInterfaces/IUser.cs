@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Generic.Interfaces
 {
-    public interface IUser<TProfileImage, TPronouns> : IUserBase, ICreatable
+    public interface IUser<TProfileImage, TPronouns> : IUserBase
         where TProfileImage : IImage
         where TPronouns : IPronouns
     {
