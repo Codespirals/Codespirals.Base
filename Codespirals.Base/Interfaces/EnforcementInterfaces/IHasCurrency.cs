@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Generic.Interfaces
+﻿namespace Codespirals.Base.Interfaces
 {
     /// <summary>
     /// Unifying Currency in its own interface removes ambiguity

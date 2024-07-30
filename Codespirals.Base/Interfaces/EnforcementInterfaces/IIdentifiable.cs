@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Generic.Interfaces
+﻿namespace Codespirals.Base.Interfaces
 {
     /// <summary>
     /// Anything implementing this interface is guaranteed to have a unique identifier.

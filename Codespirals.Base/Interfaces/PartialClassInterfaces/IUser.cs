@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Generic.Interfaces
+﻿namespace Codespirals.Base.Interfaces
 {
     public interface IUser<TProfileImage, TPronouns> : IUserBase
         where TProfileImage : IImage

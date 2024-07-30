@@ -1,6 +1,6 @@
 ﻿using System.Globalization;
 
-namespace Codespirals.Generic.Interfaces
+namespace Codespirals.Base.Interfaces
 {
     public interface ILanguage : IIdentifiable, INameable
     {
