@@ -2,7 +2,7 @@
 
 namespace Codespirals.Base.Interfaces
 {
-    public interface ILanguage : IIdentifiable, INameable
+    public interface ILanguage : INameable
     {
         /// <summary>
         /// Turn this <see cref="ILanguage"/> item into a <see cref="CultureInfo"/>

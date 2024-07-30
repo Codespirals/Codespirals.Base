@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base.Interfaces
 {
-    public interface ICurrency : IIdentifiable, INameable
+    public interface ICurrency : INameable
     {
         /// <summary>
         /// An approximate rate to the US dollar

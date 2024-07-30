@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base.Interfaces
 {
-    public interface ITransaction<TCurrency> : IIdentifiable, IMoney<TCurrency>, ICreatable
+    public interface ITransaction<TCurrency> : IMoney<TCurrency>, ICreatable
         where TCurrency : ICurrency
     {
 

@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base.Interfaces
 {
-    public interface IPronouns : IIdentifiable
+    public interface IPronouns
     {
         /// <summary>
         /// The subjective form of these pronouns (He, She, They, etc.)
