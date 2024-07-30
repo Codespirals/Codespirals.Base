@@ -1,8 +1,8 @@
 ﻿namespace Codespirals.Base.Interfaces
 {
-    public interface ILedger<TCurrency, TEntries> : ITotal<TCurrency>
-        where TCurrency : ICurrency
-        where TEntries : IMoney<TCurrency>
+    public interface ILedgerBase<TCurrency, TEntries> : ITotalBase<TCurrency>
+        where TCurrency : ICurrencyBase
+        where TEntries : IMoneyBase<TCurrency>
     {
         /// <summary>
         /// A list of <see cref="IMoneyItem"/> items

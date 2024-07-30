@@ -1,8 +1,8 @@
 ﻿namespace Codespirals.Base.Interfaces
 {
-    public interface IUser<TProfileImage, TPronouns> : IUserBase
-        where TProfileImage : IImage
-        where TPronouns : IPronouns
+    public interface IUserBase<TProfileImage, TPronouns> : IUserMinimalBase
+        where TProfileImage : IImageBase
+        where TPronouns : IPronounsBase
     {
         /// <summary>
         /// This user's preferred pronouns.

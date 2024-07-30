@@ -5,7 +5,7 @@
     /// from items that use both <seealso cref="ITotal"/> and <seealso cref="IMoneyItem"/> interfaces
     /// </summary>
     public interface IHasCurrency<TCurrency>
-        where TCurrency : ICurrency
+        where TCurrency : ICurrencyBase
     {
         /// <summary>
         /// The <see cref="Currency"/> the money on this object is in

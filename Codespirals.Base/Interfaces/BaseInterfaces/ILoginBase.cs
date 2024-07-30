@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base.Interfaces
 {
-    public interface ILogin : ISignup
+    public interface ILoginBase : ISignupBase
     {
         /// <summary>
         /// If the user wants to stay logged in

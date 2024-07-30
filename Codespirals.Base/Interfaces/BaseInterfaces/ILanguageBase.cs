@@ -2,10 +2,10 @@
 
 namespace Codespirals.Base.Interfaces
 {
-    public interface ILanguage : INameable
+    public interface ILanguageBase : INameable
     {
         /// <summary>
-        /// Turn this <see cref="ILanguage"/> item into a <see cref="CultureInfo"/>
+        /// Turn this <see cref="ILanguageBase"/> item into a <see cref="CultureInfo"/>
         /// </summary>
         /// <returns></returns>
         public CultureInfo ToCultureInfo();

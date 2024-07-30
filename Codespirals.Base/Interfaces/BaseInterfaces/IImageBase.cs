@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base.Interfaces
 {
-    public interface IImage
+    public interface IImageBase
     {
         /// <summary>
         /// The url that leads to the image
