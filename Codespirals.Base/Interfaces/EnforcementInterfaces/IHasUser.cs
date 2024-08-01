@@ -3,10 +3,8 @@
     /// <summary>
     /// A class that implements this interface is guaranteed to have a <see cref="User"/> attached to it
     /// </summary>
-    public interface IHasUser<TUser, TProfileImage, TPronouns>
-        where TUser : IUserBase<TProfileImage, TPronouns>
-        where TProfileImage : IImageBase
-        where TPronouns : IPronounsBase
+    public interface IHasUser<TUser>
+        where TUser : IUserMinimalBase
     {
         /// <summary>
         /// The <see cref="User"/> that has created this object
