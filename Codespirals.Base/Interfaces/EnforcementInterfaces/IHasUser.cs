@@ -1,7 +1,7 @@
 ﻿namespace Codespirals.Base
 {
     /// <summary>
-    /// A class that implements this interface is guaranteed to have a <see cref="User"/> attached to it
+    /// A class that implements this interface is guaranteed to have a <see cref="TUser"/> attached to it
     /// </summary>
     public interface IHasUser<TUser>
         where TUser : IUserMinimalBase
