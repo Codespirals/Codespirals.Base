@@ -5,6 +5,6 @@
         /// <summary>
         /// The chosen username of this user
         /// </summary>
-        public string UserName { get; }
+        public string? UserName { get; }
     }
 }
