@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base.Interfaces
+﻿namespace Codespirals.Base
 {
     /// <summary>
     /// Anything implementing this interface has money as a property

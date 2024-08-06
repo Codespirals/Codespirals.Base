@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base.Interfaces
+﻿namespace Codespirals.Base
 {
     public interface IAddressBase<TCountry> : INameable
     {

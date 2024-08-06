@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base.Interfaces
+﻿namespace Codespirals.Base
 {
     public interface ILedgerBase<TCurrency, TEntries> : ITotalBase<TCurrency>
         where TCurrency : ICurrencyBase

@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base.Interfaces
+﻿namespace Codespirals.Base
 {
     /// <summary>
     /// A class that implements this interface is guaranteed to have a <see cref="User"/> attached to it

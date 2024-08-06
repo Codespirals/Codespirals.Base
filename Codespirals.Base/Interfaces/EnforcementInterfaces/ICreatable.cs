@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base.Interfaces
+﻿namespace Codespirals.Base
 {
     /// <summary>
     /// Having this interface signifies the has a creation <see cref="DateTime"/>
