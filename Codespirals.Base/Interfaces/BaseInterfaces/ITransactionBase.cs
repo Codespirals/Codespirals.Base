@@ -2,7 +2,7 @@
 {
     public interface ITransactionBase<TCurrency, TUser> : IMoneyBase<TCurrency>, IHasUser<TUser>, ICreatable
         where TCurrency : ICurrencyBase
-        where TUser : IUserMinimalBase
+        where TUser : IUserBase
     {
 
     }
