@@ -61,21 +61,29 @@ namespace Codespirals.Base {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Byte[].
+        ///   Looks up a localized string similar to #Add the following line to your post build events in your csproj file
+        ///#PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1
+        ///
+        ///$file = Get-ChildItem -Path .\ -Filter *.csproj
+        ///$path = $file.Name
+        ///
+        ///$xml = [xml](Get-Content $path)
+        ///
+        ///#The selection of the -First PropertyGroup was necessary here because certain settings can add additional property groups with the same name - however Version should always be in the first
+        ///$currentVersion = [version]($xml.Project.PropertyGroup | Sele [rest of string was truncated]&quot;;.
         /// </summary>
-        public static byte[] AutoUpdateVersionNumber {
+        public static string AutoUpdateVersionNumber {
             get {
-                object obj = ResourceManager.GetObject("AutoUpdateVersionNumber", resourceCulture);
-                return ((byte[])(obj));
+                return ResourceManager.GetString("AutoUpdateVersionNumber", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to codespirals.
         /// </summary>
-        public static string Company {
+        public static string Creator {
             get {
-                return ResourceManager.GetString("Company", resourceCulture);
+                return ResourceManager.GetString("Creator", resourceCulture);
             }
         }
         

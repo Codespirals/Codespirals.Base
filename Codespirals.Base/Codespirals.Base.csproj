@@ -4,12 +4,19 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>$(AssemblyName)</Title>
-    <Version>0.1.33.24220</Version>
+    <Version>0.1.34.24220</Version>
     <Company>Codespirals</Company>
     <NeutralLanguage>en</NeutralLanguage>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>spiral.png</PackageIcon>
     <PackageOutputPath>..\..\..\NuGet_local</PackageOutputPath>
+    <PackageLicenseExpression>CC0</PackageLicenseExpression>
+    <PackageTags>codespirals;modular;</PackageTags>
+    <RepositoryUrl>https://github.com/Codespirals/Codespirals.Base.git</RepositoryUrl>
+    <PackageProjectUrl>https://codespirals.dev</PackageProjectUrl>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <Optimize>True</Optimize>
   </PropertyGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />
