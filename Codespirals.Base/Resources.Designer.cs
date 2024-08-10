@@ -88,7 +88,7 @@ namespace Codespirals.Base {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to codespirals is marked with CC0 1.0.
+        ///   Looks up a localized string similar to CC0 1.0.
         /// </summary>
         public static string Licence {
             get {
