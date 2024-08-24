@@ -1,7 +1,9 @@
-﻿namespace Codespirals.Base
+﻿using Codespirals.Base.Interfaces.EnforcementInterfaces;
+
+namespace Codespirals.Base
 {
-    public interface ILanguageBase : INameable
+    public interface ILanguageBase : INameable, IHasIsoCode
     {
-        public string IsoCode { get; set; }
+
     }
 }

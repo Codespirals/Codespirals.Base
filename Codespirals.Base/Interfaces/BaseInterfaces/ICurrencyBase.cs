@@ -1,6 +1,8 @@
-﻿namespace Codespirals.Base
+﻿using Codespirals.Base.Interfaces.EnforcementInterfaces;
+
+namespace Codespirals.Base
 {
-    public interface ICurrencyBase : INameable
+    public interface ICurrencyBase : INameable, IHasIsoCode
     {
         /// <summary>
         /// An approximate rate to the US dollar

@@ -1,7 +1,9 @@
-﻿namespace Codespirals.Base
+﻿using Codespirals.Base.Interfaces.EnforcementInterfaces;
+
+namespace Codespirals.Base
 {
-    public interface ICountryBase : INameable
+    public interface ICountryBase : INameable, IHasIsoCode
     {
-        public char? Flag { get; set; }
+        public string? Flag { get; set; }
     }
 }
