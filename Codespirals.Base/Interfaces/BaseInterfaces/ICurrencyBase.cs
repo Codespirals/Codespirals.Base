@@ -1,6 +1,4 @@
-﻿using Codespirals.Base.Interfaces.EnforcementInterfaces;
-
-namespace Codespirals.Base
+﻿namespace Codespirals.Base
 {
     public interface ICurrencyBase : INameable, IHasIsoCode
     {
