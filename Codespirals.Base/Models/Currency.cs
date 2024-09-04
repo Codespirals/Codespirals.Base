@@ -2,7 +2,7 @@
 
 namespace Codespirals.Base.Models
 {
-    public class Currency : ICurrencyBase, ICurrency
+    public class Currency : ICurrency
     {
         private int _ratio = 100;
         [Key]
