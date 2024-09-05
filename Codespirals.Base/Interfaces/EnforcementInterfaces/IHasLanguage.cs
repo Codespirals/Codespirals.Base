@@ -1,9 +1,8 @@
-﻿using Codespirals.Base.Models;
-
-namespace Codespirals.Base
+﻿namespace Codespirals.Base
 {
-    public interface IHasLanguage
+    public interface IHasLanguage<TLanguage>
+        where TLanguage : ILanguage
     {
-        public Language Language { get; }
+        public TLanguage Language { get; }
     }
 }

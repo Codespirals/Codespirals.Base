@@ -2,6 +2,6 @@
 {
     public interface ICountry : ICountryBase
     {
-        string? Flag { get; set; }
+        string? Flag { get; }
     }
 }

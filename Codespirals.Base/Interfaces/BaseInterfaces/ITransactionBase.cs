@@ -1,8 +1,7 @@
 ﻿namespace Codespirals.Base
 {
-    public interface ITransactionBase<TCurrency, TUser> : IMoneyBase<TCurrency>, IHasUser<TUser>, ICreatable
+    public interface ITransactionBase<TCurrency> : IMoneyBase<TCurrency>, ICreatable, IHasStatus
         where TCurrency : ICurrencyBase
-        where TUser : IUserBase
     {
 
     }
