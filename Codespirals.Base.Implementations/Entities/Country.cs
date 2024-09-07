@@ -2,7 +2,7 @@
 
 namespace Codespirals.Base.Models
 {
-    public record Country : ICountry
+    public class Country : ICountry
     {
         public required string IsoCode { get; init; }
         public required string Name { get; init; }

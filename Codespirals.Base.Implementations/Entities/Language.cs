@@ -3,7 +3,7 @@ using System.Globalization;
 
 namespace Codespirals.Base.Models
 {
-    public record Language : ILanguage
+    public class Language : ILanguage
     {
         public required string IsoCode { get; init; }
         public required string Name { get; init; }
