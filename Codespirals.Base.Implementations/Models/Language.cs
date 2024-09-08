@@ -19,7 +19,7 @@ namespace Codespirals.Base.Models
             ArgumentException.ThrowIfNullOrEmpty(isoCode, nameof(isoCode));
             isoCode = isoCode[..2].ToLowerInvariant();
             var dataService = new SqliteService("resources");
-            if (dataService.Created)
+            if (!dataService.ContainsData("Languages"))
                 Data.SeedData(dataService);
             return dataService.SelectItem<Language>("Languages", nameof(IsoCode), isoCode) ?? throw new LanguageNotFoundException(isoCode);
         }

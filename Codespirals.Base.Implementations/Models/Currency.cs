@@ -26,7 +26,7 @@ namespace Codespirals.Base.Models
             ArgumentException.ThrowIfNullOrEmpty(isoCode, nameof(isoCode));
             isoCode = isoCode[..3].ToLowerInvariant();
             var dataService = new SqliteService("resources");
-            if (dataService.Created)
+            if (!dataService.ContainsData("Currencies"))
                 Data.SeedData(dataService);
             return dataService.SelectItem<Currency>("Currencies", nameof(IsoCode), isoCode) ?? throw new CurrencyNotFoundException(isoCode);
         }
