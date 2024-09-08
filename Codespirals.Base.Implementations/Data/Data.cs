@@ -114,16 +114,22 @@ namespace Codespirals.Base.Implementations.Data
                 throw;
             }
         }
-        private static string TypeToSqlType<TType>(int length = 20)
+        private static string TypeToSqlType<TType>()
         {
             switch (typeof(TType).Name)
             {
-                case "string":
-                    return $"VARCHAR({length})";
-                case "int":
+                case "String":
+                    return $"VARCHAR(50)";
+                case "Boolean" or "SByte" or "Byte" or "Int16" or "Int32" or "Int64":
                     return "INT";
+                case "Single" or "Double":
+                    return "REAL";
+                case "Guid" or "DateTime":
+                    return $"VARCHAR(36)";
+                case "Byte[]":
+                    return "Blob";
                 default:
-                    return $"VARCHAR({length})";
+                    return $"VARCHAR(50)";
             }
         }
 
