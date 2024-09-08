@@ -4,7 +4,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>$(AssemblyName)</Title>
-    <Version>0.1.82.24249</Version>
+    <Version>0.1.83.24252</Version>
     <Company>Codespirals</Company>
     <NeutralLanguage>en</NeutralLanguage>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>

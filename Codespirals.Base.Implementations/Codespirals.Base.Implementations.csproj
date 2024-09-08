@@ -12,6 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Codespirals.Sqlite\Codespirals.Sqlite\Codespirals.Sqlite.csproj" />
     <ProjectReference Include="..\Codespirals.Base\Codespirals.Base.csproj" />
   </ItemGroup>
 
