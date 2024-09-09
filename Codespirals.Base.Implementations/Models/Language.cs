@@ -1,12 +1,14 @@
-﻿using Codespirals.Base.Exceptions;
-using Codespirals.Base.Implementations.Data;
-using Codespirals.Sqlite.Services;
+﻿using Codespirals.Base.Data;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 
 namespace Codespirals.Base.Models
 {
+    [Table("Languages")]
     public class Language : ILanguage
     {
+        [Key]
         public string IsoCode { get; init; } = "en";
         public string Name { get; init; } = "English";
 
@@ -18,10 +20,10 @@ namespace Codespirals.Base.Models
         {
             ArgumentException.ThrowIfNullOrEmpty(isoCode, nameof(isoCode));
             isoCode = isoCode[..2].ToLowerInvariant();
-            var dataService = new SqliteService("resources");
-            if (!dataService.ContainsData("Languages"))
-                Data.SeedData(dataService);
-            return dataService.SelectItem<Language>("Languages", nameof(IsoCode), isoCode) ?? throw new LanguageNotFoundException(isoCode);
+            using var db = new ResourceContext("resources");
+            if (!db.Languages.Any())
+                SeedData.SeedLanguages("resources");
+            return db.Languages.FirstOrDefault(l => l.IsoCode == isoCode) ?? new Language();
         }
         public static Language GetLanguage(CultureInfo ci)
         {

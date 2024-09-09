@@ -1,14 +1,16 @@
-﻿using Codespirals.Base.Exceptions;
-using Codespirals.Base.Implementations.Data;
-using Codespirals.Sqlite.Services;
+﻿using Codespirals.Base.Data;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Codespirals.Base.Models
 {
+    [Table("Countries")]
     public class Country : ICountry
     {
+        [Key]
         public string IsoCode { get; init; } = "ch";
         public string Name { get; init; } = "Switzerland";
-        public string? Flag { get; internal set; }
+        public string? Flag { get; internal set; } = "🇨🇭";
 
         public Country()
         {
@@ -18,10 +20,10 @@ namespace Codespirals.Base.Models
         {
             ArgumentException.ThrowIfNullOrEmpty(isoCode, nameof(isoCode));
             isoCode = isoCode[..2].ToLowerInvariant();
-            var dataService = new SqliteService("resources");
-            if (!dataService.ContainsData("Countries"))
-                Data.SeedData(dataService);
-            return dataService.SelectItem<Country>("Countries", nameof(IsoCode), isoCode) ?? throw new CountryNotFoundException(isoCode);
+            using var db = new ResourceContext("resources");
+            if (!db.Countries.Any())
+                SeedData.SeedCountries("resources");
+            return db.Countries.FirstOrDefault(c => c.IsoCode == isoCode) ?? new Country();
         }
     }
 }

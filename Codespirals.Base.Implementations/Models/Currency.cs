@@ -1,16 +1,18 @@
-﻿using Codespirals.Base.Exceptions;
-using Codespirals.Base.Implementations.Data;
-using Codespirals.Sqlite.Services;
+﻿using Codespirals.Base.Data;
+using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Codespirals.Base.Models
 {
+    [Table("Currencies")]
     public class Currency : ICurrency
     {
         private int _ratio = 100;
         private decimal _rate = 1;
         private DateTime? _rateUpdated = null;
 
-        public string IsoCode { get; init; } = "USD";
+        [Key]
+        public string IsoCode { get; init; } = "usd";
         public string Name { get; init; } = "United States Dollar";
         public string Symbol { get; init; } = "$";
         public int MainUnitToMinimalRatio { get { return _ratio; } init { _ratio = Math.Clamp(value, 1, int.MaxValue); } }
@@ -25,10 +27,10 @@ namespace Codespirals.Base.Models
         {
             ArgumentException.ThrowIfNullOrEmpty(isoCode, nameof(isoCode));
             isoCode = isoCode[..3].ToLowerInvariant();
-            var dataService = new SqliteService("resources");
-            if (!dataService.ContainsData("Currencies"))
-                Data.SeedData(dataService);
-            return dataService.SelectItem<Currency>("Currencies", nameof(IsoCode), isoCode) ?? throw new CurrencyNotFoundException(isoCode);
+            using var db = new ResourceContext("resources");
+            if (!db.Currencies.Any())
+                SeedData.SeedCurrencies("resources");
+            return db.Currencies.FirstOrDefault(c => c.IsoCode == isoCode) ?? new Currency();
         }
     }
 }
