@@ -1,6 +1,7 @@
 ﻿using Codespirals.Base.Data;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Reflection.Metadata;
 
 namespace Codespirals.Base.Models
 {
@@ -24,6 +25,13 @@ namespace Codespirals.Base.Models
             if (!db.Countries.Any())
                 SeedData.SeedCountries("resources");
             return db.Countries.FirstOrDefault(c => c.IsoCode == isoCode) ?? new Country();
+        }
+        public static List<Country> GetCountries()
+        {
+            using var db = new ResourceContext("resources");
+            if (!db.Countries.Any())
+                SeedData.SeedCountries("resources");
+            return [.. db.Countries];
         }
     }
 }

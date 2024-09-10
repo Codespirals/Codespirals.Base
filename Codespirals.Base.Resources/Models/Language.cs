@@ -2,6 +2,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
+using System.Reflection.Metadata;
 
 namespace Codespirals.Base.Models
 {
@@ -30,6 +31,12 @@ namespace Codespirals.Base.Models
             var end = ci.DisplayName.Contains('(') ? ci.DisplayName.IndexOf('(') : ci.DisplayName.Length;
             return new Language { IsoCode = ci.TwoLetterISOLanguageName, Name = ci.EnglishName[..end] };
         }
-
+        public static List<Language> GetLanguages()
+        {
+            using var db = new ResourceContext("resources");
+            if (!db.Languages.Any())
+                SeedData.SeedLanguages("resources");
+            return [.. db.Languages];
+        }
     }
 }

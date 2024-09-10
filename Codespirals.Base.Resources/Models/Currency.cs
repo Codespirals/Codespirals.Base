@@ -32,5 +32,12 @@ namespace Codespirals.Base.Models
                 SeedData.SeedCurrencies("resources");
             return db.Currencies.FirstOrDefault(c => c.IsoCode == isoCode) ?? new Currency();
         }
+        public static List<Currency> GetCurrencies()
+        {
+            using var db = new ResourceContext("resources");
+            if (!db.Currencies.Any())
+                SeedData.SeedCurrencies("resources");
+            return [.. db.Currencies];
+        }
     }
 }

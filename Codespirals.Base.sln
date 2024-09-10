@@ -5,7 +5,9 @@ VisualStudioVersion = 17.8.34330.188
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codespirals.Base", "Codespirals.Base\Codespirals.Base.csproj", "{9F711833-9F50-4A21-9F5A-A883EAF7B6EA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codespirals.Base.Implementations", "Codespirals.Base.Implementations\Codespirals.Base.Implementations.csproj", "{C19A378C-1EAC-427C-A219-FBFDB2F6A3D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Codespirals.Base.Implementations", "Codespirals.Base.Implementations\Codespirals.Base.Implementations.csproj", "{C19A378C-1EAC-427C-A219-FBFDB2F6A3D8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Codespirals.Base.Abstractions", "Codespirals.Base.Abstractions\Codespirals.Base.Abstractions.csproj", "{9682C72B-6F0C-4130-900C-4930E4149D74}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C19A378C-1EAC-427C-A219-FBFDB2F6A3D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C19A378C-1EAC-427C-A219-FBFDB2F6A3D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C19A378C-1EAC-427C-A219-FBFDB2F6A3D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9682C72B-6F0C-4130-900C-4930E4149D74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9682C72B-6F0C-4130-900C-4930E4149D74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9682C72B-6F0C-4130-900C-4930E4149D74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9682C72B-6F0C-4130-900C-4930E4149D74}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
