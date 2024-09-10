@@ -2,7 +2,6 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
-using System.Reflection.Metadata;
 
 namespace Codespirals.Base.Models
 {
@@ -38,5 +37,7 @@ namespace Codespirals.Base.Models
                 SeedData.SeedLanguages("resources");
             return [.. db.Languages];
         }
+        public CultureInfo ToCultureInfo()
+            => new(IsoCode);
     }
 }

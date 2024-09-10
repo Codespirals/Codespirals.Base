@@ -16,7 +16,7 @@ namespace Codespirals.Base.Models
         public string Name { get; init; } = "United States Dollar";
         public string Symbol { get; init; } = "$";
         public int MainUnitToMinimalRatio { get { return _ratio; } init { _ratio = Math.Clamp(value, 1, int.MaxValue); } }
-        public decimal RateToUsd { get { return _rate; } set { _rateUpdated = DateTime.Now; _rate = Math.Clamp(value, (decimal)1e-10, (decimal)1e10); } }
+        public decimal RateToUsd { get { return _rate; } private set { _rateUpdated = DateTime.Now; _rate = Math.Clamp(value, (decimal)1e-10, (decimal)1e10); } }
         public DateTime? RateUpdated { get { return _rateUpdated; } }
 
         public Currency()
@@ -38,6 +38,14 @@ namespace Codespirals.Base.Models
             if (!db.Currencies.Any())
                 SeedData.SeedCurrencies("resources");
             return [.. db.Currencies];
+        }
+        public static void UpdateRateToUsd(string isoCode, decimal rate)
+        {
+            using var db = new ResourceContext("resources");
+            var currency = GetCurrency(isoCode);
+            currency.RateToUsd = rate;
+            db.Currencies.Update(currency);
+            db.SaveChanges();
         }
     }
 }
