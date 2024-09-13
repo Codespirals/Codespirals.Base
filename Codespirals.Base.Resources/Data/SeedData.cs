@@ -34,12 +34,12 @@ namespace Codespirals.Base.Data
         internal static void SeedCurrencies(string dbName)
         {
             using var db = new ResourceContext(dbName);
-            db.Currencies.Add(new Currency { Name = "United States Dollar", Symbol = "$", RateToUsd = 1, IsoCode = "usd" });
-            db.Currencies.Add(new Currency { Name = "Euro", Symbol = "€", RateToUsd = 1.12m, IsoCode = "eur" });
-            db.Currencies.Add(new Currency { Name = "Swiss Franc", Symbol = "CHF", RateToUsd = 1.18m, IsoCode = "chf" });
-            db.Currencies.Add(new Currency { Name = "Pound sterling", Symbol = "£", RateToUsd = 1.32m, IsoCode = "gbp" });
-            db.Currencies.Add(new Currency { Name = "Australian Dollar", Symbol = "$", RateToUsd = 0.68m, IsoCode = "aud" });
-            db.Currencies.Add(new Currency { Name = "Canadian Dollar", Symbol = "$", RateToUsd = 0.74m, IsoCode = "cad" });
+            db.Currencies.Add(new Currency { Name = "United States Dollar", Symbol = "$", IsoCode = "usd" });
+            db.Currencies.Add(new Currency { Name = "Euro", Symbol = "€", IsoCode = "eur" });
+            db.Currencies.Add(new Currency { Name = "Swiss Franc", Symbol = "CHF", IsoCode = "chf" });
+            db.Currencies.Add(new Currency { Name = "Pound sterling", Symbol = "£", IsoCode = "gbp" });
+            db.Currencies.Add(new Currency { Name = "Australian Dollar", Symbol = "$", IsoCode = "aud" });
+            db.Currencies.Add(new Currency { Name = "Canadian Dollar", Symbol = "$", IsoCode = "cad" });
 
             db.SaveChanges();
         }
