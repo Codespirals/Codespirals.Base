@@ -14,6 +14,7 @@
     <PackageTags>codespirals;modular;</PackageTags>
     <RepositoryUrl>https://github.com/Codespirals/Codespirals.Base.git</RepositoryUrl>
     <PackageProjectUrl>https://codespirals.dev</PackageProjectUrl>
+    <Copyright>© $(Authors)</Copyright>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>True</Optimize>
