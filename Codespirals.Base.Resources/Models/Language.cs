@@ -14,7 +14,9 @@ namespace Codespirals.Base.Models
 
         public Language()
         {
-
+            var language = GetLanguage(new CultureInfo("en"));
+            Name = language.Name;
+            IsoCode = language.IsoCode;
         }
         public static Language GetLanguage(string isoCode)
         {
