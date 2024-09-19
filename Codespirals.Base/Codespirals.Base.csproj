@@ -4,8 +4,8 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Title>$(AssemblyName)</Title>
-    <Version>0.1.265.24261</Version>
-    <Company>Codespirals</Company>
+    <Version>0.1.267.24263</Version>
+    <Company>codespirals</Company>
     <NeutralLanguage>en</NeutralLanguage>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>spiral.png</PackageIcon>
@@ -14,7 +14,8 @@
     <PackageTags>codespirals;modular;</PackageTags>
     <RepositoryUrl>https://github.com/Codespirals/Codespirals.Base.git</RepositoryUrl>
     <PackageProjectUrl>https://codespirals.dev</PackageProjectUrl>
-    <Copyright>© $(Authors)</Copyright>
+    <Copyright>$(Company)</Copyright>
+    <Authors>codespirals</Authors>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <Optimize>True</Optimize>
