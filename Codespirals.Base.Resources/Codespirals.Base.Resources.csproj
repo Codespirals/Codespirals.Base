@@ -8,7 +8,7 @@
     <Title>$(AssemblyName)</Title>
     <Authors>codespirals</Authors>
     <Company>codespirals</Company>
-    <Version>1.0.8.24279</Version>
+    <Version>1.0.9.24280</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>spiral.png</PackageIcon>
     <PackageTags>codespirals;modular;resources;</PackageTags>
