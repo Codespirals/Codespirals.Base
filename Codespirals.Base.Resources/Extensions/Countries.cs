@@ -1,21 +1,10 @@
 ﻿using Codespirals.Base.Data;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+using Codespirals.Base.Models;
 
-namespace Codespirals.Base.Models
+namespace Codespirals.Base
 {
-    [Table("Countries")]
-    public class Country : ICountry
+    public static class Countries
     {
-        [Key]
-        public string IsoCode { get; init; } = "ch";
-        public string Name { get; init; } = "Switzerland";
-        public string? Flag { get; internal set; } = "🇨🇭";
-
-        public Country()
-        {
-
-        }
         public static Country GetCountry(string isoCode)
         {
             ArgumentException.ThrowIfNullOrEmpty(isoCode, nameof(isoCode));
