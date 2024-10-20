@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Codespirals.Base.Models
+namespace Codespirals.Base
 {
     [Table("Countries")]
     public class Country : ICountry
@@ -9,7 +9,7 @@ namespace Codespirals.Base.Models
         [Key]
         public string IsoCode { get; init; } = "ch";
         public string Name { get; init; } = "Switzerland";
-        public string? Flag { get; internal set; } = "🇨🇭";
+        public string? Flag { get; set; } = "🇨🇭";
 
         public Country()
         {

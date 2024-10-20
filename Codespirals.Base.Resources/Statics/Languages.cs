@@ -1,5 +1,4 @@
 ﻿using Codespirals.Base.Data;
-using Codespirals.Base.Models;
 
 namespace Codespirals.Base
 {

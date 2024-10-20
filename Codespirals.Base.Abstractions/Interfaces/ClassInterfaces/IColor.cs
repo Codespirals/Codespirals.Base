@@ -2,9 +2,9 @@
 {
     public interface IColor
     {
-        public string Hex { get; }
-        public string HexA { get; }
-        public (byte R, byte G, byte B) RGB { get; }
-        public (byte R, byte G, byte B, float A) RGBA { get; }
+        public byte R { get; }
+        public byte G { get; }
+        public byte B { get; }
+        public byte A { get; }
     }
 }

@@ -2,7 +2,7 @@
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Globalization;
 
-namespace Codespirals.Base.Models
+namespace Codespirals.Base
 {
     [Table("Languages")]
     public class Language : ILanguage

@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Codespirals.Base.Models
+namespace Codespirals.Base
 {
     [Table("Currencies")]
     public class Currency : ICurrency

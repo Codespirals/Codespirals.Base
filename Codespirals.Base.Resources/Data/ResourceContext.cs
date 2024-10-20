@@ -1,5 +1,4 @@
-﻿using Codespirals.Base.Models;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 
 namespace Codespirals.Base.Data
 {

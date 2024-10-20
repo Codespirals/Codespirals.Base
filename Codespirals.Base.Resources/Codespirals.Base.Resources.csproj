@@ -8,7 +8,7 @@
     <Title>$(AssemblyName)</Title>
     <Authors>codespirals</Authors>
     <Company>codespirals</Company>
-    <Version>1.0.14.24293</Version>
+    <Version>1.0.15.24294</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>spiral.png</PackageIcon>
     <PackageTags>codespirals;modular;resources;</PackageTags>
@@ -29,8 +29,10 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Codespirals.Base.Abstractions" Version="1.0.22.24293" />
-    <PackageReference Include="Codespirals.Base.Impl" Version="0.0.3.24293" />
+    <PackageReference Include="Codespirals.Base.Abstractions" Version="1.0.23.24293">
+      <TreatAsUsed>true</TreatAsUsed>
+    </PackageReference>
+    <PackageReference Include="Codespirals.Base.Impl" Version="0.0.4.24293" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="8.0.8" />
   </ItemGroup>
   <ItemGroup>

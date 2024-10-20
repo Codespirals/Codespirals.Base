@@ -8,7 +8,7 @@
     <Title>$(AssemblyName)</Title>
     <Authors>codespirals</Authors>
     <Company>codespirals</Company>
-    <Version>0.0.4.24293</Version>
+    <Version>0.0.5.24294</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <PackageIcon>spiral.png</PackageIcon>
     <PackageTags>codespirals;modular;resources;</PackageTags>
@@ -29,7 +29,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Codespirals.Base.Abstractions" Version="1.0.22.24293" />
+    <PackageReference Include="Codespirals.Base.Abstractions" Version="1.0.23.24293" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />
