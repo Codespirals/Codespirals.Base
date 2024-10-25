@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public interface ICurrency : ICurrencyBase
+    public interface ICurrency : ICurrencyBase, IIdentifiable
     {
         /// <summary>
         /// The ratio of the smalles possible currency version (cents) to the main unit (dollars)

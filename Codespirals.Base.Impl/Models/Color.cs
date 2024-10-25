@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public record Color : IColor, IIdentifiable
+    public record Color : IColor
     {
         public string Id => ToString(true);
         public byte R { get; private set; } = byte.MinValue;

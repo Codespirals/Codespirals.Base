@@ -1,10 +1,7 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IColor
+    public interface IColor : IColorBase, IIdentifiable
     {
-        public byte R { get; }
-        public byte G { get; }
-        public byte B { get; }
-        public byte A { get; }
+
     }
 }

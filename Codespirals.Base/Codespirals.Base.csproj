@@ -33,8 +33,9 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Codespirals.Base.Abstractions" Version="1.0.22.24293" />
-    <PackageReference Include="Codespirals.Base.Resources" Version="1.0.13.24293" />
+    <PackageReference Include="Codespirals.Base.Abstractions" Version="1.0.24.24294" />
+    <PackageReference Include="Codespirals.Base.Impl" Version="0.0.5.24294" />
+    <PackageReference Include="Codespirals.Base.Resources" Version="1.0.15.24294" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resources.resx">

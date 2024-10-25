@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public interface ILanguage : ILanguageBase
+    public interface ILanguage : ILanguageBase, IIdentifiable
     {
 
     }

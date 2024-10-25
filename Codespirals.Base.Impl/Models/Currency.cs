@@ -11,6 +11,7 @@ namespace Codespirals.Base
         private DateTime? _rateUpdated = null;
 
         [Key]
+        public string Id => IsoCode;
         public string IsoCode { get; init; } = "usd";
         public string Name { get; init; } = "United States Dollar";
         public string Symbol { get; init; } = "$";

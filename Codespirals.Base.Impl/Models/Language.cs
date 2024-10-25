@@ -8,6 +8,7 @@ namespace Codespirals.Base
     public class Language : ILanguage
     {
         [Key]
+        public string Id => IsoCode;
         public string IsoCode { get; init; } = "en";
         public string Name { get; init; } = "English";
 
