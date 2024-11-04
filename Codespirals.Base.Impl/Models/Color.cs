@@ -17,7 +17,7 @@
         public override string ToString()
             => ToString(false);
 
-        public static bool IsValidColorHex(string hex)
+        private static bool IsValidColorHex(string hex)
             => RegexExtensions.IsHexColorValue().IsMatch(hex);
 
         private void SetColorByHex(string hex)
@@ -27,16 +27,16 @@
                 return;
             }
             hex = hex.TrimStart('#');
-            var i = 2;
+            var step = 2;
             if (hex.Length <= 4)
-                i = 1;
+                step--;
 
-            R = byte.Parse(hex[..i]);
-            G = byte.Parse(hex.Substring(1 * i, i));
-            B = byte.Parse(hex.Substring(2 * i, i));
+            R = byte.Parse(hex[..step]);
+            G = byte.Parse(hex.Substring(1 * step, step));
+            B = byte.Parse(hex.Substring(2 * step, step));
 
             if (hex.Length % 4 == 0)
-                A = byte.Parse(hex.Substring(3 * i, i));
+                A = byte.Parse(hex.Substring(3 * step, step));
 
             if (hex.Length > 5)
             {
