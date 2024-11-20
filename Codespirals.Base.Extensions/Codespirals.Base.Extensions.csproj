@@ -9,9 +9,9 @@
     <Company>codespirals</Company>
     <Authors>codespirals</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.27.24323</Version>
+    <Version>0.1.2.24313</Version>
     <PackageIcon>spiral.png</PackageIcon>
-    <PackageTags>codespirals;modular;abstractions;</PackageTags>
+    <PackageTags>codespirals;modular;extensions;</PackageTags>
     <PackageOutputPath>..\..\..\NuGet_local</PackageOutputPath>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <PackageLicenseExpression>CC0-1.0</PackageLicenseExpression>
