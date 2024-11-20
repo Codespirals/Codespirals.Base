@@ -18,7 +18,7 @@
             => ToString(false);
 
         private static bool IsValidColorHex(string hex)
-            => RegexExtensions.IsHexColorValue().IsMatch(hex);
+            => RegularExpressions.IsHexColorValue().IsMatch(hex);
 
         private void SetColorByHex(string hex)
         {
