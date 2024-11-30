@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base.Extensions.Extensions
+﻿namespace Codespirals.Base.Extensions
 {
     public static class EnumerableExtensions
     {
