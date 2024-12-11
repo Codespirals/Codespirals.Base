@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IUser<TProfileImage> : IUserBase, IHasPonouns, IIdentifiable
+    public interface IUser<TProfileImage> : IUserBase, IHasPonouns
         where TProfileImage : IImageBase
     {
         /// <summary>
