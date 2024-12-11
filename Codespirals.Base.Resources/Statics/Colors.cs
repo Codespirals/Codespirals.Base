@@ -1,14 +1,16 @@
-﻿namespace Codespirals.Base.Resources.Statics
+﻿namespace Codespirals.Base
 {
     public static class Colors
     {
+        private readonly static Color[] _rainbow = [new("E50000"), new("FF8D00"), new("FFEE00"), new("028121"), new("004CFF"), new("760088"), new("9400D3")];
+
         public static bool IsValidColorHex(string hex)
             => RegexExtensions.IsHexColorValue().IsMatch(hex);
-        public static List<Color> GetRainbow(bool includeViolet = true)
+
+        public static Color[] GetRainbow(bool includeViolet = true)
         {
-            var colors = new List<Color>() { new("E50000"), new("FF8D00"), new("FFEE00"), new("028121"), new("004CFF"), new("760088") };
-            if (includeViolet) { colors.Add(new("9400D3")); }
-            return colors;
+            if (includeViolet) { return _rainbow; }
+            return _rainbow[..6];
         }
         public static Color GetRandom(bool includeAlpha)
         {
@@ -17,7 +19,7 @@
                 return new Color(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
             return new Color(r.Next(0, 255), r.Next(0, 255), r.Next(0, 255));
         }
-        public static List<Color> GetFade(this Color color, Color otherColor, int numberOfColors)
+        public static Color[] GetFade(this Color color, Color otherColor, int numberOfColors)
         {
             var percentageStep = Math.Clamp(100 / numberOfColors, 1, 100);
             var colors = new List<Color>();
@@ -28,7 +30,7 @@
                     GetNumberBetween(color.B, otherColor.B, percentageStep * i),
                     GetNumberBetween(color.A, otherColor.A, percentageStep * i)));
             }
-            return colors;
+            return [.. colors];
         }
         private static int GetNumberBetween(int number1, int number2, int percentage)
         {
