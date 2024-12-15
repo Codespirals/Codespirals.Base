@@ -31,7 +31,11 @@ namespace Codespirals.Base.Data
             {
                 throw;
             }
-            Database.EnsureCreated();
+            var existed = Database.EnsureCreated();
+            if (existed) 
+            { 
+                SeedData.SeedCurrencies(dbName); 
+            }
         }
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
             => optionsBuilder.UseSqlite($@"Data Source={DbPath};");
