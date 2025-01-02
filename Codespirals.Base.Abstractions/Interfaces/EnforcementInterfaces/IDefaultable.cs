@@ -1,4 +1,4 @@
-﻿namespace Collabour.DB.Interfaces
+﻿namespace Codespirals.Base
 {
     public interface IDefaultable<T>
     {

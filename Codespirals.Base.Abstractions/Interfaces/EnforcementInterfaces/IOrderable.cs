@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base.Abstractions.Interfaces.EnforcementInterfaces
+﻿namespace Codespirals.Base
 {
     public interface IOrderable
     {

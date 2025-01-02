@@ -10,11 +10,10 @@
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>
-        public static (int s, int m, int h, int d) TimeAgo(this DateTime time)
+        public static TimeSpan TimeAgo(this DateTime time)
         {
             var utc = time.ToUniversalTime();
-            var delta = DateTime.UtcNow - utc;
-            return (delta.Seconds, delta.Minutes, delta.Hours, delta.Days);
+            return DateTime.UtcNow - utc;
         }
     }
 }

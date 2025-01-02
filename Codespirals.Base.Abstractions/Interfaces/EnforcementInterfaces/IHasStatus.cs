@@ -1,7 +1,11 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IHasStatus
+    public interface IHasStatus<TStatus>
     {
-        public string Status { get; }
+        public TStatus Status { get; }
+    }
+    public interface IHasStatus : IHasStatus<string>
+    {
+
     }
 }
