@@ -9,7 +9,7 @@
     <Company>codespirals</Company>
     <Authors>codespirals</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>0.1.2.24313</Version>
+    <Version>0.1.3.25006</Version>
     <PackageIcon>spiral.png</PackageIcon>
     <PackageTags>codespirals;modular;extensions;</PackageTags>
     <PackageOutputPath>..\..\..\NuGet_local</PackageOutputPath>
@@ -27,6 +27,9 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Codespirals.Base.Abstractions" Version="1.0.41.25006" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />
