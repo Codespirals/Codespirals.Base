@@ -3,18 +3,17 @@
     <TargetFramework>net8.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
-    <Copyright>$(Company)</Copyright>
-    <PackageProjectUrl>https://codespirals.dev/</PackageProjectUrl>
-    <Title>$(AssemblyName)</Title>
-    <Authors>codespirals</Authors>
-    <Company>codespirals</Company>
-    <Version>0.0.6.24299</Version>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+    <Title>$(AssemblyName)</Title>
+    <Version>0.1.12.25007</Version>
+    <Authors>$(Company)</Authors>
+    <Company>codespirals</Company>
     <PackageIcon>spiral.png</PackageIcon>
-    <PackageTags>codespirals;modular;resources;</PackageTags>
-    <PackageOutputPath>..\..\..\NuGet_local</PackageOutputPath>
-    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
+    <RepositoryUrl>https://github.com/Codespirals/Codespirals.Users.git</RepositoryUrl>
+    <PackageTags>codespirals,modular,database,EFCore</PackageTags>
+    <PackageOutputPath>../../../NuGet_local</PackageOutputPath>
     <PackageLicenseExpression>CC0-1.0</PackageLicenseExpression>
+    <EnforceCodeStyleInBuild>True</EnforceCodeStyleInBuild>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;IDE0130;</NoWarn>
@@ -23,13 +22,17 @@
     <NoWarn>1701;1702;IDE0130;</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\Codespirals.Base.Resources\Images\spiral.png">
+    <None Include="..\..\Codespirals.Base\Codespirals.Base.Resources\Images\spiral.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Codespirals.Base.Abstractions" Version="1.0.24.24294" />
+    <PackageReference Include="Codespirals.Base.Abstractions" Version="1.0.42.25006" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.0" />
+  </ItemGroup>
+  <ItemGroup>
+    <Using Include="Codespirals.Base" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />
