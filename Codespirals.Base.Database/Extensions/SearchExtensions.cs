@@ -1,6 +1,4 @@
-﻿using Codespirals.Base;
-
-namespace Codespirals.Base
+﻿namespace Codespirals.Base
 {
     public static class SearchExtensions
     {
