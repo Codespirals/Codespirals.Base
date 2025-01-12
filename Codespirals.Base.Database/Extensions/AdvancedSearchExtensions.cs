@@ -1,6 +1,4 @@
-﻿using Codespirals.Base;
-
-namespace Codespirals.Base
+﻿namespace Codespirals.Base
 {
     public static class AdvancedSearchExtensions
     {
@@ -39,12 +37,12 @@ namespace Codespirals.Base
             where TItem : IIdentifiable, INameable
             where TSearch : ISearch
             where TSearchResult : ISearchResult<TSearch, TItem>, new()
-        { 
-            var filtered = FilterAdvanced(list.Select(i => (i.Id, i.Name)), excludeSymbol, andSymbol, searchTerms:search.SplitQuery(seperatorsSymbols));
+        {
+            var filtered = FilterAdvanced(list.Select(i => (i.Id, i.Name)), excludeSymbol, andSymbol, searchTerms: search.SplitQuery(seperatorsSymbols));
             var results = filtered.Select(f => list.First(i => i.Id == f));
             if (returnAll)
                 return new TSearchResult { Results = results.ToList(), TotalResults = results.Count(), Search = search };
-            return new TSearchResult { Results =  results.Skip(search.Page * search.Limit).Take(search.Limit).ToList(), TotalResults = results.Count(), Search = search};
+            return new TSearchResult { Results = results.Skip(search.Page * search.Limit).Take(search.Limit).ToList(), TotalResults = results.Count(), Search = search };
         }
 
         private static string[] SplitQuery(this ISearch search, char[]? separators = null)
