@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net9.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Copyright>$(Company)</Copyright>
@@ -9,7 +9,7 @@
     <Company>codespirals</Company>
     <Authors>codespirals</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>0.1.8.25011</Version>
+    <Version>0.1.30.25013</Version>
     <PackageIcon>spiral.png</PackageIcon>
     <PackageTags>codespirals;modular;extensions;</PackageTags>
     <PackageOutputPath>..\..\..\NuGet_local</PackageOutputPath>

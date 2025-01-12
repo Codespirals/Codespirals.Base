@@ -1,7 +1,7 @@
 ﻿using System.Globalization;
 using System.Resources;
 
-namespace Codespirals.Base
+namespace Codespirals.Base.Extensions
 {
     public static class LocalizedStringExtensions
     {
