@@ -1,10 +1,10 @@
 ﻿namespace Codespirals.Base
 {
-    public partial interface IEntityStatus : IEntityStatus<int>
+    public interface IEntityStatus : IEntityStatus<int>
     {
 
     }
-    public partial interface IEntityStatus<TValue>
+    public interface IEntityStatus<TValue>
         where TValue : IComparable
     {
         public static abstract TValue Unset { get; }

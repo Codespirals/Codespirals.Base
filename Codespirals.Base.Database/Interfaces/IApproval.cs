@@ -1,10 +1,10 @@
 ﻿namespace Codespirals.Base
 {
-    public partial interface IApproval : IApproval<int>
+    public interface IApproval : IApproval<int>
     {
 
     }
-    public partial interface IApproval<TValue>
+    public interface IApproval<TValue>
         where TValue : IComparable
     {
         public static abstract TValue Unchecked { get; }

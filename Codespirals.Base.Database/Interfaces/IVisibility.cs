@@ -1,15 +1,11 @@
 ﻿namespace Codespirals.Base
 {
-    public partial interface IVisibility : IVisibility<int>
+    public interface IVisibility<TSelf>
+        where TSelf : IVisibility<TSelf>
     {
-
-    }
-    public partial interface IVisibility<TValue>
-        where TValue : IComparable
-    {
-        public static abstract TValue Public { get; }
-        public static abstract TValue Unlisted { get; }
-        public static abstract TValue Private { get; }
-        public static abstract TValue Hidden { get; }
+        public static abstract TSelf Public { get; }
+        public static abstract TSelf Unlisted { get; }
+        public static abstract TSelf Private { get; }
+        public static abstract TSelf Hidden { get; }
     }
 }
