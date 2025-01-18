@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base.Extensions
+﻿namespace Codespirals.Base
 {
     /// <summary>
     /// Extensions for <see cref="DateTime"/>

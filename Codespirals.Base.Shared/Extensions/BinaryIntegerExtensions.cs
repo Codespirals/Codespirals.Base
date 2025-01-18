@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace Codespirals.Base.Extensions
+namespace Codespirals.Base
 {
     public static class BinaryIntegerExtensions
     {
