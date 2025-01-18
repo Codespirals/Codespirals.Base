@@ -2,8 +2,9 @@
 {
     public static class EntityStatusExtensions
     {
-        public static bool IsDeleted<TStatus>(this IHasStatus<string> item)
-            where TStatus : IEntityStatus
-            => item.Status == TStatus.Deleted;
+        public static bool IsDeleted<TStatus, TStatusValue>(this IHasStatus<TStatusValue> item)
+            where TStatus : IEntityStatus<TStatusValue>
+            where TStatusValue : ISelectableBase
+            => item.Status.Id == TStatus.Deleted.Id;
     }
 }

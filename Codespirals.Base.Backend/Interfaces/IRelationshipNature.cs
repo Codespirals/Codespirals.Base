@@ -1,10 +1,11 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IRelationshipNature
+    public partial interface IRelationshipNature<TValue>
+        where TValue : ISelectableBase
     {
-        public abstract static string None { get; }
-        public abstract static string Saved { get; }
-        public abstract static string Hidden { get; }
-        public abstract static string Blocked { get; }
+        public abstract static TValue None { get; }
+        public abstract static TValue Saved { get; }
+        public abstract static TValue Hidden { get; }
+        public abstract static TValue Blocked { get; }
     }
 }

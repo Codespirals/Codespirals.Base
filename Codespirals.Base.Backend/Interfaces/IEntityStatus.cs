@@ -1,10 +1,11 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IEntityStatus
+    public partial interface IEntityStatus<TValue>
+        where TValue : ISelectableBase
     {
-        public static abstract string Unset { get; }
-        public static abstract string Normal { get; }
-        public static abstract string Flagged { get; }
-        public static abstract string Deleted { get; }
+        public static abstract TValue Unset { get; }
+        public static abstract TValue Normal { get; }
+        public static abstract TValue Flagged { get; }
+        public static abstract TValue Deleted { get; }
     }
 }

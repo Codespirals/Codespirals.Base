@@ -1,10 +1,11 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IVisibility
+    public partial interface IVisibility<TValue>
+        where TValue : ISelectableBase
     {
-        public static abstract string Public { get; }
-        public static abstract string Unlisted { get; }
-        public static abstract string Private { get; }
-        public static abstract string Hidden { get; }
+        public static abstract TValue Public { get; }
+        public static abstract TValue Unlisted { get; }
+        public static abstract TValue Private { get; }
+        public static abstract TValue Hidden { get; }
     }
 }

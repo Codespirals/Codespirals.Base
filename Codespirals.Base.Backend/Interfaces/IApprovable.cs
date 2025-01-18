@@ -1,8 +1,9 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IApprovable<TApproval>
-        where TApproval : IApproval
+    public interface IApprovable<TApproval, TValue>
+        where TApproval : IApproval<TValue>
+        where TValue : ISelectableBase
     {
-        public string Approval { get; }
+        public TValue Approval { get; }
     }
 }

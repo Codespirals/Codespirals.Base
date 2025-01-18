@@ -1,8 +1,9 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IRelationshipBase<TRelationshipNature>
-        where TRelationshipNature : IRelationshipNature
+    public interface IRelationshipBase<TRelationshipNature, TRelationshipNatureValue>
+        where TRelationshipNature : IRelationshipNature<TRelationshipNatureValue>
+        where TRelationshipNatureValue : ISelectableBase
     {
-        public string Nature { get; }
+        public TRelationshipNatureValue Nature { get; }
     }
 }
