@@ -9,9 +9,9 @@
     <Company>codespirals</Company>
     <Authors>codespirals</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>0.1.38.25015</Version>
+    <Version>1.0.2.25018</Version>
     <PackageIcon>spiral.png</PackageIcon>
-    <PackageTags>codespirals;modular;extensions;</PackageTags>
+    <PackageTags>codespirals;modular;abstractions;</PackageTags>
     <PackageOutputPath>..\..\..\NuGet_local</PackageOutputPath>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <PackageLicenseExpression>CC0-1.0</PackageLicenseExpression>
@@ -27,9 +27,6 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <PackageReference Include="Codespirals.Base.Abstractions" Version="1.0.46.25011" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />

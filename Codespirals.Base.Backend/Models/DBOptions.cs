@@ -7,7 +7,7 @@
         public string Username { get; set; } = string.Empty;
         public string Password { get; set; } = string.Empty;
 
-        public string BuildConnectionString()
+        public string ConnectionString
             => $"Server={Server};Database={Database};UserId={Username};Password={Password}";
     }
 }
