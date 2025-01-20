@@ -29,7 +29,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Codespirals.Base.Shared" Version="1.0.4.25018" />
+    <PackageReference Include="Codespirals.Base.Shared" Version="1.0.6.25020" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />

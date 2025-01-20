@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public partial interface IEntityStatus<TValue>
+    public partial interface IEntityStatus<TValue> : IIsEnum
         where TValue : ISelectableBase
     {
         public static abstract TValue Unset { get; }

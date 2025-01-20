@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public partial interface IApproval<TValue>
+    public partial interface IApproval<TValue> : IIsEnum
         where TValue : ISelectableBase
     {
         public static abstract TValue Unchecked { get; }
