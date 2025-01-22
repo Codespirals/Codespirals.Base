@@ -1,6 +1,7 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IIsEnum
+    public interface IIsEnum<TValue>
+        where TValue : ISelectableBase
     {
 
     }

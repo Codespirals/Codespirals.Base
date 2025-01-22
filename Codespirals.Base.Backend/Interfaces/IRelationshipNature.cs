@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public partial interface IRelationshipNature<TValue> : IIsEnum
+    public partial interface IRelationshipNature<TValue> : IIsEnum<TValue>
         where TValue : ISelectableBase
     {
         public abstract static TValue None { get; }

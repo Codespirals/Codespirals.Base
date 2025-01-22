@@ -1,8 +1,8 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IDefaultable<T>
-        where T : IDefaultable<T>
+    public interface IDefaultable<TSelf>
+        where TSelf : IDefaultable<TSelf>
     {
-        public T Default();
+        public TSelf Default();
     }
 }
