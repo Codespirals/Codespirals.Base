@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IToken<TType> : ITokenBase, ICreatable
+    public interface IInternalToken<TType> : ITokenBase, ICreatable
     {
         public TType TokenType { get; }
         public int? MinutesToLive { get; }
