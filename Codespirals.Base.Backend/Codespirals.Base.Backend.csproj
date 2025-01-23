@@ -28,7 +28,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Codespirals.Base.Shared" Version="1.0.28.25022" />
+    <PackageReference Include="Codespirals.Base.Shared" Version="1.0.34.25023" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
       <PrivateAssets>all</PrivateAssets>

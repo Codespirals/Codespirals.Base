@@ -3,6 +3,6 @@
     public interface IDefaultable<TSelf>
         where TSelf : IDefaultable<TSelf>
     {
-        public TSelf Default();
+        public abstract static TSelf Default();
     }
 }
