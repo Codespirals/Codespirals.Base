@@ -2,9 +2,10 @@
 {
     public static class SelectableExtensions
     {
-        public static bool Is<TSelectable>(this TSelectable left, TSelectable right)
+        public static bool Is<TSelectable>(this TSelectable primary, TSelectable other)
         where TSelectable : ISelectableBase
-            => left.Id == right.Id;
+            => primary.Id == other.Id;
+
         public static bool Is<TSelectable>(this TSelectable primary, params TSelectable[] others)
         where TSelectable : ISelectableBase
             => others.Any(s => s.Id == primary.Id);

@@ -9,7 +9,7 @@
     <Company>codespirals</Company>
     <Authors>codespirals</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.35.25023</Version>
+    <Version>1.0.37.25024</Version>
     <PackageIcon>spiral.png</PackageIcon>
     <PackageTags>codespirals;modular;abstractions;</PackageTags>
     <PackageOutputPath>..\..\..\NuGet_local</PackageOutputPath>
