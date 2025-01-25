@@ -2,6 +2,6 @@
 {
     public interface IOrderable
     {
-        public int Order { get; set; }
+        public short Order { get; set; }
     }
 }

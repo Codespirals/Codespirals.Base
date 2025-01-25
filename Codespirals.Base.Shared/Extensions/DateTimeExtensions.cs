@@ -6,7 +6,7 @@
     public static class DateTimeExtensions
     {
         /// <summary>
-        /// Returns a tuple containing how long ago a given <see cref="DateTime"/> was
+        /// Returns a tuple containing how long ago a given <see cref="DateTime">time</see> was
         /// </summary>
         /// <param name="time"></param>
         /// <returns></returns>

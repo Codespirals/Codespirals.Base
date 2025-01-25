@@ -4,8 +4,4 @@
     {
         public TStatus Status { get; }
     }
-    public interface IHasStatus : IHasStatus<string>
-    {
-
-    }
 }
