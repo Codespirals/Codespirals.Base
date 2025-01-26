@@ -1,7 +1,8 @@
 ﻿namespace Codespirals.Base
 {
-    public interface ILoginBase : ISignupBase
+    public interface ILoginBase : IHasPassword
     {
+        public string UserNameOrEmail { get; set; }
         /// <summary>
         /// If the user wants to stay logged in
         /// </summary>
