@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public static class SelectableHelper
+    public static partial class SelectableHelper
     {
         public static List<TSelectable> GetAllowableValues<TSelectable, TSelectableEnum>()
             where TSelectable : ISelectableBase, new()
