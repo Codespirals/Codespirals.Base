@@ -16,9 +16,9 @@
                     var propValue = prop.GetValue(allowableValues);
                     if (propValue is null)
                         continue;
-                    if (propValue is ISelectableBase cast)
+                    if (propValue is TSelectable cast)
                     {
-                        list.Add(new TSelectable { Id = cast.Id, Name = cast.Name, Description = cast.Description });
+                        list.Add(cast);
                     }
                 }
                 return [.. list];
@@ -27,6 +27,12 @@
             {
                 return [];
             }
+        }
+        public static TSelectable GetSelectableFromId<TSelectable, TSelectableEnum>(string id)
+            where TSelectable : ISelectableBase, new()
+            where TSelectableEnum : IIsEnum<TSelectable>, new()
+        {
+            return GetAllowableValues<TSelectable, TSelectableEnum>().FirstOrDefault(r => r.Id == id) ?? TSelectableEnum.Default();
         }
     }
 }
