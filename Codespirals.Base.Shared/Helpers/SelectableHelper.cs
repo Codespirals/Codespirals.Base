@@ -28,10 +28,12 @@
                 return [];
             }
         }
-        public static TSelectable GetSelectableFromId<TSelectable, TSelectableEnum>(string id)
+        public static TSelectable GetSelectableFromId<TSelectable, TSelectableEnum>(string? id)
             where TSelectable : ISelectableBase, new()
             where TSelectableEnum : IIsEnum<TSelectable>, new()
         {
+            if (string.IsNullOrWhiteSpace(id))
+                return TSelectableEnum.Default();
             return GetAllowableValues<TSelectable, TSelectableEnum>().FirstOrDefault(r => r.Id == id) ?? TSelectableEnum.Default();
         }
     }
