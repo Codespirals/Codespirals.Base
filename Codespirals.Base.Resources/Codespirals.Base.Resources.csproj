@@ -22,14 +22,14 @@
     <NoWarn>1701;1702;IDE0130;</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\spiral.png">
+    <EmbeddedResource Include="Images\icon.png">
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>True</Pack>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
-    <None Update="Images\spiral.png">
+    <None Update="Images\icon.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
