@@ -1,0 +1,9 @@
+﻿<div>
+    <img src="@Data.Url" alt="@Data.AltText" />
+</div>
+
+@code
+{
+    [Parameter]
+    public required IImageBase Data { get; set; } 
+}

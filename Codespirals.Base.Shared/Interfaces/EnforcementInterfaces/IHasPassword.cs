@@ -5,6 +5,6 @@
         /// <summary>
         /// A password
         /// </summary>
-        public string Password { get; }
+        public string Password { get; set; }
     }
 }

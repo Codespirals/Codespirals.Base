@@ -6,6 +6,6 @@
         /// <summary>
         /// If the user wants to stay logged in
         /// </summary>
-        public bool StayLoggedIn { get; }
+        public bool StayLoggedIn { get; set; }
     }
 }
