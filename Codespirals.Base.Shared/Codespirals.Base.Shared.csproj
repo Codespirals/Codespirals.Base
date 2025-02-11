@@ -9,8 +9,8 @@
     <Company>codespirals</Company>
     <Authors>codespirals</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.59.25041</Version>
-    <PackageIcon>spiral.png</PackageIcon>
+    <Version>1.0.60.25042</Version>
+    <PackageIcon>logo.png</PackageIcon>
     <PackageTags>codespirals;modular;abstractions;</PackageTags>
     <PackageOutputPath>..\..\..\NuGet_local</PackageOutputPath>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
@@ -23,10 +23,33 @@
     <NoWarn>1701;1702;IDE0130;</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\Codespirals.Base.Resources\Images\spiral.png">
+    <None Remove="Resources\Images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Images\icon.png">
+      <PackagePath>\</PackagePath>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <Pack>True</Pack>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Images\logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-    </None>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\Text\BaseText.Designer.cs">
+      <DependentUpon>BaseText.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\Text\BaseText.resx">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <LastGenOutput>BaseText.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />

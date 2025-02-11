@@ -1,8 +1,7 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IAddressBase : INameable
+    public interface IAddressBase
     {
-        public new string Name { get; set; }
         /// <summary>
         /// A street with house number
         /// </summary>

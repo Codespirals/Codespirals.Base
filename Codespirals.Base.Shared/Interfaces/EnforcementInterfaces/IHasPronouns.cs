@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IHasPonouns
+    public interface IHasPronouns
     {
         /// <summary>
         /// A set of personal pronouns

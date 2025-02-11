@@ -5,10 +5,10 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
-    <Version>0.1.52.25042</Version>
+    <Version>0.1.53.25042</Version>
     <Authors>$(Company)</Authors>
     <Company>codespirals</Company>
-    <PackageIcon>spiral.png</PackageIcon>
+    <PackageIcon>logo.png</PackageIcon>
     <RepositoryUrl>https://github.com/Codespirals/Codespirals.Users.git</RepositoryUrl>
     <PackageTags>codespirals,modular,database,EFCore</PackageTags>
     <PackageOutputPath>../../../NuGet_local</PackageOutputPath>
@@ -22,13 +22,13 @@
     <NoWarn>1701;1702;IDE0130;</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <None Include="..\..\Codespirals.Base\Codespirals.Base.Resources\Images\spiral.png">
+    <None Include="..\Codespirals.Base.Shared\Resources\Images\logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Codespirals.Base.Shared" Version="1.0.58.25035" />
+    <PackageReference Include="Codespirals.Base.Shared" Version="1.0.59.25041" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="9.0.1">
       <PrivateAssets>all</PrivateAssets>

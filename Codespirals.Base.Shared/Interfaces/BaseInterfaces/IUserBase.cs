@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public interface IUserBase : IIdentifiable, IHasUsername, IHasPonouns
+    public interface IUserBase : IIdentifiable, IHasUsername, IHasPronouns
     {
 
     }

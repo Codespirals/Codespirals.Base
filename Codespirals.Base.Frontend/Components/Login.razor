@@ -1,6 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Components.Forms
 
-<form>
+<EditForm>
+    <DataAnnotationsValidator />
+    <ValidationSummary />
+
     <div class="form-group">
         <label for="usernameOrEmail">Username or Email</label>
         <InputText id="usernameOrEmail" class="form-control" @bind="Data.UserNameOrEmail" />
@@ -18,10 +21,10 @@
 
     <button type="submit" class="btn btn-primary">Login</button>
 
-</form>
+</EditForm>
 
 @code
 {
     [Parameter]
-    public required ILoginBase Data { get; set; }  
+    public required ILoginBase Data { get; set; }
 }

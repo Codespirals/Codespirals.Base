@@ -1,5 +1,9 @@
 ﻿<div>
     <img src="@Data.Url" alt="@Data.AltText" />
+    @if(!string.IsNullOrWhiteSpace(Data.Credit))
+    {
+        <small>@Data.Credit</small>
+    }
 </div>
 
 @code
