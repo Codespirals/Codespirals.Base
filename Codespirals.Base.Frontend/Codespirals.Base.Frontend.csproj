@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
-    <Version>0.1.3.25042</Version>
+    <Version>0.1.5.25043</Version>
     <Authors>$(Company)</Authors>
     <Company>codespirals</Company>
     <PackageIcon>logo.png</PackageIcon>
@@ -41,6 +41,20 @@
   </ItemGroup>
   <ItemGroup>
     <Using Include="Codespirals.Base" />
+    <Using Include="Codespirals.Base.Frontend.Resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Update="Resources\ComponentText.Designer.cs">
+      <DependentUpon>ComponentText.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Update="Resources\ComponentText.resx">
+      <LastGenOutput>ComponentText.Designer.cs</LastGenOutput>
+      <Generator>ResXFileCodeGenerator</Generator>
+    </EmbeddedResource>
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />
