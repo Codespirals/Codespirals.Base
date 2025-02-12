@@ -120,6 +120,9 @@
   <data name="Body" xml:space="preserve">
     <value>Body</value>
   </data>
+  <data name="Choose" xml:space="preserve">
+    <value>Choose</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>

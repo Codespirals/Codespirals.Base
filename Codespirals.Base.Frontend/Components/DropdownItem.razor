@@ -1,0 +1,12 @@
+﻿@namespace Codespirals.Base.Components
+<div class="tooltip-container">
+    <div hidden>@Item.Id</div>
+    <div>@Item.Name</div>
+    <span class="tooltip-text">@Item.Description</span>
+</div>
+
+@code
+{
+    [Parameter]
+    public required Codespirals.Base.ISelectableBase Item { get; set; }
+}

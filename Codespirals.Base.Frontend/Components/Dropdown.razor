@@ -1,0 +1,37 @@
+﻿@namespace Codespirals.Base.Components
+<div class="dropdown">
+    <button class="dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-expanded="false">
+        @if (SelectedItem != null)
+        {
+            <DropdownItem Data="@SelectedItem" /> 
+        }
+        else
+        {
+            <span>@ComponentText.Choose</span>
+        }
+    </button>
+    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        @foreach (var item in Items)
+        {
+            <li>
+                <a class="dropdown-item container-flex" href="#" @onclick="() => SelectItem(item)">
+                    <div hidden>@item.Id</div>
+                    <div class="inline-div">@item.Name</div>
+                </a>
+            </li>
+        }
+    </ul>
+</div>
+
+@code
+{
+    [Parameter]
+    public required List<Codespirals.Base.ISelectableBase> Items { get; set; }
+
+    private Codespirals.Base.ISelectableBase? SelectedItem { get; set; }
+
+    private void SelectItem(Codespirals.Base.ISelectableBase item)
+    {
+        SelectedItem = item;
+    }
+}
