@@ -26,11 +26,11 @@
 @code
 {
     [Parameter]
-    public required List<Codespirals.Base.ISelectableBase> Items { get; set; }
+    public required List<ISelectableBase> Items { get; set; }
 
-    private Codespirals.Base.ISelectableBase? SelectedItem { get; set; }
+    private ISelectableBase? SelectedItem { get; set; }
 
-    private void SelectItem(Codespirals.Base.ISelectableBase item)
+    private void SelectItem(ISelectableBase item)
     {
         SelectedItem = item;
     }

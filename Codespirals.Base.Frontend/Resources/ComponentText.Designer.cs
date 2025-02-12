@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Codespirals.Base.Frontend.Resources {
+namespace Codespirals.Base.Resources {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace Codespirals.Base.Frontend.Resources {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Codespirals.Base.Frontend.Resources.ComponentText", typeof(ComponentText).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("Codespirals.Base.Resources.ComponentText", typeof(ComponentText).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;
