@@ -1,4 +1,5 @@
-﻿@namespace Codespirals.Base.Components
+@model IImageBase
+
 <div>
     <img src="@image.Url" alt="@image.AltText" />
     @if (!string.IsNullOrWhiteSpace(image.Credit))

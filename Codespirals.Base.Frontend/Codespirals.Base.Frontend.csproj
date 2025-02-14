@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
-    <Version>0.1.17.25045</Version>
+    <Version>0.1.21.25045</Version>
     <Authors>$(Company)</Authors>
     <Company>codespirals</Company>
     <PackageIcon>logo.png</PackageIcon>
@@ -30,9 +30,7 @@
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Codespirals.Base.Shared" Version="1.0.59.25041" />
-    <PackageReference Include="Microsoft.AspNetCore.Components" Version="9.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Forms" Version="9.0.2" />
-    <PackageReference Include="Microsoft.AspNetCore.Components.Web" Version="9.0.2" />
+    <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.3.0" />
   </ItemGroup>
   <ItemGroup>
     <Compile Update="Resources\ComponentText.Designer.cs">
@@ -50,6 +48,9 @@
   <ItemGroup>
     <Using Include="Codespirals.Base" />
     <Using Include="Codespirals.Base.Resources" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Scripts\" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />
