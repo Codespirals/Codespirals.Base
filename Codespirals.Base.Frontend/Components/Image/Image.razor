@@ -1,0 +1,8 @@
+﻿@namespace Codespirals.Base.Components
+<div>
+    <img src="@image.Url" alt="@image.AltText" />
+    @if (!string.IsNullOrWhiteSpace(image.Credit))
+    {
+        <small>@ComponentText.Credit: @image.Credit</small>
+    }
+</div>
