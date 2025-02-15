@@ -1,6 +1,6 @@
 @model IImageBase
 
-<div>
+<div class="image-container">
     <img src="@image.Url" alt="@image.AltText" />
     @if (!string.IsNullOrWhiteSpace(image.Credit))
     {
