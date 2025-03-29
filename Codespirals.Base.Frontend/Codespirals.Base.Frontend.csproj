@@ -29,7 +29,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Codespirals.Base.Shared" Version="1.0.60.25042" />
+    <PackageReference Include="Codespirals.Base.Shared" Version="1.0.63.25088" />
     <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.3.0" />
   </ItemGroup>
   <ItemGroup>
