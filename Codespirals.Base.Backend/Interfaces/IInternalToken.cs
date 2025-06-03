@@ -7,6 +7,5 @@
         public bool IsValid { get; }
         public int InvalidAttempts { get; }
         public int MaxInvalidAttempts { get; }
-        public void Invalidate();
     }
 }
