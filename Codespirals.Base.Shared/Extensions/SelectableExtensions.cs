@@ -10,6 +10,10 @@
         where TSelectable : ISelectableBase
             => primary.Is(other?.Id);
 
+        public static bool Is<TSelectable>(this TSelectable? primary, params string[]? othersIds)
+        where TSelectable : ISelectableBase
+            => othersIds is not null && othersIds.Any(s => primary.Is(s));
+
         public static bool Is<TSelectable>(this TSelectable? primary, params TSelectable[]? others)
         where TSelectable : ISelectableBase
             => others is not null && others.Any(s => primary.Is(s.Id));

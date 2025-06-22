@@ -2,21 +2,20 @@
 {
     public static class SelectableHelper
     {
-        public static List<TSelectable> GetAllowableValues<TSelectable, TSelectableEnum>()
-            where TSelectable : ISelectableBase, new()
-            where TSelectableEnum : IIsEnum<TSelectable>, new()
+        public static List<TEnum> GetAllowableValues<TEnum>()
+            where TEnum : IIsEnum<TEnum>, new()
         {
             try
             {
-                var list = new List<TSelectable>();
-                var allowableValues = new TSelectableEnum();
-                var properties = typeof(TSelectableEnum).GetProperties();
+                var list = new List<TEnum>();
+                var allowableValues = new TEnum();
+                var properties = typeof(TEnum).GetProperties();
                 foreach (var prop in properties)
                 {
                     var propValue = prop.GetValue(allowableValues);
                     if (propValue is null)
                         continue;
-                    if (propValue is TSelectable cast)
+                    if (propValue is TEnum cast)
                     {
                         list.Add(cast);
                     }
@@ -28,13 +27,12 @@
                 return [];
             }
         }
-        public static TSelectable GetSelectableFromId<TSelectable, TSelectableEnum>(string? id)
-            where TSelectable : ISelectableBase, new()
-            where TSelectableEnum : IIsEnum<TSelectable>, new()
+        public static TEnum GetSelectableFromId<TEnum>(string? id)
+            where TEnum : IIsEnum<TEnum>, new()
         {
             if (string.IsNullOrWhiteSpace(id))
-                return TSelectableEnum.Default();
-            return GetAllowableValues<TSelectable, TSelectableEnum>().FirstOrDefault(r => r.Id == id) ?? TSelectableEnum.Default();
+                return TEnum.Default();
+            return GetAllowableValues<TEnum>().FirstOrDefault(r => r.Id == id) ?? TEnum.Default();
         }
     }
 }

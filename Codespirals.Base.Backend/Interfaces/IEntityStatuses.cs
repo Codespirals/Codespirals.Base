@@ -1,7 +1,7 @@
 ﻿namespace Codespirals.Base
 {
-    public partial interface IEntityStatuses<TValue> : IIsEnum<TValue>
-        where TValue : ISelectableBase
+    public interface IEntityStatuses<TValue> : IIsEnum<TValue>
+        where TValue : IEntityStatuses<TValue>
     {
         public static abstract TValue Unset { get; }
         public static abstract TValue Normal { get; }
