@@ -34,5 +34,11 @@
                 return TEnum.Default();
             return GetAllowableValues<TEnum>().FirstOrDefault(r => r.Id == id) ?? TEnum.Default();
         }
+        public static bool IsAnyOf<TEnum>(TEnum item, params string[] args)
+            where TEnum : IIsEnum<TEnum>, new()
+            => args.Any(v => item.Id == v);
+        public static bool IsAnyOf<TEnum>(TEnum item, params TEnum[] args)
+            where TEnum : IIsEnum<TEnum>, new()
+            => args.Any(v => item.Id == v.Id);
     }
 }
