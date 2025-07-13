@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
-    <Version>0.1.69.25177</Version>
+    <Version>0.1.73.25194</Version>
     <Authors>$(Company)</Authors>
     <Company>codespirals</Company>
     <PackageIcon>logo.png</PackageIcon>
@@ -29,8 +29,8 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Codespirals.Base.Shared" Version="1.0.77.25177" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.6" />
+    <PackageReference Include="Codespirals.Base.Shared" Version="1.0.83.25194" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="9.0.7" />
   </ItemGroup>
   <ItemGroup>
     <Using Include="Codespirals.Base" />

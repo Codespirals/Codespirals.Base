@@ -9,7 +9,7 @@
     /// call to the Api, however implementing it makes it easy to go through all createion steps
     /// by using nothing but the SDK implementing this, which can be a bonus
     /// </remarks>
-    public interface IBeginCreateable<TCreate>  
+    public interface IBeginCreateable<TCreate>
     {
         /// <summary>
         /// Request a create object to start creating a new item with

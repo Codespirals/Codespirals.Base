@@ -1,6 +1,4 @@
-﻿using Codespirals.Search;
-
-namespace Codespirals.Base
+﻿namespace Codespirals.Base
 {
     /// <summary>
     /// A service implementing this interface requires the api to have a method to retrieve an object containing all data needed to start a search

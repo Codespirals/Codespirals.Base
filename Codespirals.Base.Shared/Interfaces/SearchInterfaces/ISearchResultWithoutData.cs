@@ -1,6 +1,11 @@
 ﻿
 namespace Codespirals.Base
 {
+    /// <summary>
+    /// An intermediate interface for search results that do not contain data.
+    /// Very useful for pagination controls or similar that only need to know the parameters and total results.
+    /// </summary>
+    /// <typeparam name="TSearch"></typeparam>
     public interface ISearchResultWithoutData<TSearch>
         where TSearch : ISearch
     {
