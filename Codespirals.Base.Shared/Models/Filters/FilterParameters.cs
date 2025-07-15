@@ -1,6 +1,4 @@
-﻿using Codespirals.Base;
-
-namespace Codespirals.Common
+﻿namespace Codespirals.Base
 {
     public class FilterParameters : IFilterParameters
     {
