@@ -14,5 +14,18 @@
                 (list[n], list[k]) = (list[k], list[n]);
             }
         }
+        public static IOrderedEnumerable<TItem> OrderByProperty<TListIn, TItem>(this TListIn list, string propertyName, bool ascending = true)
+            where TListIn : IEnumerable<TItem>
+        {
+            propertyName ??= "";
+            var propertyInfo = typeof(TItem).GetProperty(propertyName);
+            if (string.IsNullOrWhiteSpace(propertyName) || propertyInfo == null)
+                return ascending
+                    ? list.Order()
+                    : list.OrderDescending();
+            return ascending
+                ? list.OrderBy(e => propertyInfo.GetValue(e, null))
+                : list.OrderByDescending(e => propertyInfo.GetValue(e, null));
+        }
     }
 }

@@ -18,8 +18,12 @@
         public TCreate BeginCreate(string parentId);
     }
     /// <inheritdoc />
-    public interface IBeginSubItemCreateableAsync<TCreate> : IBeginSubItemCreateable<Task<TCreate>>
+    public interface IBeginSubItemCreateableAsync<TCreate>
     {
-
+        /// <summary>
+        /// Request a create object to start creating a new item with
+        /// </summary>
+        /// <returns>The create object</returns>
+        public Task<TCreate> BeginCreateAsync(string parentId);
     }
 }

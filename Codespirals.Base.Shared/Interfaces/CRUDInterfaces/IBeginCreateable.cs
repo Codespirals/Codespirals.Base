@@ -18,8 +18,12 @@
         public TCreate BeginCreate();
     }
     /// <inheritdoc />
-    public interface IBeginCreateableAsync<TCreate> : IBeginCreateable<Task<TCreate>>
+    public interface IBeginCreateableAsync<TCreate>
     {
-
+        /// <summary>
+        /// Request a create object to start creating a new item with
+        /// </summary>
+        /// <returns>The create object</returns>
+        public Task<TCreate> BeginCreateAsync();
     }
 }

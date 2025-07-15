@@ -5,7 +5,7 @@
     /// </summary>
     /// <typeparam name="TSearch">The type of the search object</typeparam>
     public interface IBeginSearchable<TSearch>
-        where TSearch : ISearch
+        where TSearch : ISearchParameters
     {
         /// <summary>
         /// Request a search object to start searching with
@@ -14,10 +14,14 @@
         public TSearch BeginSearch();
     }
     /// <inheritdoc />
-    public interface IBeginSearchableAsync<TSearch> : IBeginSearchable<TSearch>
-        where TSearch : ISearch
+    public interface IBeginSearchableAsync<TSearch>
+        where TSearch : ISearchParameters
     {
+        /// <summary>
+        /// Request a search object to start searching with
+        /// </summary>
+        /// <returns>The search object</returns>
         /// <inheritdoc />
-        public new Task<TSearch> BeginSearch();
+        public Task<TSearch> BeginSearchAsync();
     }
 }

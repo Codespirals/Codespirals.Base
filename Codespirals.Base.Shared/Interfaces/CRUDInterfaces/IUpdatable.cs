@@ -15,8 +15,13 @@
         public TResult Edit(TEdit editItem);
     }
     /// <inheritdoc />
-    public interface IUpdatableAsync<TResult, TEdit> : IUpdatable<Task<TResult>, TEdit>
+    public interface IUpdatableAsync<TResult, TEdit>
     {
-
+        /// <summary>
+        /// Update an item of the defined type with the given ID
+        /// </summary>
+        /// <param name="editItem">An object of the edit class for this type</param>
+        /// <returns>The updated item.</returns>
+        public Task<TResult> EditAsync(TEdit editItem);
     }
 }

@@ -17,8 +17,16 @@
         public TResult Delete(TId id);
     }
     /// <inheritdoc/>
-    public interface IDeletableAsync<TResult, TId> : IDeletable<Task<TResult>, TId>
+    public interface IDeletableAsync<TResult, TId>
     {
-
+        /// <summary>
+        /// Delete an item of the defined type with the given ID
+        /// </summary>
+        /// <param name="id">The id of the object to delete</param>
+        /// <returns>
+        /// An item of the specified type. 
+        /// Usually this is used to indicate if the deletion was successful.
+        /// </returns>
+        public Task<TResult> DeleteAsync(TId id);
     }
 }

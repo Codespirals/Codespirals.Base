@@ -14,8 +14,13 @@
         public TResult Get(TId id);
     }
     /// <inheritdoc/>
-    public interface IRetrievableAsync<TResult, TId> : IRetrievable<Task<TResult>, TId>
+    public interface IRetrievableAsync<TResult, TId>
     {
-
+        /// <summary>
+        /// Get an item of the defined type with the given ID
+        /// </summary>
+        /// <param name="id">id of the item to retrieve</param>
+        /// <returns>An item of the specified type</returns>
+        public Task<TResult> GetAsync(TId id);
     }
 }

@@ -14,8 +14,13 @@
         public TResult Create(TCreate createItem);
     }
     /// <inheritdoc/>
-    public interface ICreatableAsync<TResult, TCreate> : ICreatable<Task<TResult>, TCreate>
+    public interface ICreatableAsync<TResult, TCreate>
     {
-
+        /// <summary>
+        /// Create an item of the defined type
+        /// </summary>
+        /// <param name="createItem">An object of the creation class for this type</param>
+        /// <returns>The newly created item</returns>
+        public Task<TResult> CreateAsync(TCreate createItem);
     }
 }
