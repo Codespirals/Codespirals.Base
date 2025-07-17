@@ -29,11 +29,11 @@
     }
     public record Result : Result<object>
     {
-        private Result() : base()
+        internal Result() : base()
         {
             Data = null;
         }
-        private Result(string error, int errorCode) : base(error, errorCode)
+        internal Result(string error, int errorCode) : base(error, errorCode)
         {
 
         }
