@@ -18,7 +18,7 @@
         public Task<TResult> SendEmailAsync(string from, string subject, string body, string to);
 
     }
-    public interface IEmailSenderService<TResult, TUser> : IEmailSenderService<TResult>
+    public interface IEmailSenderService<TResult, TUser>
         where TResult : IResult
         where TUser : IUserBase, IHasEmail
     {
