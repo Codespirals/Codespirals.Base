@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base
 {
-    public record Result<TData> : IResult<TData>
+    public record Result<TData> : IResult<Result<TData>, TData>
     {
         public bool Success { get; internal set; }
         public string Error { get; internal set; } = "";

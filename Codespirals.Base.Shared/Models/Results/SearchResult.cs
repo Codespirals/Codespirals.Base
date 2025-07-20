@@ -6,7 +6,7 @@
     /// </summary>
     /// <typeparam name="TData">The item type that was searched for</typeparam>
     /// <typeparam name="TSearchParameters">The search parameters</typeparam>
-    public record SearchResult<TSearchParameters, TData>() : ISearchResult<TSearchParameters, TData>
+    public record SearchResult<TSearchParameters, TData>() : ISearchResult<SearchResult<TSearchParameters, TData>, TSearchParameters, TData>
         where TSearchParameters : ISearchParameters, new()
     {
         /// <inheritdoc/>
@@ -16,7 +16,7 @@
         public bool Success { get; internal set; }
         public string Error { get; internal set; } = "";
         public int ErrorCode { get; internal set; }
-        public List<TData> Data { get; internal set; } = [];
+        public IEnumerable<TData> Data { get; internal set; } = [];
 
         private SearchResult(TSearchParameters search) : this()
         {

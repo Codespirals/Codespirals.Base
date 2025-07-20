@@ -3,17 +3,18 @@
     /// <summary>
     /// A result without data - basically a boolean with a potential error message
     /// </summary>
-    public interface IResult
+    public interface IResultBase<TSelf>
+        where TSelf : IResultBase<TSelf>
     {
         public bool Success { get; }
         public int ErrorCode { get; }
         public string Error { get; }
     }
     /// <summary>
-    /// A full result with data
+    /// A result without data - basically a boolean with a potential error message
     /// </summary>
-    /// <typeparam name="TData">The type of the data</typeparam>
-    public interface IResult<TData> : IResult
+    public interface IResultBase<TSelf, TData> : IResultBase<TSelf>
+        where TSelf : IResultBase<TSelf, TData>
     {
         public TData? Data { get; }
     }

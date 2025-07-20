@@ -6,7 +6,7 @@
     /// </summary>
     /// <typeparam name="TData">The item type that was searched for</typeparam>
     /// <typeparam name="TFilterParameters">The search parameters</typeparam>
-    public record ListResult<TFilterParameters, TData>() : IListResult<TFilterParameters, TData>
+    public record ListResult<TFilterParameters, TData>() : IListResult<ListResult<TFilterParameters, TData>, TFilterParameters, TData>
         where TFilterParameters : IFilterParameters, new()
     {
         /// <inheritdoc/>
@@ -16,7 +16,7 @@
         public bool Success { get; internal set; }
         public string Error { get; internal set; } = "";
         public int ErrorCode { get; internal set; }
-        public List<TData> Data { get; internal set; } = [];
+        public IEnumerable<TData> Data { get; internal set; } = [];
 
         private ListResult(TFilterParameters search) : this()
         {

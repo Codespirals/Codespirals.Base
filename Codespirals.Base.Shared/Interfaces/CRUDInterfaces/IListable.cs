@@ -8,7 +8,7 @@
     /// <typeparam name="TData">The type to return in the search results</typeparam>
     public interface IListable<TFilter, TData, TListResult>
         where TFilter : IFilterParameters
-        where TListResult : IListResult<TFilter, TData>
+        where TListResult : IListResult<TListResult, TFilter, TData>
     {
         public TListResult GetMany(TFilter search);
     }
@@ -20,7 +20,7 @@
     /// <typeparam name="TFilter"></typeparam>
     public interface IListableAsync<TFilter, TData, TListResult>
         where TFilter : IFilterParameters
-        where TListResult : IListResult<TFilter, TData>
+        where TListResult : IListResult<TListResult, TFilter, TData>
     {
         public Task<TListResult> GetManyAsync(TFilter search);
     }

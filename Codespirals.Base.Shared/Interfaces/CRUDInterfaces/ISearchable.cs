@@ -8,7 +8,7 @@
     /// <typeparam name="TData">The type to return in the search results</typeparam>
     public interface ISearchable<TSearch, TData, TSearchResult>
         where TSearch : ISearchParameters
-        where TSearchResult : ISearchResult<TSearch, TData>
+        where TSearchResult : ISearchResult<TSearchResult, TSearch, TData>
     {
         public TSearchResult Search(TSearch search);
     }
@@ -20,7 +20,7 @@
     /// <typeparam name="TSearch"></typeparam>
     public interface ISearchableAsync<TSearch, TData, TSearchResult> : ISearchable<TSearch, TData, TSearchResult>
         where TSearch : ISearchParameters
-        where TSearchResult : ISearchResult<TSearch, TData>
+        where TSearchResult : ISearchResult<TSearchResult, TSearch, TData>
     {
         public new Task<TSearchResult> Search(TSearch search);
     }
