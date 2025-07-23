@@ -2,7 +2,7 @@
 {
     public static class SearchExtensions
     {
-        public static IEnumerable<TItem> ApplySearchParameters<TItem, TParameters>(this IEnumerable<TItem> entities, TParameters search, int maxLimit, out int totalResults)
+        public static IEnumerable<TItem> ApplyFilterParameters<TItem, TParameters>(this IEnumerable<TItem> entities, TParameters search, int maxLimit, out int totalResults)
             where TParameters : IFilterParameters
         {
             totalResults = entities.Count();
