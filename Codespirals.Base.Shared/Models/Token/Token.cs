@@ -1,12 +1,12 @@
 ﻿namespace Codespirals.Base
 {
-    public class Token : ITokenBase
+    public record Token : ITokenBase
     {
         private bool _isValid = true;
         public string Key { get; set; }
-        public string Value { get; } = Guid.NewGuid().ToString("N");
-        public int? MinutesToLive { get; set; }
-        public DateTime Created { get; set; } = DateTime.UtcNow;
+        public string Value { get; init; } = Guid.NewGuid().ToString();
+        public int? MinutesToLive { get; init; }
+        public DateTime Created { get; init; } = DateTime.UtcNow;
 
         public bool IsValid
         {
@@ -16,6 +16,10 @@
         public Token(string name)
         {
             Key = name;
+        }
+        public Token(string name, int minutesToLive) : this(name)
+        {
+            MinutesToLive = minutesToLive;
         }
     }
 }
