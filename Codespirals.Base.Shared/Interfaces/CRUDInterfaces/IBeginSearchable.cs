@@ -13,6 +13,15 @@
         /// <returns>The search object</returns>
         public TSearch BeginSearch();
     }
+    public interface IBeginSearchable<TSearch, TVerificaion>
+        where TSearch : ISearchParameters
+    {
+        /// <summary>
+        /// Request a search object to start searching with
+        /// </summary>
+        /// <returns>The search object</returns>
+        public TSearch BeginSearch(TVerificaion verificaion);
+    }
     /// <inheritdoc />
     public interface IBeginSearchableAsync<TSearch>
         where TSearch : ISearchParameters
@@ -23,5 +32,16 @@
         /// <returns>The search object</returns>
         /// <inheritdoc />
         public Task<TSearch> BeginSearchAsync();
+    }
+    /// <inheritdoc />
+    public interface IBeginSearchableAsync<TSearch, TVerification>
+        where TSearch : ISearchParameters
+    {
+        /// <summary>
+        /// Request a search object to start searching with
+        /// </summary>
+        /// <returns>The search object</returns>
+        /// <inheritdoc />
+        public Task<TSearch> BeginSearchAsync(TVerification verification);
     }
 }

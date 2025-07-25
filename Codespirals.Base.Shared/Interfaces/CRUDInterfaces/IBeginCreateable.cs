@@ -17,6 +17,14 @@
         /// <returns>The create object</returns>
         public TCreate BeginCreate();
     }
+    public interface IBeginCreateable<TCreate, TVerification>
+    {
+        /// <summary>
+        /// Request a create object to start creating a new item with
+        /// </summary>
+        /// <returns>The create object</returns>
+        public TCreate BeginCreate(TVerification verification);
+    }
     /// <inheritdoc />
     public interface IBeginCreateableAsync<TCreate>
     {
@@ -25,5 +33,13 @@
         /// </summary>
         /// <returns>The create object</returns>
         public Task<TCreate> BeginCreateAsync();
+    }
+    public interface IBeginCreateableAsync<TCreate, TVerification>
+    {
+        /// <summary>
+        /// Request a create object to start creating a new item with
+        /// </summary>
+        /// <returns>The create object</returns>
+        public Task<TCreate> BeginCreateAsync(TVerification verification);
     }
 }
