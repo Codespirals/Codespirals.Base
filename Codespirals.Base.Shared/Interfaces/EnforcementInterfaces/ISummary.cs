@@ -1,7 +1,7 @@
 ﻿namespace Codespirals.Base
 {
     /// <summary>
-    /// An object reduced down to a smaller scale
+    /// An object implementing <see cref="ISummarizable{TSummary}"/> reduced down to a smaller scale
     /// </summary>
     public interface ISummary
     {

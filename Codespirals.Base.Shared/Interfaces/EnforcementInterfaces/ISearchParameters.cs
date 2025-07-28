@@ -1,7 +1,7 @@
 ﻿namespace Codespirals.Base
 {
     /// <summary>
-    /// A standardized query object sent to be sent to an API or similar to get a result back
+    /// An extension on <see cref="IFilterParameters"/> with an aditional string query to filter the objects further
     /// </summary>
     public interface ISearchParameters : IFilterParameters
     {

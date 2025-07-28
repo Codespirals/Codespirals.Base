@@ -7,7 +7,7 @@
     /// <typeparam name="TData">The item type that was searched for</typeparam>
     /// <typeparam name="TSearchParameters">The search parameters</typeparam>
     public record SearchResult<TSearchParameters, TData> : ISearchResult<SearchResult<TSearchParameters, TData>, string, TSearchParameters, TData>
-        where TSearchParameters : ISearchParameters
+        where TSearchParameters : ISearchParameters, new()
     {
         /// <inheritdoc/>
         public TSearchParameters Parameters { get; init; }
@@ -20,6 +20,7 @@
 
         private SearchResult(string error, string? errorCode = null)
         {
+            Parameters = new TSearchParameters();
             Success = false;
             Error = error;
             ErrorCode = errorCode;

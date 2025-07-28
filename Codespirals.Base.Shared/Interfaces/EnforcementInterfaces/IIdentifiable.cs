@@ -7,9 +7,8 @@
     public interface IIdentifiable
     {
         /// <summary>
-        /// A globally unique identifier (unless explicitly stated otherwise this is a <see cref="Guid"/>)
+        /// A globally unique identifier (in most cases is a string representation of a <see cref="Guid"/>)
         /// </summary>
-        /// <example>00000000-0000-0000-0000-000000000000</example>
         public string Id { get; }
     }
 }

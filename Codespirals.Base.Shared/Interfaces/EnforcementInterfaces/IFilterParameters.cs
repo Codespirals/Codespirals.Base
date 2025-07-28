@@ -1,5 +1,8 @@
 ﻿namespace Codespirals.Base
 {
+    /// <summary>
+    /// A set of parameters with which to filter a list down to a more managable size
+    /// </summary>
     public interface IFilterParameters
     {
         /// <summary>
@@ -14,8 +17,7 @@
         /// <summary>
         /// How to sort the results
         /// </summary>
-        /// <remarks>The IDs of the items implemented by a <see cref="ISortingTypes{TValue}"/> class are the values used by codespirals algorithms, 
-        /// but feel free to write your own algorithms and values</remarks>
+        /// <remarks>Actual results depend on implementation.</remarks>
         string Sort { get; }
         /// <summary>
         /// Whether to get the results in ascending or descending order.

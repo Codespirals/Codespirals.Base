@@ -7,6 +7,9 @@
     public interface IResultWithData<TSelf, TErrorCode, TData> : IResult<TSelf, TErrorCode>
         where TSelf : IResultWithData<TSelf, TErrorCode, TData>
     {
+        /// <summary>
+        /// The data returned by the operation.
+        /// </summary>
         public TData? Data { get; }
     }
 }

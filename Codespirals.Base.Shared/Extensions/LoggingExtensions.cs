@@ -32,6 +32,7 @@ namespace Codespirals.Base
         public enum State
         {
             InProgress,
+            ActionSkipped,
             Success,
             Cancelled,
             Stopped

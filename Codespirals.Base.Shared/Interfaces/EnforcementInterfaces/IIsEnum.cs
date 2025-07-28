@@ -1,16 +1,13 @@
 ﻿namespace Codespirals.Base
 {
     /// <summary>
-    /// A class type implementing this is a selection of possible values
+    /// A class type implementing this is a selection of possible values.
+    /// It's basically a more extensible version of <see cref="Enum"/>.
     /// </summary>
-    /// <typeparam name="TSelf"></typeparam>
-    public interface IIsEnum<TSelf> : ISelectableBase
+    /// <typeparam name="TSelf">The type of the item implementing this</typeparam>
+    public interface IIsEnum<TSelf> : ISelectableBase, IDefaultable<TSelf>
         where TSelf : IIsEnum<TSelf>
     {
-        /// <summary>
-        /// A staticly set default that can be returned instead when another value can't be retrieved
-        /// </summary>
-        /// <returns>A value of type <typeparamref name="TSelf"/> which represents the default value of the object returning it</returns>
-        public static abstract TSelf Default();
+
     }
 }
