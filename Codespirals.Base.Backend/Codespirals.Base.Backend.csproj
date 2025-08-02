@@ -5,7 +5,7 @@
     <Nullable>enable</Nullable>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
     <Title>$(AssemblyName)</Title>
-    <Version>0.1.78.25203</Version>
+    <Version>0.1.80.25211</Version>
     <Authors>$(Company)</Authors>
     <Company>codespirals</Company>
     <PackageIcon>logo.png</PackageIcon>

@@ -40,7 +40,7 @@
         {
             Parameters = filter;
             Success = true;
-            Data = unformattedData.ApplyFilterParameters(filter, short.MaxValue, out int totalResults);
+            Data = unformattedData.ApplyFilterParameters(filter, short.MaxValue, out var totalResults);
             TotalResults = totalResults;
         }
         public static FilteredListResult<TFilterParameters, TData> Ok(TFilterParameters filter, IEnumerable<TData> formattedData, int totalResults) => new(filter, formattedData, totalResults);
