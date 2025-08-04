@@ -1,16 +1,15 @@
 ﻿namespace Codespirals.Base
 {
-    public static class SearchExtensions
+    public static class FilterExtensions
     {
-        public static IEnumerable<TItem> ApplyFilterParameters<TItem, TParameters>(this IEnumerable<TItem> entities, TParameters search, int maxLimit, out int totalResults)
+        public static IEnumerable<TItem> ApplyFilterParameters<TItem, TParameters>(this IEnumerable<TItem> entities, TParameters search, short maxLimit, out int totalResults)
             where TParameters : IFilterParameters
         {
             totalResults = entities.Count();
-            var limit = Math.Clamp(search.Limit, 1, maxLimit);
+            var limit = maxLimit > 1 ? Math.Clamp(search.Limit, 1, maxLimit) : short.MaxValue;
             var maxPage = entities.Count() / limit;
             var page = Math.Clamp(search.Page - 1, 0, maxPage);
             return entities.Skip(page * limit).Take(limit);
         }
-
     }
 }
