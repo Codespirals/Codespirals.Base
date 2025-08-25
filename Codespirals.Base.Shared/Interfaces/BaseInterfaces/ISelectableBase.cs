@@ -11,7 +11,13 @@
     /// <item>A usually optional description to further describe the item</item>
     /// </list>
     /// </remarks>
-    public interface ISelectableBase : IIdentifiable, INameable, IDescribable
+    public interface ISelectableBase : ISelectableBase<string>
+    {
+
+    }
+    /// <inheritdoc cref="ISelectableBase"/>
+    /// <typeparam name="TId">The type of the Id property</typeparam>
+    public interface ISelectableBase<TId> : IIdentifiable<TId>, INameable, IDescribable
     {
         
     }
