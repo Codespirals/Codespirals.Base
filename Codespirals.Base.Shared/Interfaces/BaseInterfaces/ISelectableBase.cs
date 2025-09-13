@@ -19,6 +19,6 @@
     /// <typeparam name="TId">The type of the Id property</typeparam>
     public interface ISelectableBase<TId> : IIdentifiable<TId>, INameable, IDescribable
     {
-        
+
     }
 }

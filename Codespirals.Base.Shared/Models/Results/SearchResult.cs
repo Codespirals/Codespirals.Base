@@ -37,13 +37,13 @@
             Parameters = search;
             Success = true;
             TotalResults = totalResults;
-            Data = formattedData.ToList();
+            Data = formattedData;
         }
         private SearchResult(TSearchParameters search, IEnumerable<TData> unformattedData)
         {
             Parameters = search;
             Success = true;
-            Data = unformattedData.ApplyFilterParameters(search, short.MaxValue, out int totalResults).ToList();
+            Data = unformattedData.ApplyFilterParameters(search, short.MaxValue, out int totalResults);
             TotalResults = totalResults;
         }
         public static SearchResult<TSearchParameters, TData> Ok(TSearchParameters search, IEnumerable<TData> formattedData, int totalResults) => new(search, formattedData, totalResults);

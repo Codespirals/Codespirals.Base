@@ -4,7 +4,5 @@
     {
         /// <inheritdoc />
         public new string UserName { get; set; }
-        /// <inheritdoc />
-        public new string Email { get; set; }
     }
 }

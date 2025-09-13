@@ -9,16 +9,19 @@
     <Company>codespirals</Company>
     <Authors>codespirals</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.123.25244</Version>
+    <Version>1.0.127.25256</Version>
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>codespirals;modular;abstractions;</PackageTags>
-    <PackageOutputPath>..\..\..\NuGet_local</PackageOutputPath>
+    <PackageOutputPath>$(OneDrive)\NuGet</PackageOutputPath>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <PackageLicenseExpression>CC0-1.0</PackageLicenseExpression>
     <RootNamespace>Codespirals.Base</RootNamespace>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/Codespirals/Codespirals.Base.git</RepositoryUrl>
     <NeutralLanguage>en</NeutralLanguage>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Today>$([System.DateTime]::Now.ToString('yyyy.MM.dd'))</Today>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;IDE0130;</NoWarn>
@@ -41,7 +44,7 @@
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </EmbeddedResource>
-    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.8" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="9.0.9" />
     <Resource Include="Resources\README.md">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
