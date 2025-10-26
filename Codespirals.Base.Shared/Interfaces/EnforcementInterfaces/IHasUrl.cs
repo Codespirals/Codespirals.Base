@@ -1,10 +1,9 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+public interface IHasUrl
 {
-    public interface IHasUrl
-    {
-        /// <summary>
-        /// The url that leads to the image
-        /// </summary>
-        public string Url { get; }
-    }
+    /// <summary>
+    /// The url that leads to the image
+    /// </summary>
+    public string Url { get; }
 }

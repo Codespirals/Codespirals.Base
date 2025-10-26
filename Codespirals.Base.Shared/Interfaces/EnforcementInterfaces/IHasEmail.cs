@@ -1,10 +1,9 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+public interface IHasEmail
 {
-    public interface IHasEmail
-    {
-        /// <summary>
-        /// An email address that belongs to this person
-        /// </summary>
-        public string Email { get; }
-    }
+    /// <summary>
+    /// An email address that belongs to this person
+    /// </summary>
+    public string Email { get; }
 }

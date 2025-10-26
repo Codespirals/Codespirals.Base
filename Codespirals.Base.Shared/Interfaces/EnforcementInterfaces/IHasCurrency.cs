@@ -1,7 +1,6 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+public interface IHasCurrency<TCurrency>
 {
-    public interface IHasCurrency<TCurrency>
-    {
-        public TCurrency Currency { get; }
-    }
+    public TCurrency Currency { get; }
 }

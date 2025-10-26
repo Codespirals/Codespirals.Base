@@ -1,19 +1,18 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+/// <summary>
+/// Extensions for <see cref="DateTime"/>
+/// </summary>
+public static class DateTimeExtensions
 {
     /// <summary>
-    /// Extensions for <see cref="DateTime"/>
+    /// Returns a tuple containing how long ago a given <see cref="DateTime">time</see> was
     /// </summary>
-    public static class DateTimeExtensions
+    /// <param name="time"></param>
+    /// <returns></returns>
+    public static TimeSpan TimeAgo(this DateTime time)
     {
-        /// <summary>
-        /// Returns a tuple containing how long ago a given <see cref="DateTime">time</see> was
-        /// </summary>
-        /// <param name="time"></param>
-        /// <returns></returns>
-        public static TimeSpan TimeAgo(this DateTime time)
-        {
-            var utc = time.ToUniversalTime();
-            return DateTime.UtcNow - utc;
-        }
+        var utc = time.ToUniversalTime();
+        return DateTime.UtcNow - utc;
     }
 }

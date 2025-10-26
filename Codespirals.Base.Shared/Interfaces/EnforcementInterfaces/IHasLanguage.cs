@@ -1,7 +1,6 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+public interface IHasLanguage<TLanguage>
 {
-    public interface IHasLanguage<TLanguage>
-    {
-        public TLanguage Language { get; }
-    }
+    public TLanguage Language { get; }
 }

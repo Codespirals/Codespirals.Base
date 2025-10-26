@@ -1,13 +1,12 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+/// <summary>
+/// Having this interface signifies the has a creation <see cref="DateTime"/>
+/// </summary>
+public interface ICreatable
 {
     /// <summary>
-    /// Having this interface signifies the has a creation <see cref="DateTime"/>
+    /// The <see cref="DateTime"/> this item was created
     /// </summary>
-    public interface ICreatable
-    {
-        /// <summary>
-        /// The <see cref="DateTime"/> this item was created
-        /// </summary>
-        public DateTime Created { get; }
-    }
+    public DateTime Created { get; }
 }

@@ -1,7 +1,6 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+public interface IRelationship<TRelationshipNatureValue>
 {
-    public interface IRelationship<TRelationshipNatureValue>
-    {
-        public TRelationshipNatureValue Nature { get; }
-    }
+    public TRelationshipNatureValue Nature { get; }
 }

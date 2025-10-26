@@ -1,8 +1,7 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+public interface ISortingTypes<TSelf> : IIsEnum<TSelf>, ISelectableBase
+    where TSelf : ISortingTypes<TSelf>
 {
-    public interface ISortingTypes<TSelf> : IIsEnum<TSelf>, ISelectableBase
-        where TSelf : ISortingTypes<TSelf>
-    {
-        public static abstract TSelf Unsorted { get; }
-    }
+    public static abstract TSelf Unsorted { get; }
 }

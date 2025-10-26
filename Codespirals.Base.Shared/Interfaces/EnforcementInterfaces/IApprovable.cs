@@ -1,7 +1,6 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+public interface IApprovable<TValue>
 {
-    public interface IApprovable<TValue>
-    {
-        public TValue Approval { get; }
-    }
+    public TValue Approval { get; }
 }

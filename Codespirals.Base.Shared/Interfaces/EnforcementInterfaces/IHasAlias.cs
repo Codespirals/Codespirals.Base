@@ -1,10 +1,9 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+public interface IHasAlias
 {
-    public interface IHasAlias
-    {
-        /// <summary>
-        /// An alternative name
-        /// </summary>
-        public string Alias { get; }
-    }
+    /// <summary>
+    /// An alternative name
+    /// </summary>
+    public string Alias { get; }
 }

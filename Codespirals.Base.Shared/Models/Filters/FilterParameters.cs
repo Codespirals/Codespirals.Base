@@ -1,13 +1,12 @@
-﻿namespace Codespirals.Base
+﻿namespace Codespirals.Base;
+
+public class FilterParameters : IFilterParameters
 {
-    public class FilterParameters : IFilterParameters
-    {
-        public int Page { get; set; }
+    public int Page { get; set; }
 
-        public int Limit { get; set; }
+    public int Limit { get; set; }
 
-        public string Sort { get; set; } = "";
+    public string Sort { get; set; } = "";
 
-        public bool Ascending { get; set; }
-    }
+    public bool Ascending { get; set; }
 }
