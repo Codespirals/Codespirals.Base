@@ -1,11 +1,12 @@
 ﻿namespace Codespirals.Base;
 public static class DependencyInjectionHelper
 {
-    public static void CheckRequiredEnvironmentalVariables(string[] variables)
+    public static void CheckRequiredEnvironmentalVariablesByNames(string[] names, out Dictionary<string, string> variables)
     {
-        foreach (var item in variables)
+        variables = [];
+        for (var i = 0; i < names.Length; i++)
         {
-            _ = Environment.GetEnvironmentVariable(item) ?? throw new Exception("Missing required environmental variable.");
+            variables.Add(names[i] , Environment.GetEnvironmentVariable(names[i]) ?? throw new Exception($"Missing required environmental variable: {names[i]}."));
         }
     }
 }
