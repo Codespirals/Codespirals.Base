@@ -3,8 +3,7 @@
 [AttributeUsage(AttributeTargets.Class,
     AllowMultiple = true,
     Inherited = true)]
-public sealed class RequiredConfigurationSetting(string settingName, string sectionName = "") : Attribute
+public sealed class RequiredConfigurationSetting(string settingPath) : Attribute
 {
-    public string Section { get; internal set; } = sectionName;
-    public string Setting { get; internal set; } = settingName;
+    public string SettingPath { get; internal set; } = settingPath;
 }

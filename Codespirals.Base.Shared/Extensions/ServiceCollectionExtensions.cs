@@ -1,18 +1,23 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Reflection;
 
 namespace Codespirals.Base;
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddCustomServices(this IServiceCollection services)
+    public static IServiceCollection AddCustomServices(this IServiceCollection services, IConfiguration? configuration = null)
     {
         var types = Assembly.GetExecutingAssembly().GetTypes()
             .Where(t => !t.IsAbstract && t.GetCustomAttribute<InjectableService>() is not null);
 
         foreach (var type in types)
         {
-            DependencyInjectionHelper.CheckRequiredEnvironmentalVariables(type);
+            DependencyInjectionHelper.EnsureRequiredEnvironmentalVariablesAreSet(type);
+            if (configuration is not null)
+            {
+                DependencyInjectionHelper.EnsureRequiredSettingsAreSet(type, configuration);
+            }
 
             var attribute = type.GetCustomAttribute<InjectableService>()!;
             if (attribute is null)
