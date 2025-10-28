@@ -1,6 +1,6 @@
 ﻿namespace Codespirals.Base;
 
-[AttributeUsage(AttributeTargets.Interface | AttributeTargets.Class | AttributeTargets.Struct,
+[AttributeUsage(AttributeTargets.Class,
     AllowMultiple = true,
     Inherited = true)]
 public sealed class RequiredEnvironmentalVariable(string variableName) : Attribute

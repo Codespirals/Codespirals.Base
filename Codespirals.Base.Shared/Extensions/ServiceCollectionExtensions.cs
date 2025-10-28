@@ -12,9 +12,7 @@ public static class ServiceCollectionExtensions
 
         foreach (var type in types)
         {
-            var requiredEnvironmentalVariables = type.GetCustomAttributes<RequiredEnvironmentalVariable>();
-            if (requiredEnvironmentalVariables is not null)
-                DependencyInjectionHelper.CheckRequiredEnvironmentalVariablesByNames(requiredEnvironmentalVariables.Select(v => v.Variable));
+            DependencyInjectionHelper.CheckRequiredEnvironmentalVariables(type);
 
             var attribute = type.GetCustomAttribute<InjectableService>()!;
             if (attribute is null)
