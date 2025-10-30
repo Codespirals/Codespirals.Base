@@ -13,39 +13,64 @@ public static class ServiceCollectionExtensions
 
         foreach (var type in types)
         {
-            DependencyInjectionHelper.EnsureRequiredEnvironmentalVariablesAreSet(type);
-            if (configuration is not null)
-            {
-                DependencyInjectionHelper.EnsureRequiredSettingsAreSet(type, configuration);
-            }
-
             var attribute = type.GetCustomAttribute<InjectableService>()!;
             if (attribute is null)
                 continue;
 
-            foreach (var serviceInterface in type.GetInterfaces())
-            {
-                if (attribute.Key is null)
-                    services.TryAdd(new ServiceDescriptor(serviceInterface, type, attribute.Lifetime));
-                else
-                {
-                    switch (attribute.Lifetime)
-                    {
-                        case ServiceLifetime.Singleton:
-                            services.TryAddKeyedSingleton(serviceInterface, attribute.Key, type);
-                            break;
-                        case ServiceLifetime.Scoped:
-                            services.TryAddKeyedScoped(serviceInterface, attribute.Key, type);
-                            break;
-                        case ServiceLifetime.Transient:
-                            services.TryAddKeyedTransient(serviceInterface, attribute.Key, type);
-                            break;
-                        default:
-                            break;
-                    }
-                }
-            }
+            DependencyInjectionHelper.EnsureRequiredEnvironmentalVariablesAreSet(type);
+            if (configuration is not null)
+                DependencyInjectionHelper.EnsureRequiredSettingsAreSet(type, configuration);
+
+            services.AddRequiredSubServices(type);
+
+            services.TryAddCustomService(attribute.ServiceInterface, type, attribute.Lifetime, attribute.Options?.ServiceKey);
         }
         return services;
     }
+    internal static void TryAddCustomService(this IServiceCollection services, Type serviceInterface, Type serviceType, ServiceLifetime lifetime = ServiceLifetime.Scoped, string? key = null)
+    {
+        if (services.GetService(serviceType, key) is not null)
+            return;
+        if (key is null)
+            services.TryAdd(new ServiceDescriptor(serviceInterface, serviceType, lifetime));
+        else
+        {
+            switch (lifetime)
+            {
+                case ServiceLifetime.Singleton:
+                    services.TryAddKeyedSingleton(serviceInterface, key, serviceType);
+                    break;
+                case ServiceLifetime.Scoped:
+                    services.TryAddKeyedScoped(serviceInterface, key, serviceType);
+                    break;
+                case ServiceLifetime.Transient:
+                    services.TryAddKeyedTransient(serviceInterface, key, serviceType);
+                    break;
+                default:
+                    services.TryAddKeyedScoped(serviceInterface, key, serviceType);
+                    break;
+            }
+        }
+    }
+    internal static void AddRequiredSubServices(this IServiceCollection services, Type serviceType)
+    {
+        var requiredServiceAttributes = serviceType.GetCustomAttributes<RequiredInjectableService>();
+        if (requiredServiceAttributes is null)
+            return;
+        foreach (var requiredService in requiredServiceAttributes)
+        {
+            var serviceAttribute = requiredService.Service.GetCustomAttribute<InjectableService>();
+            if (serviceAttribute is null)
+                continue;
+            services.TryAddCustomService(serviceAttribute.ServiceInterface,
+                requiredService.Service,
+                serviceAttribute?.Lifetime ?? ServiceLifetime.Scoped,
+                serviceAttribute?.Options?.ServiceKey);
+        }
+    }
+    internal static ServiceDescriptor? GetService(this IServiceCollection services, Type serviceType, string? key = null)
+        => key is null
+                ? services.FirstOrDefault(s => s.ServiceType == serviceType)
+                : services.FirstOrDefault(s => s.ServiceType == serviceType && s.ServiceKey?.ToString() == key);
+
 }
