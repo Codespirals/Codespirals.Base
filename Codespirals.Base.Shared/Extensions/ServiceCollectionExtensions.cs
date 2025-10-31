@@ -13,41 +13,45 @@ public static class ServiceCollectionExtensions
 
         foreach (var type in types)
         {
-            var attribute = type.GetCustomAttribute<InjectableService>()!;
-            if (attribute is null)
-                continue;
-
             DependencyInjectionHelper.EnsureRequiredEnvironmentalVariablesAreSet(type);
             if (configuration is not null)
                 DependencyInjectionHelper.EnsureRequiredSettingsAreSet(type, configuration);
 
-            services.AddRequiredSubServices(type);
-
-            services.TryAddCustomService(attribute.ServiceInterface, type, attribute.Lifetime, attribute.Options?.ServiceKey);
+            services.TryAddCustomService(type);
         }
         return services;
     }
-    internal static void TryAddCustomService(this IServiceCollection services, Type serviceInterface, Type serviceType, ServiceLifetime lifetime = ServiceLifetime.Scoped, string? key = null)
+    internal static void TryAddCustomService(this IServiceCollection services, Type serviceType)
     {
+        // make sure it has the InjectableService attribute
+        var serviceAttribute = serviceType.GetCustomAttribute<InjectableService>()!;
+        if (serviceAttribute is null)
+            return;
+
+        services.AddRequiredSubServices(serviceType);
+
+        var key = serviceAttribute.OptionType is not null and IOptionsBase ? ((IOptionsBase)serviceAttribute.OptionType).ServiceKey : null;
+        // check if service is already added
         if (services.GetService(serviceType, key) is not null)
             return;
+
         if (key is null)
-            services.TryAdd(new ServiceDescriptor(serviceInterface, serviceType, lifetime));
+            services.TryAdd(new ServiceDescriptor(serviceAttribute.ServiceInterface, serviceType, serviceAttribute.Lifetime));
         else
         {
-            switch (lifetime)
+            switch (serviceAttribute.Lifetime)
             {
                 case ServiceLifetime.Singleton:
-                    services.TryAddKeyedSingleton(serviceInterface, key, serviceType);
+                    services.TryAddKeyedSingleton(serviceAttribute.ServiceInterface, key, serviceType);
                     break;
                 case ServiceLifetime.Scoped:
-                    services.TryAddKeyedScoped(serviceInterface, key, serviceType);
+                    services.TryAddKeyedScoped(serviceAttribute.ServiceInterface, key, serviceType);
                     break;
                 case ServiceLifetime.Transient:
-                    services.TryAddKeyedTransient(serviceInterface, key, serviceType);
+                    services.TryAddKeyedTransient(serviceAttribute.ServiceInterface, key, serviceType);
                     break;
                 default:
-                    services.TryAddKeyedScoped(serviceInterface, key, serviceType);
+                    services.TryAddKeyedScoped(serviceAttribute.ServiceInterface, key, serviceType);
                     break;
             }
         }
@@ -59,13 +63,7 @@ public static class ServiceCollectionExtensions
             return;
         foreach (var requiredService in requiredServiceAttributes)
         {
-            var serviceAttribute = requiredService.Service.GetCustomAttribute<InjectableService>();
-            if (serviceAttribute is null)
-                continue;
-            services.TryAddCustomService(serviceAttribute.ServiceInterface,
-                requiredService.Service,
-                serviceAttribute?.Lifetime ?? ServiceLifetime.Scoped,
-                serviceAttribute?.Options?.ServiceKey);
+            services.TryAddCustomService(requiredService.Service);
         }
     }
     internal static ServiceDescriptor? GetService(this IServiceCollection services, Type serviceType, string? key = null)
