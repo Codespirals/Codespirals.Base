@@ -13,28 +13,31 @@ public static class ServiceCollectionExtensions
 
         foreach (var injectableService in injectableServices)
         {
-            DependencyInjectionHelper.EnsureRequiredEnvironmentalVariablesAreSet(injectableService);
-            if (configuration is not null)
-                DependencyInjectionHelper.EnsureRequiredSettingsAreSet(injectableService, configuration);
-
-            services.TryAddCustomService(injectableService);
+            services.TryAddCustomService(injectableService, configuration);
         }
         return services;
     }
 
-    internal static void TryAddCustomService(this IServiceCollection services, Type serviceType)
+    internal static void TryAddCustomService(this IServiceCollection services, Type serviceType, IConfiguration? configuration = null, string? key = null)
     {
         // make sure it has the InjectableService attribute
         var serviceAttribute = serviceType.GetCustomAttribute<InjectableService>()!;
         if (serviceAttribute is null)
             return;
 
-        services.AddRequiredSubServices(serviceType);
+        if (serviceAttribute.IsKeyed && key is null)
+            return;
 
-        var key = serviceAttribute.OptionType is not null and IOptionsBase ? ((IOptionsBase)serviceAttribute.OptionType).ServiceKey : null;
         // check if service is already added
         if (services.GetService(serviceType, key) is not null)
             return;
+
+        DependencyInjectionHelper.EnsureRequiredEnvironmentalVariablesAreSet(serviceType);
+
+        if (configuration is not null)
+            DependencyInjectionHelper.EnsureRequiredSettingsAreSet(serviceType, configuration);
+
+        services.AddRequiredSubServices(serviceType);
 
         if (key is null)
             services.TryAdd(new ServiceDescriptor(serviceAttribute.ServiceInterface, serviceType, serviceAttribute.Lifetime));
@@ -57,17 +60,17 @@ public static class ServiceCollectionExtensions
             }
         }
     }
-    internal static void AddRequiredSubServices(this IServiceCollection services, Type serviceType)
+    internal static void AddRequiredSubServices(this IServiceCollection services, Type serviceType, IConfiguration? configuration = null)
     {
-        var requiredServiceSubAttributes = serviceType.GetCustomAttributes<RequiredInjectableService>();
-        if (requiredServiceSubAttributes is null)
+        var requiredSubServices = serviceType.GetCustomAttributes<RequiredInjectableService>();
+        if (requiredSubServices is null)
             return;
 
-        foreach (var requiredService in requiredServiceSubAttributes)
+        foreach (var requiredService in requiredSubServices)
         {
-            var subServiceType = FindServiceImplementingInterface(requiredService.ServiceInterface);
             // find service types implementing those interfaces
-            services.TryAddCustomService(subServiceType);
+            var subServiceType = FindServiceImplementingInterface(requiredService.ServiceInterface);
+            services.TryAddCustomService(subServiceType, configuration, requiredService.Key);
         }
     }
 

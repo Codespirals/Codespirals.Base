@@ -1,5 +1,4 @@
 ﻿using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
 namespace Codespirals.Base;
@@ -12,14 +11,16 @@ public static class DependencyInjectionHelper
             return;
         _ = requiredEnvironmentalVariableAttributes.Select(a => a.Variable).Select(v => Environment.GetEnvironmentVariable(v) ?? throw new Exception($"Missing environmental variable: {v}."));
     }
-    public static void EnsureRequiredSettingsAreSet(Type serviceType, IConfiguration configuration)
+    public static void EnsureRequiredSettingsAreSet(Type serviceType, IConfiguration configuration, string? key = null)
     {
         var requiredSettingAttributes = serviceType.GetCustomAttributes<RequiredConfigurationSetting>();
         if (requiredSettingAttributes is null)
             return;
         foreach (var attribute in requiredSettingAttributes)
         {
-            if (string.IsNullOrWhiteSpace(configuration[attribute.SettingPath.Replace(",", "__").Replace(":", "__").Replace(";", "__")]))
+            var settingsPathPrefix = string.IsNullOrWhiteSpace(key) ? "" : $"{key}__";
+            var fullSettingsPath = $"{settingsPathPrefix}{nameof(serviceType)}__{attribute.SettingPath.Replace(",", "__").Replace(":", "__").Replace(";", "__")}";
+            if (string.IsNullOrWhiteSpace(configuration[fullSettingsPath]))
                 throw new Exception($"No configuration found for setting: {attribute.SettingPath}");
         }
     }
