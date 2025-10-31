@@ -18,8 +18,8 @@ public static class DependencyInjectionHelper
             return;
         foreach (var attribute in requiredSettingAttributes)
         {
-            var settingsPathPrefix = string.IsNullOrWhiteSpace(key) ? "" : $"{key}__";
-            var fullSettingsPath = $"{settingsPathPrefix}{nameof(serviceType)}__{attribute.SettingPath.Replace(",", "__").Replace(":", "__").Replace(";", "__")}";
+            var settingsPathPrefix = string.IsNullOrWhiteSpace(key) ? nameof(serviceType) : key;
+            var fullSettingsPath = $"{settingsPathPrefix}__{attribute.SettingPath.Replace(",", "__").Replace(":", "__").Replace(";", "__")}";
             if (string.IsNullOrWhiteSpace(configuration[fullSettingsPath]))
                 throw new Exception($"No configuration found for setting: {attribute.SettingPath}");
         }

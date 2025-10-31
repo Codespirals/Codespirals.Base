@@ -6,6 +6,12 @@ using System.Reflection;
 namespace Codespirals.Base;
 public static class ServiceCollectionExtensions
 {
+    /// <summary>
+    /// Dynamically adds ALL custom services that implement <see cref="InjectableService"/> of the application to the service collection
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="configuration"></param>
+    /// <returns></returns>
     public static IServiceCollection AddCustomServices(this IServiceCollection services, IConfiguration? configuration = null)
     {
         var injectableServices = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()
@@ -18,13 +24,22 @@ public static class ServiceCollectionExtensions
         return services;
     }
 
-    internal static void TryAddCustomService(this IServiceCollection services, Type serviceType, IConfiguration? configuration = null, string? key = null)
+    /// <summary>
+    /// Add a custom service to the service collection
+    /// </summary>
+    /// <param name="services"></param>
+    /// <param name="serviceType">The type of the service. To be able to add a service through this method, it must have the <see cref="InjectableService"/> Attribute</param>
+    /// <param name="configuration">The KeyValue dictionary containing all settings pertaining to the service</param>
+    /// <param name="key">An optional key for <see cref="KeyedService"/></param>
+    public static void TryAddCustomService(this IServiceCollection services, Type serviceType, IConfiguration? configuration = null, string? key = null)
     {
         // make sure it has the InjectableService attribute
         var serviceAttribute = serviceType.GetCustomAttribute<InjectableService>()!;
         if (serviceAttribute is null)
             return;
 
+        /// if the service requires a key and none is provided, it's added by <see cref="AddRequiredSubServices(IServiceCollection, Type, IConfiguration?)"/>
+        /// this allows us to dynamically add the same service multiple times
         if (serviceAttribute.IsKeyed && key is null)
             return;
 
