@@ -49,8 +49,19 @@ public static class ServiceCollectionExtensions
 
         DependencyInjectionHelper.EnsureRequiredEnvironmentalVariablesAreSet(serviceType);
 
-        if (configuration is not null)
+        if (configuration is not null && serviceAttribute.OptionType is not null)
+        {
+            var addOptionMethod = typeof(OptionsConfigurationServiceCollectionExtensions)
+              .GetMethods(BindingFlags.Static | BindingFlags.Public)
+              .Where(x => x.Name == nameof(OptionsConfigurationServiceCollectionExtensions.Configure) 
+              && x.IsGenericMethodDefinition 
+              && x.GetGenericArguments().Length == 1
+              && x.GetParameters().Length == 2)
+              .Single();
+            
+            _ = addOptionMethod.MakeGenericMethod(serviceAttribute.OptionType).Invoke(null, [services, configuration]);
             DependencyInjectionHelper.EnsureRequiredSettingsAreSet(serviceType, configuration);
+        }
 
         services.AddRequiredSubServices(serviceType);
 

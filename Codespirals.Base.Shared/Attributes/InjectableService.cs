@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
 
 namespace Codespirals.Base;
 
@@ -17,5 +18,7 @@ public sealed class InjectableService(Type serviceInterface, ServiceLifetime lif
     public Type ServiceInterface { get; internal set; } = serviceInterface;
     public ServiceLifetime Lifetime { get; internal set; } = lifetime;
     public bool IsKeyed { get; internal set; } = isKeyed;
-    public Type? OptionType { get; internal set; } = optionType;
+    public Type? OptionType { get; internal set; } = optionType is null ? optionType 
+        : optionType.GetCustomAttribute<ServiceOptions>() is not null ? optionType 
+        : throw new Exception($"{nameof(optionType)} must have the {nameof(ServiceOptions)} attribute.");
 }
