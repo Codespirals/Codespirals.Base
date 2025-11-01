@@ -8,7 +8,7 @@
 [AttributeUsage(AttributeTargets.Class,
     AllowMultiple = false,
     Inherited = false)]
-internal sealed class ServiceOptions(Type service, string? key = null) : Attribute
+public sealed class ServiceOptions(Type service, string? key = null) : Attribute
 {
     public Type Service { get; internal set; } = service;
     public string Key { get; internal set; } = key ?? nameof(service);
