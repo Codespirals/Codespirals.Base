@@ -4,15 +4,17 @@ public static class ListExtensions
 {
     public static IEnumerable<T> WhereNotNull<T>(this IEnumerable<T?> list) => list.Where(i => i is not null)!;
 
-    public static void Shuffle<T>(this IList<T> list)
+    public static IEnumerable<TItem> Shuffle<TItem>(this IEnumerable<TItem> list)
     {
-        var n = list.Count;
+        var n = list.Count();
+        var temp = list.ToList();
         while (n > 1)
         {
             n--;
             var k = Random.Shared.Next(n + 1);
-            (list[n], list[k]) = (list[k], list[n]);
+            (temp[n], temp[k]) = (temp[k], temp[n]);
         }
+        return temp;
     }
     public static IOrderedEnumerable<TItem> OrderByProperty<TListIn, TItem>(this TListIn list, string propertyName, bool ascending = true)
         where TListIn : IEnumerable<TItem>

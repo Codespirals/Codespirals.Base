@@ -3,7 +3,8 @@
 [AttributeUsage(AttributeTargets.Class,
     AllowMultiple = true,
     Inherited = true)]
-public sealed class RequiredEnvironmentalVariable(string variableName) : Attribute
+public sealed class RequiredEnvironmentalVariable(string variableName, bool throwExceptionIfUnset = false) : Attribute
 {
-    public string Variable { get; internal set; } = variableName;
+    public string VariableName { get; internal set; } = variableName;
+    public bool ThrowIfUnset { get; internal set; } = throwExceptionIfUnset;
 }

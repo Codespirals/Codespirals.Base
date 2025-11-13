@@ -47,7 +47,7 @@ public static class ServiceCollectionExtensions
         if (services.GetService(serviceType, key) is not null)
             return;
 
-        DependencyInjectionHelper.EnsureRequiredEnvironmentalVariablesAreSet(serviceType);
+        ServiceHelper.EnsureRequiredEnvironmentalVariablesAreSet(serviceType);
 
         if (configuration is not null && serviceAttribute.OptionType is not null)
         {
@@ -60,7 +60,7 @@ public static class ServiceCollectionExtensions
               .Single();
             
             _ = addOptionMethod.MakeGenericMethod(serviceAttribute.OptionType).Invoke(null, [services, configuration]);
-            DependencyInjectionHelper.EnsureRequiredSettingsAreSet(serviceType, configuration);
+            ServiceHelper.EnsureRequiredSettingsAreSet(serviceType, configuration);
         }
 
         services.AddRequiredSubServices(serviceType);

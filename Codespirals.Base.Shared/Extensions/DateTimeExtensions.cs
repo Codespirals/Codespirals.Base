@@ -11,8 +11,5 @@ public static class DateTimeExtensions
     /// <param name="time"></param>
     /// <returns></returns>
     public static TimeSpan TimeAgo(this DateTime time)
-    {
-        var utc = time.ToUniversalTime();
-        return DateTime.UtcNow - utc;
-    }
+        => DateTime.UtcNow - time.ToUniversalTime();
 }
