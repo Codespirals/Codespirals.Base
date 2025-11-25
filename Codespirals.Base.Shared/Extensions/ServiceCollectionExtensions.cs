@@ -47,8 +47,6 @@ public static class ServiceCollectionExtensions
         if (services.GetService(serviceType, key) is not null)
             return;
 
-        ServiceHelper.EnsureRequiredEnvironmentalVariablesAreSet(serviceType);
-
         if (configuration is not null && serviceAttribute.OptionType is not null)
         {
             var addOptionMethod = typeof(OptionsConfigurationServiceCollectionExtensions)
@@ -60,7 +58,7 @@ public static class ServiceCollectionExtensions
               .Single();
             
             _ = addOptionMethod.MakeGenericMethod(serviceAttribute.OptionType).Invoke(null, [services, configuration]);
-            ServiceHelper.EnsureRequiredSettingsAreSet(serviceType, configuration);
+            EnsureRequiredSettingsAreSet(serviceType, configuration);
         }
 
         services.AddRequiredSubServices(serviceType);
@@ -95,7 +93,7 @@ public static class ServiceCollectionExtensions
         foreach (var requiredService in requiredSubServices)
         {
             // find service types implementing those interfaces
-            var subServiceType = FindServiceImplementingInterface(requiredService.ServiceInterface);
+            var subServiceType = FindServiceImplementingInterface(requiredService.Service);
             services.TryAddCustomService(subServiceType, configuration, requiredService.Key);
         }
     }
@@ -108,4 +106,24 @@ public static class ServiceCollectionExtensions
     internal static Type FindServiceImplementingInterface(Type serviceInterface)
        => AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).Where(t => t.IsClass).FirstOrDefault(t => t.IsAssignableFrom(serviceInterface)) 
         ?? throw new Exception($"No type (service) is implementing [{nameof(serviceInterface)}]");
+
+
+    internal static Result EnsureRequiredSettingsAreSet(Type serviceType, IConfiguration configuration, string? key = null)
+    {
+        var requiredSettingAttributes = serviceType.GetCustomAttributes<RequiredConfigurationSetting>();
+        if (requiredSettingAttributes is null)
+            return Result.Ok();
+        foreach (var attribute in requiredSettingAttributes)
+        {
+            var settingsPathPrefix = string.IsNullOrWhiteSpace(key) ? nameof(serviceType) : key;
+            var fullSettingsPath = $"{settingsPathPrefix}__{attribute.SettingPath.Replace(",", "__").Replace(":", "__").Replace(";", "__")}";
+            if (!string.IsNullOrWhiteSpace(configuration[fullSettingsPath]))
+                continue;
+            if (attribute.ThrowIfUnset)
+                throw new Exception($"No configuration found for setting: {attribute.SettingPath}");
+            else
+                return Result.Fail($"Setting {nameof(attribute.SettingPath)} is not properly set.");
+        }
+        return Result.Ok();
+    }
 }
