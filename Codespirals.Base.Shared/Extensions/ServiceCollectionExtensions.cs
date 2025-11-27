@@ -12,14 +12,14 @@ public static class ServiceCollectionExtensions
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
-    public static IServiceCollection AddCustomServices(this IServiceCollection services, IConfiguration? configuration = null)
+    public static IServiceCollection AddAllAttributedServices(this IServiceCollection services, IConfiguration? configuration = null)
     {
         var injectableServices = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()
             .Where(t => !t.IsAbstract && t.GetCustomAttribute<InjectableService>() is not null));
 
         foreach (var injectableService in injectableServices)
         {
-            services.TryAddCustomService(injectableService, configuration);
+            services.TryAddAttributedService(injectableService, configuration);
         }
         return services;
     }
@@ -31,7 +31,7 @@ public static class ServiceCollectionExtensions
     /// <param name="serviceType">The type of the service. To be able to add a service through this method, it must have the <see cref="InjectableService"/> Attribute</param>
     /// <param name="configuration">The KeyValue dictionary containing all settings pertaining to the service</param>
     /// <param name="key">An optional key for <see cref="KeyedService"/></param>
-    public static void TryAddCustomService(this IServiceCollection services, Type serviceType, IConfiguration? configuration = null, string? key = null)
+    public static void TryAddAttributedService(this IServiceCollection services, Type serviceType, IConfiguration? configuration = null, string? key = null)
     {
         // make sure it has the InjectableService attribute
         var serviceAttribute = serviceType.GetCustomAttribute<InjectableService>()!;
@@ -92,9 +92,7 @@ public static class ServiceCollectionExtensions
 
         foreach (var requiredService in requiredSubServices)
         {
-            // find service types implementing those interfaces
-            var subServiceType = FindServiceImplementingInterface(requiredService.Service);
-            services.TryAddCustomService(subServiceType, configuration, requiredService.Key);
+            services.TryAddAttributedService(requiredService.Service, configuration, requiredService.Key);
         }
     }
 
@@ -102,11 +100,6 @@ public static class ServiceCollectionExtensions
         => key is null
                 ? services.FirstOrDefault(s => s.ServiceType == serviceType)
                 : services.FirstOrDefault(s => s.ServiceType == serviceType && s.ServiceKey?.ToString() == key);
-
-    internal static Type FindServiceImplementingInterface(Type serviceInterface)
-       => AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).Where(t => t.IsClass).FirstOrDefault(t => t.IsAssignableFrom(serviceInterface)) 
-        ?? throw new Exception($"No type (service) is implementing [{nameof(serviceInterface)}]");
-
 
     internal static Result EnsureRequiredSettingsAreSet(Type serviceType, IConfiguration configuration, string? key = null)
     {
