@@ -7,22 +7,25 @@ namespace Codespirals.Base;
 public static class ServiceCollectionExtensions
 {
     /// <summary>
-    /// Dynamically adds ALL custom services that implement <see cref="InjectableService"/> of the application to the service collection
+    /// Dynamically adds ALL custom services that implement <see cref="InjectableService"/> and are injected in another service with the <see cref="RequiredInjectableService"/> attribute
     /// </summary>
     /// <param name="services"></param>
     /// <param name="configuration"></param>
     /// <returns></returns>
     public static IServiceCollection AddAllAttributedServices(this IServiceCollection services, IConfiguration? configuration = null)
     {
-        var injectableServices = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()
-            .Where(t => !t.IsAbstract && t.GetCustomAttribute<InjectableService>() is not null));
+        var serviceWithRequiredServices = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => 
+        a.GetTypes().Where(t => !t.IsAbstract && t.GetCustomAttribute<RequiredInjectableService>() is not null));
 
-        foreach (var injectableService in injectableServices)
+        foreach (var service in serviceWithRequiredServices)
         {
-            var attribute = injectableService.GetCustomAttribute<InjectableService>();
-            if (attribute is null)
+            var attributes = service.GetCustomAttributes<RequiredInjectableService>();
+            if (attributes is null || !attributes.Any())
                 continue;
-            services.TryAddAttributedService(injectableService, attribute.DefaultKey, configuration);
+            foreach (var attribute in attributes)
+            {
+                services.TryAddAttributedService(attribute.Service, attribute.Lifetime, attribute.Key, configuration: configuration);
+            }
         }
         return services;
     }
@@ -32,40 +35,33 @@ public static class ServiceCollectionExtensions
     /// </summary>
     /// <param name="services"></param>
     /// <param name="attributedServiceType">The type of the service. To be able to add a service through this method, it must have the <see cref="InjectableService"/> Attribute</param>
+    /// <param name="lifetime">The <see cref="ServiceLifetime"/> of the service</param>
     /// <param name="configuration">The KeyValue dictionary containing all settings pertaining to the service</param>
     /// <param name="key">An optional key for <see cref="KeyedService"/> - setting this parameter overrides any <see cref="InjectableService.DefaultKey"/></param>
-    public static void TryAddAttributedService(this IServiceCollection services, Type attributedServiceType, string? key = null, IConfiguration? configuration = null)
+    public static void TryAddAttributedService(this IServiceCollection services, Type attributedServiceType, ServiceLifetime? lifetime = null, string? key = null, IConfiguration? configuration = null)
     {
         // make sure it has the InjectableService attribute
         var serviceAttribute = attributedServiceType.GetCustomAttribute<InjectableService>()!;
         if (serviceAttribute is null)
             return;
 
-        /// if no key is given, try to overwrite with the default key (if one exists)
-        key ??= serviceAttribute.DefaultKey;
-
-        /// if the service requires a key and none is provided, it's added by <see cref="AddRequiredSubServices(IServiceCollection, Type, IConfiguration?)"/>
-        /// this allows us to dynamically add the same service multiple times
-        if (serviceAttribute.MustBeKeyed is true && key is null)
-            throw new Exception($"Service of type {nameof(attributedServiceType)} requires a key set, but none was provided.");
-
         // check if service is already added
         if (services.GetService(attributedServiceType, key) is not null)
             return;
 
+        // make sure configs are OK
         if (configuration is not null && serviceAttribute.OptionType is not null)
         {
             services.AddGenericOptions(serviceAttribute.OptionType, configuration);
             EnsureRequiredSettingsAreSet(attributedServiceType, configuration, key);
         }
 
-        services.AddRequiredSubServices(attributedServiceType);
-
+        lifetime ??= serviceAttribute.DefaultLifetime;
         if (key is null)
-            services.TryAdd(new ServiceDescriptor(serviceAttribute.ServiceInterface, attributedServiceType, serviceAttribute.Lifetime));
+            services.TryAdd(new ServiceDescriptor(serviceAttribute.ServiceInterface, attributedServiceType, lifetime));
         else
         {
-            switch (serviceAttribute.Lifetime)
+            switch (lifetime)
             {
                 case ServiceLifetime.Singleton:
                     services.TryAddKeyedSingleton(serviceAttribute.ServiceInterface, key, attributedServiceType);
@@ -80,17 +76,6 @@ public static class ServiceCollectionExtensions
                     services.TryAddKeyedScoped(serviceAttribute.ServiceInterface, key, attributedServiceType);
                     break;
             }
-        }
-    }
-    internal static void AddRequiredSubServices(this IServiceCollection services, Type serviceType, IConfiguration? configuration = null)
-    {
-        var requiredSubServices = serviceType.GetCustomAttributes<RequiredInjectableService>();
-        if (requiredSubServices is null)
-            return;
-
-        foreach (var requiredService in requiredSubServices)
-        {
-            services.TryAddAttributedService(requiredService.Service, requiredService.Key, configuration);
         }
     }
 
