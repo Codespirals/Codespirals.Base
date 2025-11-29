@@ -14,7 +14,7 @@ namespace Codespirals.Base;
 [AttributeUsage(AttributeTargets.Class,
     AllowMultiple = false,
     Inherited = true)]
-public sealed class InjectableService(Type serviceInterface, ServiceLifetime lifetime = ServiceLifetime.Scoped, bool? mustBeKeyed = null, string? defaultKey = null, Type? optionType = default) : Attribute
+public sealed class InjectableService(Type serviceInterface, ServiceLifetime lifetime = ServiceLifetime.Scoped, bool mustBeKeyed = false, string? defaultKey = null, Type? optionType = default) : Attribute
 {
     public Type ServiceInterface { get; internal set; } = serviceInterface;
     public ServiceLifetime Lifetime { get; internal set; } = lifetime;
