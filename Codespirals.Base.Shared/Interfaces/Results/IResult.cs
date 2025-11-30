@@ -1,9 +1,9 @@
 ﻿namespace Codespirals.Base;
 
 /// <summary>
-/// An item implementing this uses the Result Pattern
+/// The base interface implemented by all result pattern classes and interfaces.
 /// </summary>
-/// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
+/// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking. Type to be decided on implementation.</typeparam>
 public interface IResult<TErrorCode>
 {
     /// <summary>

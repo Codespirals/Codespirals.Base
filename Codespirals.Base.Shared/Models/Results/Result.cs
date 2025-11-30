@@ -6,17 +6,17 @@ public record Result<TData> : IResultWithData<Result<TData>, string, TData>
     public string Error { get; private set; } = "";
     public string? ErrorCode { get; private set; }
     public TData? Data { get; private set; }
-    internal Result()
+    private Result()
     {
         Success = true;
     }
-    internal Result(string error, string? errorCode)
+    private Result(string error, string? errorCode)
     {
         Success = false;
         Error = error;
         ErrorCode = errorCode;
     }
-    internal Result(TData? data)
+    private Result(TData? data)
     {
         Success = true;
         Data = data;
@@ -31,11 +31,11 @@ public record Result : IResult<Result, string>
     public bool Success { get; private set; }
     public string Error { get; private set; } = "";
     public string? ErrorCode { get; private set; }
-    internal Result()
+    private Result()
     {
         Success = true;
     }
-    internal Result(string error, string? errorCode)
+    private Result(string error, string? errorCode)
     {
         Success = false;
         Error = error;
