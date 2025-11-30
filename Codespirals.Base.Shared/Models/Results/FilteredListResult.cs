@@ -9,13 +9,17 @@
 public record FilteredListResult<TFilterParameters, TData> : IFilteredListResult<FilteredListResult<TFilterParameters, TData>, string, TData, TFilterParameters>
     where TFilterParameters : IFilterParameters, new()
 {
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public TFilterParameters Parameters { get; private set; } = new();
-    /// <inheritdoc/>
+    /// <inheritdoc />
     public int TotalResults { get; private set; }
+    /// <inheritdoc />
     public bool Success { get; private set; }
+    /// <inheritdoc />
     public string Error { get; private set; } = "";
+    /// <inheritdoc />
     public string? ErrorCode { get; private set; }
+    /// <inheritdoc />
     public IEnumerable<TData> Data { get; private set; } = [];
 
     private FilteredListResult(string error, string? errorCode = null)
@@ -43,9 +47,14 @@ public record FilteredListResult<TFilterParameters, TData> : IFilteredListResult
         Data = unformattedData.ApplyFilterParameters(filter, short.MaxValue, out var totalResults);
         TotalResults = totalResults;
     }
-    public static FilteredListResult<TFilterParameters, TData> Ok(TFilterParameters filter, IEnumerable<TData> formattedData, int totalResults) => new(filter, formattedData, totalResults);
-    public static FilteredListResult<TFilterParameters, TData> OkAndFormat(TFilterParameters filter, IEnumerable<TData> unformattedData) => new(filter, unformattedData);
+    /// <inheritdoc />
+    public static FilteredListResult<TFilterParameters, TData> Ok(IEnumerable<TData> formattedData, TFilterParameters filter, int totalResults) => new(filter, formattedData, totalResults);
+    /// <inheritdoc />
+    public static FilteredListResult<TFilterParameters, TData> OkAndFormat(IEnumerable<TData> unformattedData, TFilterParameters filter) => new(filter, unformattedData);
+    /// <inheritdoc />
     public static FilteredListResult<TFilterParameters, TData> Fail(string error, string? errorCode = null) => new(error, errorCode);
+    /// <inheritdoc />
     public static FilteredListResult<TFilterParameters, TData> Fail(TFilterParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
-    public static FilteredListResult<TFilterParameters, TData> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
+    /// <inheritdoc />
+    public static FilteredListResult<TFilterParameters, TData> Short(IResult<string> result) => Fail(result.Error, result.ErrorCode);
 }

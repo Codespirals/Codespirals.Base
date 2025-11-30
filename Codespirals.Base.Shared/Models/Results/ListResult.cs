@@ -8,9 +8,13 @@
 /// <typeparam name="TFilterParameters">The filter parameters</typeparam>
 public record ListResult<TData> : IListResult<ListResult<TData>, string, TData>
 {
+    /// <inheritdoc />
     public bool Success { get; private set; }
+    /// <inheritdoc />
     public string Error { get; private set; } = "";
+    /// <inheritdoc />
     public string? ErrorCode { get; private set; }
+    /// <inheritdoc />
     public IEnumerable<TData> Data { get; private set; } = [];
 
     private ListResult(string error, string? errorCode = null)
@@ -24,7 +28,10 @@ public record ListResult<TData> : IListResult<ListResult<TData>, string, TData>
         Success = true;
         Data = data;
     }
+    /// <inheritdoc />
     public static ListResult<TData> Ok(IEnumerable<TData> formattedData) => new(formattedData);
+    /// <inheritdoc />
     public static ListResult<TData> Fail(string error, string? errorCode = null) => new(error, errorCode);
-    public static ListResult<TData> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
+    /// <inheritdoc />
+    public static ListResult<TData> Short(IResult<string> result) => Fail(result.Error, result.ErrorCode);
 }

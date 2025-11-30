@@ -34,7 +34,7 @@ public interface IResult<TSelf, TErrorCode> : IResult<TErrorCode>
     /// <param name="error">The error message.</param>
     /// <param name="errorCode">The optional error code.</param>
     /// <returns></returns>
-    public abstract static TSelf Fail(string error, TErrorCode? errorCode = default);
+    abstract static TSelf Fail(string error, TErrorCode? errorCode = default);
     /// <summary>
     /// Short Circuit a fail result from any result type implementing <see cref="IResult{TErrorCode}"/>
     /// </summary>

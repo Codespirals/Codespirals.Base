@@ -2,9 +2,13 @@
 
 public record Result<TData> : IResultWithData<Result<TData>, string, TData>
 {
+    /// <inheritdoc />
     public bool Success { get; private set; }
+    /// <inheritdoc />
     public string Error { get; private set; } = "";
+    /// <inheritdoc />
     public string? ErrorCode { get; private set; }
+    /// <inheritdoc />
     public TData? Data { get; private set; }
     private Result()
     {
@@ -22,9 +26,12 @@ public record Result<TData> : IResultWithData<Result<TData>, string, TData>
         Data = data;
     }
 
+    /// <inheritdoc />
     public static Result<TData> Ok(TData data) => new(data);
+    /// <inheritdoc />
     public static Result<TData> Fail(string error, string? errorCode = null) => new(error, errorCode);
-    public static Result<TData> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
+    /// <inheritdoc />
+    public static Result<TData> Short(IResult<string> result) => Fail(result.Error, result.ErrorCode);
 }
 public record Result : IResult<Result, string>
 {
@@ -42,7 +49,10 @@ public record Result : IResult<Result, string>
         ErrorCode = errorCode;
     }
 
+    /// <inheritdoc />
     public static Result Ok() => new();
+    /// <inheritdoc />
     public static Result Fail(string error, string? errorCode = null) => new(error, errorCode);
-    public static Result Short(IResult<string> result) => new(result.Error, result.ErrorCode);
+    /// <inheritdoc />
+    public static Result Short(IResult<string> result) => Fail(result.Error, result.ErrorCode);
 }
