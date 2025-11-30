@@ -3,6 +3,8 @@
 /// <summary>
 /// A full result with data
 /// </summary>
+/// <typeparam name="TSelf">The class implementing this</typeparam>
+/// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
 /// <typeparam name="TData">The type of the data</typeparam>
 public interface IResultWithData<TSelf, TErrorCode, TData> : IResult<TSelf, TErrorCode>
     where TSelf : IResultWithData<TSelf, TErrorCode, TData>
@@ -11,4 +13,10 @@ public interface IResultWithData<TSelf, TErrorCode, TData> : IResult<TSelf, TErr
     /// The data returned by the operation.
     /// </summary>
     public TData? Data { get; }
+    /// <summary>
+    /// Creates a successful result containing the specified data.
+    /// </summary>
+    /// <param name="data">The data to include in the result. This value represents the successful outcome of the operation.</param>
+    /// <returns>A new instance of <typeparamref name="TSelf"/> representing a successful result.</returns>
+    public abstract static TSelf Ok(TData data);
 }

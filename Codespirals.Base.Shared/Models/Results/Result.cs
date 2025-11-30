@@ -2,10 +2,10 @@
 
 public record Result<TData> : IResultWithData<Result<TData>, string, TData>
 {
-    public bool Success { get; internal set; }
-    public string Error { get; internal set; } = "";
-    public string? ErrorCode { get; internal set; }
-    public TData? Data { get; internal set; }
+    public bool Success { get; private set; }
+    public string Error { get; private set; } = "";
+    public string? ErrorCode { get; private set; }
+    public TData? Data { get; private set; }
     internal Result()
     {
         Success = true;
@@ -24,13 +24,13 @@ public record Result<TData> : IResultWithData<Result<TData>, string, TData>
 
     public static Result<TData> Ok(TData data) => new(data);
     public static Result<TData> Fail(string error, string? errorCode = null) => new(error, errorCode);
-    public static Result<TData> Short(Result<TData> result) => new(result.Error, result.ErrorCode);
+    public static Result<TData> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
 }
 public record Result : IResult<Result, string>
 {
-    public bool Success { get; internal set; }
-    public string Error { get; internal set; } = "";
-    public string? ErrorCode { get; internal set; }
+    public bool Success { get; private set; }
+    public string Error { get; private set; } = "";
+    public string? ErrorCode { get; private set; }
     internal Result()
     {
         Success = true;
@@ -44,4 +44,5 @@ public record Result : IResult<Result, string>
 
     public static Result Ok() => new();
     public static Result Fail(string error, string? errorCode = null) => new(error, errorCode);
+    public static Result Short(IResult<string> result) => new(result.Error, result.ErrorCode);
 }

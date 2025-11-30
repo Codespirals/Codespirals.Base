@@ -6,17 +6,17 @@
 /// </summary>
 /// <typeparam name="TData">The item type that was searched for</typeparam>
 /// <typeparam name="TFilterParameters">The filter parameters</typeparam>
-public record FilteredListResult<TFilterParameters, TData> : IFilteredListResult<FilteredListResult<TFilterParameters, TData>, string, TFilterParameters, TData>
+public record FilteredListResult<TFilterParameters, TData> : IFilteredListResult<FilteredListResult<TFilterParameters, TData>, string, TData, TFilterParameters>
     where TFilterParameters : IFilterParameters, new()
 {
     /// <inheritdoc/>
-    public TFilterParameters Parameters { get; init; } = new();
+    public TFilterParameters Parameters { get; private set; } = new();
     /// <inheritdoc/>
-    public int TotalResults { get; init; }
-    public bool Success { get; internal set; }
-    public string Error { get; internal set; } = "";
-    public string? ErrorCode { get; internal set; }
-    public IEnumerable<TData> Data { get; internal set; } = [];
+    public int TotalResults { get; private set; }
+    public bool Success { get; private set; }
+    public string Error { get; private set; } = "";
+    public string? ErrorCode { get; private set; }
+    public IEnumerable<TData> Data { get; private set; } = [];
 
     private FilteredListResult(string error, string? errorCode = null)
     {
@@ -47,4 +47,5 @@ public record FilteredListResult<TFilterParameters, TData> : IFilteredListResult
     public static FilteredListResult<TFilterParameters, TData> OkAndFormat(TFilterParameters filter, IEnumerable<TData> unformattedData) => new(filter, unformattedData);
     public static FilteredListResult<TFilterParameters, TData> Fail(string error, string? errorCode = null) => new(error, errorCode);
     public static FilteredListResult<TFilterParameters, TData> Fail(TFilterParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
+    public static FilteredListResult<TFilterParameters, TData> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
 }

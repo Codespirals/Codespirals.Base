@@ -8,10 +8,10 @@
 /// <typeparam name="TFilterParameters">The filter parameters</typeparam>
 public record ListResult<TData> : IListResult<ListResult<TData>, string, TData>
 {
-    public bool Success { get; internal set; }
-    public string Error { get; internal set; } = "";
-    public string? ErrorCode { get; internal set; }
-    public IEnumerable<TData> Data { get; internal set; } = [];
+    public bool Success { get; private set; }
+    public string Error { get; private set; } = "";
+    public string? ErrorCode { get; private set; }
+    public IEnumerable<TData> Data { get; private set; } = [];
 
     private ListResult(string error, string? errorCode = null)
     {
@@ -26,4 +26,5 @@ public record ListResult<TData> : IListResult<ListResult<TData>, string, TData>
     }
     public static ListResult<TData> Ok(IEnumerable<TData> formattedData) => new(formattedData);
     public static ListResult<TData> Fail(string error, string? errorCode = null) => new(error, errorCode);
+    public static ListResult<TData> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
 }

@@ -3,10 +3,8 @@
 /// <summary>
 /// An item implementing this uses the Result Pattern
 /// </summary>
-/// <typeparam name="TSelf"></typeparam>
 /// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
-public interface IResult<TSelf, TErrorCode>
-    where TSelf : IResult<TSelf, TErrorCode>
+public interface IResult<TErrorCode>
 {
     /// <summary>
     /// Whether the operation that produced this result has succeeded
@@ -20,11 +18,28 @@ public interface IResult<TSelf, TErrorCode>
     /// The error message
     /// </summary>
     public string Error { get; }
+}
+
+/// <summary>
+/// An item implementing this uses the Result Pattern
+/// </summary>
+/// <typeparam name="TSelf">The class implementing this</typeparam>
+/// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
+public interface IResult<TSelf, TErrorCode> : IResult<TErrorCode>
+    where TSelf : IResult<TSelf, TErrorCode>
+{
     /// <summary>
-    /// Return a result in a fail state
+    /// Return a result with a fail state
     /// </summary>
     /// <param name="error">The error message.</param>
     /// <param name="errorCode">The optional error code.</param>
     /// <returns></returns>
     public abstract static TSelf Fail(string error, TErrorCode? errorCode = default);
+    /// <summary>
+    /// Short Circuit a fail result from any result type implementing <see cref="IResult{TErrorCode}"/>
+    /// </summary>
+    /// <remarks>Only works with fail. A success can't be passed through as it may contain various kinds of incompatible data.</remarks>
+    /// <param name="result"></param>
+    /// <returns></returns>
+    public abstract static TSelf Short(IResult<TErrorCode> result);
 }

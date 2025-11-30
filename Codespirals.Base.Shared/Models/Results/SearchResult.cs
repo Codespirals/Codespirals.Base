@@ -6,17 +6,17 @@
 /// </summary>
 /// <typeparam name="TData">The item type that was searched for</typeparam>
 /// <typeparam name="TSearchParameters">The search parameters</typeparam>
-public record SearchResult<TSearchParameters, TData> : ISearchResult<SearchResult<TSearchParameters, TData>, string, TSearchParameters, TData>
+public record SearchResult<TSearchParameters, TData> : ISearchResult<SearchResult<TSearchParameters, TData>, string, TData, TSearchParameters>
     where TSearchParameters : ISearchParameters, new()
 {
     /// <inheritdoc/>
-    public TSearchParameters Parameters { get; init; }
+    public TSearchParameters Parameters { get; private set; }
     /// <inheritdoc/>
-    public int TotalResults { get; init; }
-    public bool Success { get; internal set; }
-    public string Error { get; internal set; } = "";
-    public string? ErrorCode { get; internal set; }
-    public IEnumerable<TData> Data { get; internal set; } = [];
+    public int TotalResults { get; private set; }
+    public bool Success { get; private set; }
+    public string Error { get; private set; } = "";
+    public string? ErrorCode { get; private set; }
+    public IEnumerable<TData> Data { get; private set; } = [];
 
     private SearchResult(string error, string? errorCode = null)
     {
@@ -43,11 +43,12 @@ public record SearchResult<TSearchParameters, TData> : ISearchResult<SearchResul
     {
         Parameters = search;
         Success = true;
-        Data = unformattedData.ApplyFilterParameters(search, short.MaxValue, out int totalResults);
+        Data = unformattedData.ApplyFilterParameters(search, short.MaxValue, out var totalResults);
         TotalResults = totalResults;
     }
     public static SearchResult<TSearchParameters, TData> Ok(TSearchParameters search, IEnumerable<TData> formattedData, int totalResults) => new(search, formattedData, totalResults);
     public static SearchResult<TSearchParameters, TData> OkAndFormat(TSearchParameters search, IEnumerable<TData> unformattedData) => new(search, unformattedData);
     public static SearchResult<TSearchParameters, TData> Fail(string error, string? errorCode = null) => new(error, errorCode);
     public static SearchResult<TSearchParameters, TData> Fail(TSearchParameters search, string error, string? errorCode = null) => new(search, error, errorCode);
+    public static SearchResult<TSearchParameters, TData> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
 }
