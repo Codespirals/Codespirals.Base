@@ -1,20 +1,16 @@
 ﻿using Microsoft.Extensions.Logging;
-using System.Text.Json;
 
 namespace Codespirals.Base;
 
 public static class LoggingExtensions
 {
-    public static IDisposable? BeginLog(this ILogger logger, string service, string method, params object[]? args)
+    public static IDisposable? BeginLog(this ILogger logger, string? service = null, Dictionary<string, string>? additionalArguments = null, string message = "")
     {
         try
         {
-            if (logger is null) { return null; }
             var processId = Guid.NewGuid().ToString();
-            var scope = logger.BeginScope(BuildScope(processId, service, method));
-            var message = args is not null ? string.Join("\r\n", args.Select(arg => $"{nameof(arg)}: {JsonSerializer.Serialize(arg)}")) : "";
-            message = $"\r\n{JsonSerializer.Serialize(args)}";
-            logger.LogInformation("Logging {method}.\r\n{message}", method, message);
+            var scope = logger.BeginScope(BuildScope(processId, service, additionalArguments));
+            logger.LogInformation("{message}", message);
             return scope;
         }
         catch (Exception ex)
@@ -37,13 +33,16 @@ public static class LoggingExtensions
         Cancelled,
         Stopped
     }
-    private static Dictionary<string, string> BuildScope(string processId, string service, string method, string? sessionId = null)
+    private static Dictionary<string, string> BuildScope(string processId, string? service = null, Dictionary<string, string>? additionalArguments = null)
     {
-        var scopeItems = new Dictionary<string, string>();
-        if (string.IsNullOrWhiteSpace(sessionId)) { scopeItems.Add("SessionId", nameof(sessionId)); }
-        scopeItems.Add("ProcessId", processId);
+        var scopeItems = new Dictionary<string, string>
+        {
+            { "ProcessId", processId }
+        };
         if (!string.IsNullOrWhiteSpace(service)) { scopeItems.Add("Service", nameof(service)); }
-        if (!string.IsNullOrWhiteSpace(method)) { scopeItems.Add("Method", nameof(method)); }
+        if (additionalArguments is not null)
+            foreach (var argument in additionalArguments)
+                if (!string.IsNullOrWhiteSpace(argument.Key) && !string.IsNullOrWhiteSpace(argument.Value)) { scopeItems.Add(argument.Key, argument.Value); }
         return scopeItems;
     }
 }
