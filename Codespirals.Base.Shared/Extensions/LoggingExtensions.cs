@@ -4,13 +4,14 @@ namespace Codespirals.Base;
 
 public static class LoggingExtensions
 {
-    public static IDisposable? BeginLog(this ILogger logger, string? service = null, Dictionary<string, string>? additionalArguments = null, string message = "")
+    public static IDisposable? BeginLog(this ILogger logger, string? service = null, Dictionary<string, string>? additionalArguments = null, string? message = null)
     {
         try
         {
             var processId = Guid.NewGuid().ToString();
             var scope = logger.BeginScope(BuildScope(processId, service, additionalArguments));
-            logger.LogInformation("{message}", message);
+            message ??= "Beginning new log";
+            logger.LogStep(State.Started, message);
             return scope;
         }
         catch (Exception ex)
@@ -27,6 +28,7 @@ public static class LoggingExtensions
 
     public enum State
     {
+        Started,
         InProgress,
         ActionSkipped,
         Success,
