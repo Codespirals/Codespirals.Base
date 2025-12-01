@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Codespirals.Base;
+namespace Codespirals.Base.Attributes;
 
 [AttributeUsage(AttributeTargets.Class,
     AllowMultiple = true,

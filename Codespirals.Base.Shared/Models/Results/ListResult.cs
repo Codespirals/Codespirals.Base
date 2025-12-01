@@ -1,11 +1,10 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.Results;
 
 /// <summary>
 /// This model represents the results value of a method that returns a list of items.
 /// These items are filtered by a filter query and can be paginated.
 /// </summary>
 /// <typeparam name="TData">The item type that was searched for</typeparam>
-/// <typeparam name="TFilterParameters">The filter parameters</typeparam>
 public record ListResult<TData> : IListResult<ListResult<TData>, string, TData>
 {
     /// <inheritdoc />

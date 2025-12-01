@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.Filtering;
 
 public class FilterParameters : IFilterParameters
 {

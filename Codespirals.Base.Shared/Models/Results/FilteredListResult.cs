@@ -1,4 +1,6 @@
-﻿namespace Codespirals.Base;
+﻿using Codespirals.Base.Filtering;
+
+namespace Codespirals.Base.Results;
 
 /// <summary>
 /// This model represents the results value of a method that returns a list of items.
@@ -52,9 +54,7 @@ public record FilteredListResult<TFilterParameters, TData> : IFilteredListResult
     /// <inheritdoc />
     public static FilteredListResult<TFilterParameters, TData> OkAndFormat(IEnumerable<TData> unformattedData, TFilterParameters filter) => new(filter, unformattedData);
     /// <inheritdoc />
-    public static FilteredListResult<TFilterParameters, TData> Fail(string error, string? errorCode = null) => new(error, errorCode);
-    /// <inheritdoc />
     public static FilteredListResult<TFilterParameters, TData> Fail(TFilterParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
     /// <inheritdoc />
-    public static FilteredListResult<TFilterParameters, TData> Short(IResult<string> result) => Fail(result.Error, result.ErrorCode);
+    public static FilteredListResult<TFilterParameters, TData> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
 }

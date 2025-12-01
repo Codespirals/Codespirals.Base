@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.Filtering;
 
 /// <summary>
 /// A set of parameters with which to filter a list down to a more managable size

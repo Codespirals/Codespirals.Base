@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.Results;
 
 /// <summary>
 /// The base interface implemented by all result pattern classes and interfaces.
@@ -28,13 +28,6 @@ public interface IResult<TErrorCode>
 public interface IResult<TSelf, TErrorCode> : IResult<TErrorCode>
     where TSelf : IResult<TSelf, TErrorCode>
 {
-    /// <summary>
-    /// Return a result with a fail state
-    /// </summary>
-    /// <param name="error">The error message.</param>
-    /// <param name="errorCode">The optional error code.</param>
-    /// <returns></returns>
-    abstract static TSelf Fail(string error, TErrorCode? errorCode = default);
     /// <summary>
     /// Short Circuit a fail result from any result type implementing <see cref="IResult{TErrorCode}"/>
     /// </summary>

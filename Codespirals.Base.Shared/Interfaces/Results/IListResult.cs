@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.Results;
 
 /// <summary>
 /// The result from a searh query and all data necessary to implement pagination

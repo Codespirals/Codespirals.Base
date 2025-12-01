@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.Filtering;
 
 /// <summary>
 /// An extension on <see cref="IFilterParameters"/> with an aditional string query to filter the objects further

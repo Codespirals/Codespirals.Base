@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.Attributes;
 
 [AttributeUsage(AttributeTargets.Class,
     AllowMultiple = true,

@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.Results;
 
 /// <summary>
 /// A full result with data

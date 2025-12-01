@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
-namespace Codespirals.Base;
+namespace Codespirals.Base.Attributes;
 
 /// <summary>
 /// A service to be used in other classes through Dependency Injection

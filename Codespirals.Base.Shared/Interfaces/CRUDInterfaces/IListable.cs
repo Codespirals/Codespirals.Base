@@ -1,4 +1,6 @@
-﻿namespace Codespirals.Base;
+﻿using Codespirals.Base.Results;
+
+namespace Codespirals.Base.CRUD;
 
 /// <summary>
 /// A service implementing this interface implements a search function

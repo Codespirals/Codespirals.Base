@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.Attributes;
 
 /// <summary>
 /// This Attributes indicates that the attached class is an IOptions<> DTO for the given <see cref="service"/> type

@@ -1,4 +1,6 @@
-﻿namespace Codespirals.Base;
+﻿using Codespirals.Base.Filtering;
+
+namespace Codespirals.Base.Results;
 
 /// <summary>
 /// This model represents the results value of a method that returns a list of items.
@@ -55,9 +57,7 @@ public record SearchResult<TData, TSearchParameters> : IFilteredListResult<Searc
     /// <inheritdoc />
     public static SearchResult<TData, TSearchParameters> OkAndFormat(IEnumerable<TData> unformattedData, TSearchParameters filter) => new(filter, unformattedData);
     /// <inheritdoc />
-    public static SearchResult<TData, TSearchParameters> Fail(string error, string? errorCode = null) => new(error, errorCode);
-    /// <inheritdoc />
     public static SearchResult<TData, TSearchParameters> Fail(TSearchParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
     /// <inheritdoc />
-    public static SearchResult<TData, TSearchParameters> Short(IResult<string> result) => Fail(result.Error, result.ErrorCode);
+    public static SearchResult<TData, TSearchParameters> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
 }

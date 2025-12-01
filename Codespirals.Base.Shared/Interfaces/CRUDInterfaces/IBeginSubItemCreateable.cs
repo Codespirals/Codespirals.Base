@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.CRUD;
 
 /// <summary>
 /// A service implementing this interface requires the api to have a method to retrieve an object of the create type for a given class

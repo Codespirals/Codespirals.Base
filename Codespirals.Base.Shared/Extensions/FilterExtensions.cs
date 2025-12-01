@@ -1,4 +1,6 @@
-﻿namespace Codespirals.Base;
+﻿using Codespirals.Base.Filtering;
+
+namespace Codespirals.Base;
 
 public static class FilterExtensions
 {

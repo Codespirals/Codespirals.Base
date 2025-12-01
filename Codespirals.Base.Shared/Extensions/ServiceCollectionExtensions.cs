@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Reflection;
 
-namespace Codespirals.Base;
+namespace Codespirals.Base.Attributes;
 public static class ServiceCollectionExtensions
 {
     /// <summary>

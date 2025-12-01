@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.Results;
 
 public record Result<TData> : IResultWithData<Result<TData>, string, TData>
 {

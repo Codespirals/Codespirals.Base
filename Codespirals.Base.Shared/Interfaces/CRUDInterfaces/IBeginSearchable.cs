@@ -1,4 +1,6 @@
-﻿namespace Codespirals.Base;
+﻿using Codespirals.Base.Filtering;
+
+namespace Codespirals.Base.CRUD;
 
 /// <summary>
 /// A service implementing this interface requires the api to have a method to retrieve an object containing all data needed to start a search

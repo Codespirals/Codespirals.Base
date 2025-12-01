@@ -1,4 +1,6 @@
-﻿namespace Codespirals.Base;
+﻿using Codespirals.Base.Filtering;
+
+namespace Codespirals.Base.Results;
 
 /// <summary>
 /// The result from a searh query and all data necessary to implement pagination

@@ -1,4 +1,7 @@
-﻿namespace Codespirals.Base;
+﻿using Codespirals.Base.Filtering;
+using Codespirals.Base.Results;
+
+namespace Codespirals.Base.CRUD;
 
 /// <summary>
 /// A service implementing this interface implements a function to retrieve a list of items filtered by certain parameters.

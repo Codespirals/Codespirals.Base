@@ -1,4 +1,4 @@
-﻿namespace Codespirals.Base;
+﻿namespace Codespirals.Base.CRUD;
 
 /// <summary>
 /// Services implementing this interface make sure there are some base operations.
