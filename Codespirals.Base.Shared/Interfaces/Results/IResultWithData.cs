@@ -6,13 +6,9 @@
 /// <typeparam name="TSelf">The class implementing this</typeparam>
 /// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
 /// <typeparam name="TData">The type of the data</typeparam>
-public interface IResultWithData<TSelf, TErrorCode, TData> : IResult<TSelf, TErrorCode>
+public interface IResultWithData<TSelf, TErrorCode, TData> : IResult<TSelf, TErrorCode>, IHasData<TData>
     where TSelf : IResultWithData<TSelf, TErrorCode, TData>
 {
-    /// <summary>
-    /// The data returned by the operation.
-    /// </summary>
-    public TData? Data { get; }
     /// <summary>
     /// Creates a successful result containing the specified data.
     /// </summary>

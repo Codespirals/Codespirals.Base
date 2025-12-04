@@ -6,14 +6,9 @@
 /// <typeparam name="TSelf">The class implementing this</typeparam>
 /// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
 /// <typeparam name="TData">The type of the search result items</typeparam>
-public interface IListResult<TSelf, TErrorCode, TData> : IResult<TSelf, TErrorCode>
+public interface IListResult<TSelf, TErrorCode, TData> : IResult<TSelf, TErrorCode>, IHasData<IEnumerable<TData>>
     where TSelf : IListResult<TSelf, TErrorCode, TData>
 {
-
-    /// <summary>
-    /// The data returned by the operation.
-    /// </summary>
-    public IEnumerable<TData>? Data { get; }
     /// <summary>
     /// Returns a successful result with the requested data
     /// </summary>

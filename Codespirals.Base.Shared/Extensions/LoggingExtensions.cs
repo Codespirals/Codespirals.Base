@@ -21,7 +21,7 @@ public static class LoggingExtensions
         }
     }
     public static void LogStep(this ILogger logger, State state, string? message = null)
-        => logger.LogInformation("Current state of operation: {state}{message}", state, message is not null ? $"\r\n{message}" : "");
+        => logger.LogInformation("{state}{message}", state, message is not null ? $"\r\n{message}" : "");
 
     public static void LogException(this ILogger logger, State state, Exception exception)
         => logger.LogCritical(exception, "Exception triggered! Current state of operation: {state}\r\n{message}", state, exception.Message);

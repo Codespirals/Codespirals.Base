@@ -52,7 +52,8 @@ public static class ServiceCollectionExtensions
         // make sure configs are OK
         if (configuration is not null && serviceAttribute.OptionType is not null)
         {
-            services.AddGenericOptions(serviceAttribute.OptionType, configuration);
+            var configSection = configuration.GetSection(key ?? nameof(attributedServiceType));
+            services.AddGenericOptions(serviceAttribute.OptionType, configSection);
             EnsureRequiredSettingsAreSet(attributedServiceType, configuration, key);
         }
 

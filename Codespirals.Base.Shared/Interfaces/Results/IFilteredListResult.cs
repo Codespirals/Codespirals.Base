@@ -9,14 +9,10 @@ namespace Codespirals.Base.Results;
 /// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
 /// <typeparam name="TData">The type of the search result items</typeparam>
 /// <typeparam name="TFilterParameters">The filter parameters.</typeparam>
-public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters> : IResult<TSelf, TErrorCode>, IPagination<TFilterParameters>
+public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters> : IResult<TSelf, TErrorCode>, IPagination<TFilterParameters>, IHasData<IEnumerable<TData>>
     where TSelf : IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters>
     where TFilterParameters : IFilterParameters
 {
-    /// <summary>
-    /// The data returned by the operation.
-    /// </summary>
-    public IEnumerable<TData>? Data { get; }
     /// <summary>
     /// Creates a successful result containing the specified filter parameters, formatted data, and total result count.
     /// </summary>
