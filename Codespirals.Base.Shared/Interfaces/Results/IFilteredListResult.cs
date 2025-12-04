@@ -21,13 +21,6 @@ public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters
     /// <param name="totalResults">The total number of results matching the filter criteria.</param>
     /// <returns>An instance of <typeparamref name="TSelf"/> representing a successful result.</returns>
     public abstract static TSelf Ok(IEnumerable<TData> formattedData, TFilterParameters filter, int totalResults);
-    /// <summary>
-    /// Creates a successful result containing the specified filter parameters and formats the data based on those filters.
-    /// </summary>
-    /// <param name="filter">The filter parameters used to generate the result.</param>
-    /// <param name="unformattedData">The total data</param>
-    /// <returns></returns>
-    public abstract static TSelf OkAndFormat(IEnumerable<TData> unformattedData, TFilterParameters filter);
     /// <inheritdoc cref="IResult{TSelf, TErrorCode}.Fail(string, TErrorCode?)"/>
     /// <param name="filter">The filter parameters used to generate the result.</param>
     public abstract static TSelf Fail(TFilterParameters filter, string error, string? errorCode = null);
