@@ -8,7 +8,7 @@ namespace Codespirals.Base.Results;
 /// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
 /// <typeparam name="TData">The type of the search result items</typeparam>
 /// <typeparam name="TFilterParameters">The filter parameters.</typeparam>
-public interface IFilteredListResult<TErrorCode, TData, TFilterParameters> : IResult<TErrorCode>, IPagination<TFilterParameters>, IHasData<IEnumerable<TData>>
+public interface IFilteredListResult<TErrorCode, TData, TFilterParameters> : IResultWithData<TErrorCode, IEnumerable<TData>>, IPagination<TFilterParameters>
     where TFilterParameters : IFilterParameters
 {
 
@@ -16,7 +16,7 @@ public interface IFilteredListResult<TErrorCode, TData, TFilterParameters> : IRe
 
 /// <inheritdoc cref="IFilteredListResult{TErrorCode, TData, TFilterParameters}"/>
 /// <typeparam name="TSelf">The class implementing this</typeparam>
-public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters> : IFilteredListResult<TErrorCode, TData, TFilterParameters>, IResult<TSelf, TErrorCode>
+public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters> : IFilteredListResult<TErrorCode, TData, TFilterParameters>
     where TSelf : IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters>
     where TFilterParameters : IFilterParameters
 {
