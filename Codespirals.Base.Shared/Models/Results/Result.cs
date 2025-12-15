@@ -1,5 +1,29 @@
 ﻿namespace Codespirals.Base.Results;
 
+public record Result : IResult<Result, string>
+{
+    public bool Success { get; private set; }
+    public string Error { get; private set; } = "";
+    public string? ErrorCode { get; private set; }
+    private Result()
+    {
+        Success = true;
+    }
+    private Result(string error, string? errorCode)
+    {
+        Success = false;
+        Error = error;
+        ErrorCode = errorCode;
+    }
+
+    /// <inheritdoc />
+    public static Result Ok() => new();
+    /// <inheritdoc />
+    public static Result Fail(string error, string? errorCode = null) => new(error, errorCode);
+    /// <inheritdoc />
+    public static Result Short(IResult<string> result) => Fail(result.Error, result.ErrorCode);
+}
+
 public record Result<TData> : IResultWithData<Result<TData>, string, TData>
 {
     /// <inheritdoc />
@@ -32,27 +56,4 @@ public record Result<TData> : IResultWithData<Result<TData>, string, TData>
     public static Result<TData> Fail(string error, string? errorCode = null) => new(error, errorCode);
     /// <inheritdoc />
     public static Result<TData> Short(IResult<string> result) => Fail(result.Error, result.ErrorCode);
-}
-public record Result : IResult<Result, string>
-{
-    public bool Success { get; private set; }
-    public string Error { get; private set; } = "";
-    public string? ErrorCode { get; private set; }
-    private Result()
-    {
-        Success = true;
-    }
-    private Result(string error, string? errorCode)
-    {
-        Success = false;
-        Error = error;
-        ErrorCode = errorCode;
-    }
-
-    /// <inheritdoc />
-    public static Result Ok() => new();
-    /// <inheritdoc />
-    public static Result Fail(string error, string? errorCode = null) => new(error, errorCode);
-    /// <inheritdoc />
-    public static Result Short(IResult<string> result) => Fail(result.Error, result.ErrorCode);
 }

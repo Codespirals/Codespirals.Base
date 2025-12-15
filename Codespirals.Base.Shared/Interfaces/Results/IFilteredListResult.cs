@@ -5,11 +5,18 @@ namespace Codespirals.Base.Results;
 /// <summary>
 /// The result from a searh query and all data necessary to implement pagination
 /// </summary>
-/// <typeparam name="TSelf">The class implementing this</typeparam>
 /// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
 /// <typeparam name="TData">The type of the search result items</typeparam>
 /// <typeparam name="TFilterParameters">The filter parameters.</typeparam>
-public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters> : IResult<TSelf, TErrorCode>, IPagination<TFilterParameters>, IHasData<IEnumerable<TData>>
+public interface IFilteredListResult<TErrorCode, TData, TFilterParameters> : IResult<TErrorCode>, IPagination<TFilterParameters>, IHasData<IEnumerable<TData>>
+    where TFilterParameters : IFilterParameters
+{
+
+}
+
+/// <inheritdoc cref="IFilteredListResult{TErrorCode, TData, TFilterParameters}"/>
+/// <typeparam name="TSelf">The class implementing this</typeparam>
+public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters> : IFilteredListResult<TErrorCode, TData, TFilterParameters>, IResult<TSelf, TErrorCode>
     where TSelf : IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters>
     where TFilterParameters : IFilterParameters
 {
