@@ -9,7 +9,7 @@
     <Company>codespirals</Company>
     <Authors>codespirals</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.181.25349</Version>
+    <Version>1.0.182.25349</Version>
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>codespirals;modular;abstractions;</PackageTags>
     <PackageOutputPath>$(OneDrive)\NuGet</PackageOutputPath>
@@ -22,6 +22,7 @@
   </PropertyGroup>
   <PropertyGroup>
     <Today>$([System.DateTime]::Now.ToString('yyyy.MM.dd'))</Today>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;IDE0130;</NoWarn>
