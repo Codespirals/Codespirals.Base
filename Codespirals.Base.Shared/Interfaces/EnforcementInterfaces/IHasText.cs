@@ -1,5 +1,8 @@
 ﻿namespace Codespirals.Base;
 
+/// <summary>
+/// 
+/// </summary>
 public interface IHasText
 {
     /// <summary>

@@ -1,5 +1,9 @@
 ﻿namespace Codespirals.Base;
 
+/// <summary>
+/// 
+/// </summary>
+/// <typeparam name="TStatus"></typeparam>
 public interface IHasStatus<TStatus>
 {
     /// <summary>

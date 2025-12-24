@@ -1,4 +1,8 @@
 ﻿namespace Codespirals.Base.Results;
+/// <summary>
+/// Indicates that an item implementing this has some form of data
+/// </summary>
+/// <typeparam name="TData"></typeparam>
 public interface IHasData<TData>
 {
     /// <summary>

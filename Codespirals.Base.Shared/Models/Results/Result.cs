@@ -1,9 +1,13 @@
 ﻿namespace Codespirals.Base.Results;
 
+/// <inheritdoc />
 public record Result : IResult<Result, string>
 {
+    /// <inheritdoc />
     public bool Success { get; private set; }
+    /// <inheritdoc />
     public string Error { get; private set; } = "";
+    /// <inheritdoc />
     public string? ErrorCode { get; private set; }
     private Result()
     {
@@ -24,6 +28,7 @@ public record Result : IResult<Result, string>
     public static Result Short(IResult<string> result) => Fail(result.Error, result.ErrorCode);
 }
 
+/// <inheritdoc />
 public record Result<TData> : IResultWithData<Result<TData>, string, TData>
 {
     /// <inheritdoc />
