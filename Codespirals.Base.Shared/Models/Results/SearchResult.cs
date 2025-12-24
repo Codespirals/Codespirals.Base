@@ -49,7 +49,7 @@ public record SearchResult<TData, TSearchParameters> : IFilteredListResult<Searc
     {
         Parameters = filter;
         Success = true;
-        Data = unformattedData.ApplyFilterParameters(filter, short.MaxValue, out var totalResults);
+        Data = unformattedData.ApplyPagination(filter, short.MaxValue, out var totalResults);
         TotalResults = totalResults;
     }
     /// <inheritdoc />

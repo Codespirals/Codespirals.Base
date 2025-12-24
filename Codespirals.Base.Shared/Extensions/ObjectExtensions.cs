@@ -1,4 +1,7 @@
 ﻿namespace Codespirals.Base.Extensions;
+/// <summary>
+/// Extensions on <see cref="object"/>
+/// </summary>
 public static class ObjectExtensions
 {
     /// <summary>

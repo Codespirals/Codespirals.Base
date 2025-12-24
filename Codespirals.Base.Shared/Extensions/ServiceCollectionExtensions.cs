@@ -4,6 +4,9 @@ using Microsoft.Extensions.DependencyInjection.Extensions;
 using System.Reflection;
 
 namespace Codespirals.Base.Attributes;
+/// <summary>
+/// Extensions on <see cref="IServiceCollection"/>
+/// </summary>
 public static class ServiceCollectionExtensions
 {
     /// <summary>

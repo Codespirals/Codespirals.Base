@@ -2,8 +2,19 @@
 
 namespace Codespirals.Base;
 
+/// <summary>
+/// Extensions on <see cref="ILogger"/>
+/// </summary>
 public static class LoggingExtensions
 {
+    /// <summary>
+    /// Start a logging session
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="service"></param>
+    /// <param name="additionalArguments">A list of arguments to be added to the scope</param>
+    /// <param name="message"></param>
+    /// <returns></returns>
     public static IDisposable? BeginLog(this ILogger logger, string? service = null, Dictionary<string, string>? additionalArguments = null, string? message = null)
     {
         try
@@ -20,12 +31,27 @@ public static class LoggingExtensions
             return null;
         }
     }
+    /// <summary>
+    /// Log a step in the process
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="state"></param>
+    /// <param name="message"></param>
     public static void LogStep(this ILogger logger, State state, string? message = null)
         => logger.LogInformation("{state}{message}", state, message is not null ? $"\r\n{message}" : "");
 
+    /// <summary>
+    /// Log an exception happening
+    /// </summary>
+    /// <param name="logger"></param>
+    /// <param name="state"></param>
+    /// <param name="exception"></param>
     public static void LogException(this ILogger logger, State state, Exception exception)
         => logger.LogCritical(exception, "Exception triggered! Current state of operation: {state}\r\n{message}", state, exception.Message);
 
+    /// <summary>
+    /// States an operation can be in
+    /// </summary>
     public enum State
     {
         Started,

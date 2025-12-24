@@ -1,10 +1,18 @@
 ﻿namespace Codespirals.Base;
 
-public interface IEntityStatuses<TValue> : IIsEnum<TValue>
-    where TValue : IEntityStatuses<TValue>
+/// <summary>
+/// A selection of entity statuses for databases
+/// </summary>
+/// <typeparam name="TSelf"></typeparam>
+public interface IEntityStatuses<TSelf> : IIsEnum<TSelf>
+    where TSelf : IEntityStatuses<TSelf>
 {
-    public static abstract TValue Unset { get; }
-    public static abstract TValue Normal { get; }
-    public static abstract TValue Flagged { get; }
-    public static abstract TValue Deleted { get; }
+    /// <summary>
+    /// Indicates no status has been set
+    /// </summary>
+    public static abstract TSelf Unset { get; }
+    /// <summary>
+    /// Indicates an item has been deleted
+    /// </summary>
+    public static abstract TSelf Deleted { get; }
 }

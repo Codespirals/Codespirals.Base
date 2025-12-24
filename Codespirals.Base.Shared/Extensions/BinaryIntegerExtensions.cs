@@ -2,6 +2,9 @@
 
 namespace Codespirals.Base.Extensions;
 
+/// <summary>
+/// Extensions on <see cref="IBinaryInteger{TSelf}"/>
+/// </summary>
 public static class BinaryIntegerExtensions
 {
     /// <summary>

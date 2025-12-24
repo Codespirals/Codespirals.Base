@@ -2,42 +2,60 @@
 
 public static class SelectableHelper
 {
-    public static List<TEnum> GetAllowableValues<TEnum>()
+    /// <summary>
+    /// Get the allowable values from a <see cref="IIsEnum{TSelf}"/> object
+    /// </summary>
+    /// <typeparam name="TEnum"></typeparam>
+    /// <param name="customEnum"></param>
+    /// <returns></returns>
+    public static List<TEnum> GetAllowableValues<TEnum>(this TEnum customEnum)
         where TEnum : IIsEnum<TEnum>, new()
     {
         try
         {
-            var list = new List<TEnum>();
-            var allowableValues = new TEnum();
-            var properties = typeof(TEnum).GetProperties();
+            var results = new List<TEnum>();
+            var properties = customEnum.GetType().GetProperties();
             foreach (var prop in properties)
             {
-                var propValue = prop.GetValue(allowableValues);
+                if (prop is not ISelectableBase)
+                    continue;
+                var propValue = prop.GetValue(customEnum);
                 if (propValue is null)
                     continue;
                 if (propValue is TEnum cast)
                 {
-                    list.Add(cast);
+                    results.Add(cast);
                 }
             }
-            return [.. list];
+            return [.. results];
         }
         catch (Exception)
         {
             return [];
         }
     }
-    public static TEnum GetSelectableFromId<TEnum>(string? id)
+
+    /// <summary>
+    /// Get a <see cref="ISelectableBase"/> value from an <see cref="IIsEnum{TSelf}"/>
+    /// </summary>
+    /// <typeparam name="TEnum"></typeparam>
+    /// <param name="customEnum"></param>
+    /// <param name="id"></param>
+    /// <returns>The value or the <see cref="IDefaultable{TSelf}.Default"/>, if it doesn't exist</returns>
+    public static TEnum GetValueFromId<TEnum>(this TEnum customEnum, string? id)
         where TEnum : IIsEnum<TEnum>, new()
-    {
-        if (string.IsNullOrWhiteSpace(id))
-            return TEnum.Default();
-        return GetAllowableValues<TEnum>().FirstOrDefault(r => r.Id == id) ?? TEnum.Default();
-    }
-    public static bool IsAnyOf<TEnum>(TEnum item, params string[] args)
+        => customEnum.GetAllowableValues().FirstOrDefault(r => r.Id == id) ?? TEnum.Default();
+
+    /// <summary>
+    /// Check if a selectable item is part of a custom enum
+    /// </summary>
+    /// <typeparam name="TEnum"></typeparam>
+    /// <typeparam name="TSelectable"></typeparam>
+    /// <param name="customEnum"></param>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public static bool IsAcceptableValue<TEnum, TSelectable>(this TSelectable item, TEnum customEnum)
         where TEnum : IIsEnum<TEnum>, new()
-        => args.Any(v => item.Id == v);
-    public static bool IsAnyOf<TEnum>(TEnum item, params TEnum[] args)
-        where TEnum : IIsEnum<TEnum>, new()
-        => args.Any(v => item.Id == v.Id);
+        where TSelectable : ISelectableBase, new()
+        => customEnum.GetAllowableValues().Any(v => v.Id == item.Id);
 }
