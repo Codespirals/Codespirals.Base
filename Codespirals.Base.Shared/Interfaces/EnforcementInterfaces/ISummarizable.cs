@@ -11,5 +11,5 @@ public interface ISummarizable<TSummary>
     /// Create a summary of this object
     /// </summary>
     /// <returns></returns>
-    public TSummary Summarize();
+    TSummary Summarize();
 }

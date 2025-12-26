@@ -9,5 +9,5 @@ public interface IHasUsername
     /// An application unique name of a user
     /// </summary>
     /// <remarks>Formatted as "UserName" and nullable to conformm with the .Net implementation of IdentityUser</remarks>
-    public string? UserName { get; }
+    string? UserName { get; }
 }

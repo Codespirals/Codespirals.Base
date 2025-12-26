@@ -7,5 +7,5 @@ public interface IHasIcon
     /// For example, a unicode icon or a Font Awesome icon
     /// </summary>
     /// <example>❤</example>
-    public string? Icon { get; }
+    string? Icon { get; }
 }

@@ -14,7 +14,7 @@ public interface IUpdatable<TResult, TEdit, TId>
     /// <param name="id">The Id of the item to edit</param>
     /// <param name="editItem">An object of the edit class for this operation</param>
     /// <returns>The updated item.</returns>
-    public TResult Edit(TId id, TEdit editItem);
+    TResult Edit(TId id, TEdit editItem);
 }
 /// <inheritdoc cref="IUpdatable{TResult, TEdit, TId}" />
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
@@ -22,17 +22,17 @@ public interface IUpdatable<TResult, TEdit, TId, TVerification>
 {
     /// <inheritdoc cref="IUpdatable{TResult, TEdit, TId}.Edit(TId, TEdit)" />
     /// <param name="verification">An item to verify the user of this method with.</param>
-    public TResult Edit(TId id, TEdit editItem, TVerification verification);
+    TResult Edit(TId id, TEdit editItem, TVerification verification);
 }
 /// <inheritdoc cref="IUpdatable{TResult, TEdit, TId}" />
 public interface IUpdatableAsync<TResult, TEdit, TId>
 {
     /// <inheritdoc cref="IUpdatable{TResult, TEdit, TId}.Edit(TId, TEdit)" />
-    public Task<TResult> EditAsync(TId id, TEdit editItem);
+    Task<TResult> EditAsync(TId id, TEdit editItem);
 }
 /// <inheritdoc cref="IUpdatable{TResult, TEdit, TVerification}" />
 public interface IUpdatableAsync<TResult, TEdit, TId, TVerification>
 {
     /// <inheritdoc cref="IUpdatable{TResult, TEdit, TId, TVerification}.Edit(TId, TEdit, TVerification)" />
-    public Task<TResult> EditAsync(TId id, TEdit editItem, TVerification verification);
+    Task<TResult> EditAsync(TId id, TEdit editItem, TVerification verification);
 }

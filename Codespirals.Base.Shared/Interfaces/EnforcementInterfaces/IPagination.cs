@@ -1,6 +1,5 @@
 ﻿
 using Codespirals.Base.Filtering;
-using Codespirals.Base.Results;
 
 namespace Codespirals.Base;
 

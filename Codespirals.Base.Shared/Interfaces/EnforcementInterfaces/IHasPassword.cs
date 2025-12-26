@@ -5,5 +5,5 @@ public interface IHasPassword
     /// <summary>
     /// A password
     /// </summary>
-    public string Password { get; set; }
+    string Password { get; set; }
 }

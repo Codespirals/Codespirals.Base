@@ -20,4 +20,18 @@ public static class StringExtensions
         else
             return s;
     }
+    /// <summary>
+    /// Generate a string from common letters
+    /// </summary>
+    /// <param name="length"></param>
+    /// <returns></returns>
+    public static string GenerateRandomString(this string _, int length)
+        => StringConstants.Letters.GenerateRandomStringFromCurrentString(length);
+    /// <summary>
+    /// Generate a string from common letters and numbers
+    /// </summary>
+    /// <param name="length"></param>
+    /// <returns></returns>
+    public static string GenerateRandomAlphanumericString(this string _, int length)
+        => StringConstants.Alphanumeric.GenerateRandomStringFromCurrentString(length);
 }

@@ -8,5 +8,5 @@ public interface IEditable
     /// <summary>
     /// The last time this was edited, or <see langword="null"/> if never
     /// </summary>
-    public DateTime? Edited { get; }
+    DateTime? Edited { get; }
 }

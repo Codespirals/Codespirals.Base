@@ -10,5 +10,5 @@ public interface IHasStatus<TStatus>
     /// A status that is usually one of a selection
     /// </summary>
     /// <example>An enum</example>
-    public TStatus Status { get; }
+    TStatus Status { get; }
 }

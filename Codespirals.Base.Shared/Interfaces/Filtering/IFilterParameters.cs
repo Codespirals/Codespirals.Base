@@ -23,5 +23,5 @@ public interface IFilterParameters
     /// Whether to get the results in ascending or descending order.
     /// </summary>
     /// <remarks>As bool defaults to <see langword="false"/> the default is descending unless otherwise specified in the implementation.</remarks>
-    public bool Ascending { get; }
+    bool Ascending { get; }
 }

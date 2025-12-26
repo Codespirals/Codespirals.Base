@@ -22,6 +22,6 @@ public struct FilterParameters(int page = 0, int limit = 24, string sort = "", b
     /// <inheritdoc cref="IFilterParameters"/>
     public FilterParameters() : this(0)
     {
-        
+
     }
 }

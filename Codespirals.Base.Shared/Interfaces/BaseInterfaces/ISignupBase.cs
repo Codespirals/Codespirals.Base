@@ -3,5 +3,5 @@
 public interface ISignupBase : IHasUsername, IHasEmail, IHasPassword
 {
     /// <inheritdoc />
-    public new string UserName { get; set; }
+    new string UserName { get; set; }
 }

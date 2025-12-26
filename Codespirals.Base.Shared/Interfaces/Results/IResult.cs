@@ -9,15 +9,15 @@ public interface IResult<TErrorCode>
     /// <summary>
     /// Whether the operation that produced this result has succeeded
     /// </summary>
-    public bool Success { get; }
+    bool Success { get; }
     /// <summary>
     /// The optional error code for easier tracking of errors.
     /// </summary>
-    public TErrorCode? ErrorCode { get; }
+    TErrorCode? ErrorCode { get; }
     /// <summary>
     /// The error message
     /// </summary>
-    public string Error { get; }
+    string Error { get; }
 }
 
 /// <summary>
@@ -34,5 +34,5 @@ public interface IResult<TSelf, TErrorCode> : IResult<TErrorCode>
     /// <remarks>Only works with fail. A success can't be passed through as it may contain various kinds of incompatible data.</remarks>
     /// <param name="result"></param>
     /// <returns></returns>
-    public abstract static TSelf Short(IResult<TErrorCode> result);
+    static abstract TSelf Short(IResult<TErrorCode> result);
 }

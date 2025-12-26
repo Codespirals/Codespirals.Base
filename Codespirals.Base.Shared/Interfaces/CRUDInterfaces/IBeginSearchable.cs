@@ -17,7 +17,7 @@ public interface IBeginSearchable<TSearch>
     /// Request a search object to start searching with
     /// </summary>
     /// <returns>The search object</returns>
-    public TSearch BeginSearch();
+    TSearch BeginSearch();
 }
 
 /// <inheritdoc cref="IBeginSearchable{TSearch}" />
@@ -27,19 +27,19 @@ public interface IBeginSearchable<TSearch, TVerification>
 {
     /// <inheritdoc cref="IBeginSearchable{TSearch}.BeginSearch()" />
     /// <param name="verification">An item to verify the user of this method with.</param>
-    public TSearch BeginSearch(TVerification verification);
+    TSearch BeginSearch(TVerification verification);
 }
 /// <inheritdoc cref="IBeginSearchable{TSearch}" />
 public interface IBeginSearchableAsync<TSearch>
     where TSearch : ISearchParameters
 {
     /// <inheritdoc cref="IBeginSearchable{TSearch}.BeginSearch()" />
-    public Task<TSearch> BeginSearchAsync();
+    Task<TSearch> BeginSearchAsync();
 }
 /// <inheritdoc cref="IBeginSearchable{TSearch, TVerification}" />
 public interface IBeginSearchableAsync<TSearch, TVerification>
     where TSearch : ISearchParameters
 {
     /// <inheritdoc cref="IBeginSearchable{TSearch, TVerification}.BeginSearch(TVerification)" />
-    public Task<TSearch> BeginSearchAsync(TVerification verification);
+    Task<TSearch> BeginSearchAsync(TVerification verification);
 }

@@ -2,5 +2,5 @@
 
 public interface IApprovable<TValue>
 {
-    public TValue Approval { get; }
+    TValue Approval { get; }
 }

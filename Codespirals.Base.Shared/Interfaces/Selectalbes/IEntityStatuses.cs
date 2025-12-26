@@ -10,9 +10,9 @@ public interface IEntityStatuses<TSelf> : IIsEnum<TSelf>
     /// <summary>
     /// Indicates no status has been set
     /// </summary>
-    public static abstract TSelf Unset { get; }
+    static abstract TSelf Unset { get; }
     /// <summary>
     /// Indicates an item has been deleted
     /// </summary>
-    public static abstract TSelf Deleted { get; }
+    static abstract TSelf Deleted { get; }
 }

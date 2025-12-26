@@ -2,5 +2,5 @@
 
 public interface IHasLanguage<TLanguage>
 {
-    public TLanguage Language { get; }
+    TLanguage Language { get; }
 }

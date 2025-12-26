@@ -24,5 +24,5 @@ public interface IResultWithData<TSelf, TErrorCode, TData> : IResultWithData<TEr
     /// </summary>
     /// <param name="data">The data to include in the result. This value represents the successful outcome of the operation.</param>
     /// <returns>A new instance of <typeparamref name="TSelf"/> representing a successful result.</returns>
-    public abstract static TSelf Ok(TData data);
+    static abstract TSelf Ok(TData data);
 }

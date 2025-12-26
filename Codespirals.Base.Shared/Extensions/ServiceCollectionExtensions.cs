@@ -17,7 +17,7 @@ public static class ServiceCollectionExtensions
     /// <returns></returns>
     public static IServiceCollection AddAllAttributedServices(this IServiceCollection services, IConfiguration? configuration = null)
     {
-        var serviceWithRequiredServices = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => 
+        var serviceWithRequiredServices = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a =>
         a.GetTypes().Where(t => !t.IsAbstract && t.GetCustomAttribute<RequiredInjectableService>() is not null));
 
         foreach (var service in serviceWithRequiredServices)

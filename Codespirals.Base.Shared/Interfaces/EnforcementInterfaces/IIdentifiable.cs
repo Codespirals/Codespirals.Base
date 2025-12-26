@@ -15,5 +15,5 @@ public interface IIdentifiable<TId>
     /// <summary>
     /// A globally unique identifier (in most cases is a string representation of a <see cref="Guid"/>)
     /// </summary>
-    public TId Id { get; }
+    TId Id { get; }
 }

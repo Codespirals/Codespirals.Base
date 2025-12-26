@@ -8,5 +8,5 @@ public interface ICreatable
     /// <summary>
     /// The <see cref="DateTime"/> this item was created
     /// </summary>
-    public DateTime Created { get; }
+    DateTime Created { get; }
 }

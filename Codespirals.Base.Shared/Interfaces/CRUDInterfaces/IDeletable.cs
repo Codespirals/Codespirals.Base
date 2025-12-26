@@ -15,7 +15,7 @@ public interface IDeletable<TResult, TId>
     /// An item of the specified type. 
     /// Usually this is used to indicate if the deletion was successful.
     /// </returns>
-    public TResult Delete(TId id);
+    TResult Delete(TId id);
 }
 /// <inheritdoc cref="IDeletable{TResult, TId}"/>
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
@@ -23,17 +23,17 @@ public interface IDeletable<TResult, TId, TVerification>
 {
     /// <inheritdoc cref="IDeletable{TResult, TId}.Delete(TId)"/>
     /// <param name="verification">An item to verify the user of this method with.</param>
-    public TResult Delete(TId id, TVerification verification);
+    TResult Delete(TId id, TVerification verification);
 }
 /// <inheritdoc cref="IDeletable{TResult, TId}"/>
 public interface IDeletableAsync<TResult, TId>
 {
     /// <inheritdoc cref="IDeletable{TResult, TId}.Delete(TId)"/>
-    public Task<TResult> DeleteAsync(TId id);
+    Task<TResult> DeleteAsync(TId id);
 }
 /// <inheritdoc cref="IDeletable{TResult, TId, TVerification}"/>
 public interface IDeletableAsync<TResult, TId, TVerification>
 {
     /// <inheritdoc cref="IDeletable{TResult, TId, TVerification}.Delete(TId, TVerification)"/>
-    public Task<TResult> DeleteAsync(TId id, TVerification verification);
+    Task<TResult> DeleteAsync(TId id, TVerification verification);
 }

@@ -32,7 +32,7 @@ public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters
     /// <param name="formattedData">The collection of formatted data items included in the result.</param>
     /// <param name="totalResults">The total number of results matching the filter criteria.</param>
     /// <returns>An instance of <typeparamref name="TSelf"/> representing a successful result.</returns>
-    public abstract static TSelf Ok(IEnumerable<TData> formattedData, TFilterParameters filter, int totalResults);
+    static abstract TSelf Ok(IEnumerable<TData> formattedData, TFilterParameters filter, int totalResults);
     /// <summary>
     /// Create a failed result
     /// </summary>
@@ -40,5 +40,5 @@ public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters
     /// <param name="error"></param>
     /// <param name="errorCode"></param>
     /// <returns></returns>
-    public abstract static TSelf Fail(TFilterParameters filter, string error, string? errorCode = null);
+    static abstract TSelf Fail(TFilterParameters filter, string error, string? errorCode = null);
 }
