@@ -24,7 +24,7 @@ This should be enough for most projects, though one can always just build their 
     }
 
 ### Selectables
-The `ISelectableBase` and the `IIsEnum<TSelf>` interfaces are made to provide a basis for quick, easy and most importantly unified, yet still expressive custom enums.
+The `ISelectableBase` and the `IIsEnum<TSelf>` interfaces are made to provide a basis for quick, easy and most importantly unified, custom enums.
 
     interface ISelectableBase
     {
