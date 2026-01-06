@@ -1,4 +1,5 @@
-﻿using Codespirals.Base.Filtering;
+﻿using Codespirals.Base.Extensions;
+using Codespirals.Base.Filtering;
 
 namespace Codespirals.Base;
 
@@ -16,13 +17,18 @@ public static class FilterExtensions
     /// <param name="parameters">The pagination parameters, implementing <see cref="IFilterParameters"/></param>
     /// <param name="maxLimit">Limit how many items can be returned per page to prevent enduser shenanigans</param>
     /// <param name="totalResults">Return a count of the list before filtering (for pagination)</param>
+    /// <param name="isSorted">Indicates whether <paramref name="items"/> is pre-sorted or not. If not this methods attempts a property-name sort based on <see cref="IFilterParameters.Sort"/></param>
     /// <returns></returns>
-    public static IEnumerable<TItem> ApplyPagination<TItem, TPaginationParameters>(this IEnumerable<TItem> items, TPaginationParameters parameters, short maxLimit, out int totalResults)
+    public static IEnumerable<TItem> ApplyPagination<TItem, TPaginationParameters>(this IEnumerable<TItem> items, TPaginationParameters parameters, int maxLimit, out int totalResults, bool isSorted = false)
         where TPaginationParameters : IFilterParameters
     {
-        items ??= [];
+        totalResults = 0;
+        if (items is null || !items.Any())
+            return [];
+        if (!isSorted)
+            items = items.OrderByProperty(parameters.Sort, parameters.Ascending);
         totalResults = items.Count();
-        var limit = maxLimit > 1 ? Math.Clamp(parameters.Limit, 1, maxLimit) : short.MaxValue;
+        var limit = maxLimit > 0 ? Math.Clamp(parameters.Limit, 1, maxLimit) : short.MaxValue;
         var maxPage = items.Count() / limit;
         var page = Math.Clamp(parameters.Page, 0, maxPage);
         return items.Skip(page * limit).Take(limit);

@@ -21,17 +21,39 @@ public static class StringExtensions
             return s;
     }
     /// <summary>
-    /// Generate a string from common letters
+    /// Makes a string URL safe by replacing all risky characters with a deterministically random alphanumeric character
     /// </summary>
-    /// <param name="length"></param>
+    /// <param name="s"></param>
     /// <returns></returns>
-    public static string GenerateRandomString(this string _, int length)
-        => StringConstants.Letters.GenerateRandomStringFromCurrentString(length);
+    public static string MakeUrlSafe(this string s)
+    {
+        foreach (var c in WebConstants.UrlReservedCharacters)
+        {
+            // get a seeded random number from the current string to keep the replacements deterministic
+            var i = new Random(s.GetHashCode()).Next(StringConstants.Alphanumeric.Length);
+            s = s.Replace(c, StringConstants.Alphanumeric[i]);
+        }
+        return s;
+    }
     /// <summary>
-    /// Generate a string from common letters and numbers
+    /// Turns a string into a byte array.
     /// </summary>
-    /// <param name="length"></param>
+    /// <param name="s"></param>
     /// <returns></returns>
-    public static string GenerateRandomAlphanumericString(this string _, int length)
-        => StringConstants.Alphanumeric.GenerateRandomStringFromCurrentString(length);
+    public static byte[] ToByteArray(this string s)
+        => [.. s.SelectMany(c => c.ToBytes())];
+
+    /// <summary>
+    /// Returns a <see langword="char"/> split into 2 bytes
+    /// </summary>
+    /// <param name="c"></param>
+    /// <returns></returns>
+    public static byte[] ToBytes(this char c)
+    {
+        return
+        [
+            Convert.ToByte(c),
+            Convert.ToByte(c >> 8),
+        ];
+    }
 }

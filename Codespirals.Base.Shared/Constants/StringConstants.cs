@@ -13,6 +13,14 @@ public static class StringConstants
     /// </summary>
     public const string LowerCaseLetters = "abcdefghijklmnopqrstuvwxyz";
     /// <summary>
+    /// All consonants (in lower case)
+    /// </summary>
+    public const string Consonants = "bcdfghjklmnpqrstvwxyz";
+    /// <summary>
+    /// All vowels (in lower case)
+    /// </summary>
+    public const string Vowels = "aeiou";
+    /// <summary>
     /// All upper case letters
     /// </summary>
     public const string UpperCaseLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";

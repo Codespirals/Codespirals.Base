@@ -18,10 +18,13 @@ public interface IDeletable<TResult, TId>
     TResult Delete(TId id);
 }
 /// <inheritdoc cref="IDeletable{TResult, TId}"/>
+/// <typeparam name="TResult">The type of object representing the result of the operation</typeparam>
+/// <typeparam name="TId">The id of the item to delete</typeparam>
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
 public interface IDeletable<TResult, TId, TVerification>
 {
     /// <inheritdoc cref="IDeletable{TResult, TId}.Delete(TId)"/>
+    /// <param name="id">The id of the object to delete</param>
     /// <param name="verification">An item to verify the user of this method with.</param>
     TResult Delete(TId id, TVerification verification);
 }

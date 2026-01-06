@@ -1,7 +1,7 @@
 ﻿namespace Codespirals.Base;
 
 /// <summary>
-/// Anything that implements this interface can be edited by the <see cref="Models.User.User"/>s that have permission to
+/// Anything that implements this interface can be edited
 /// </summary>
 public interface IEditable
 {

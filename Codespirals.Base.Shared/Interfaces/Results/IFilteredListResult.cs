@@ -34,6 +34,15 @@ public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters
     /// <returns>An instance of <typeparamref name="TSelf"/> representing a successful result.</returns>
     static abstract TSelf Ok(IEnumerable<TData> formattedData, TFilterParameters filter, int totalResults);
     /// <summary>
+    /// Creates a successful result from ALL results and paginates those.
+    /// </summary>
+    /// <param name="data"></param>
+    /// <param name="filter"></param>
+    /// <param name="isSorted"></param>
+    /// <remarks>This method will attempt to sort by a property name given in <see cref="IFilterParameters.Sort"/>. If this is not desired, set <paramref name="isSorted"/> to true.</remarks>
+    /// <returns></returns>
+    static abstract TSelf OkAndApplyPagination(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = false);
+    /// <summary>
     /// Create a failed result
     /// </summary>
     /// <param name="filter"></param>

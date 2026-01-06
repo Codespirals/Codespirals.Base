@@ -6,7 +6,7 @@
 /// <param name="limit">How many items to return.</param>
 /// <param name="sort">How to sort the items. Empty means default.</param>
 /// <param name="ascending">Whether to return the result in ascending or descending order.</param>
-public struct SearchParameters(string query = "", int page = 0, int limit = 24, string sort = "", bool ascending = false) : ISearchParameters
+public record SearchParameters(string query = "", int page = 0, int limit = 24, string sort = "", bool ascending = false) : ISearchParameters
 {
     /// <inheritdoc />
     public string Query { get; set; } = query;
@@ -22,10 +22,4 @@ public struct SearchParameters(string query = "", int page = 0, int limit = 24, 
 
     /// <inheritdoc />
     public bool Ascending { get; set; } = ascending;
-
-    /// <inheritdoc cref="ISearchParameters" />
-    public SearchParameters() : this("")
-    {
-
-    }
 }

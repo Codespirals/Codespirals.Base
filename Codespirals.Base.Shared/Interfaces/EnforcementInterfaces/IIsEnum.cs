@@ -2,10 +2,16 @@
 
 /// <summary>
 /// A class type implementing this is a selection of possible values.
-/// It's basically a more extensible version of <see cref="Enum"/>.
+/// It's basically a more elaborate version of <see cref="Enum"/>.
 /// </summary>
+public interface IIsEnum : ISelectableBase
+{
+
+}
+
+/// <inheritdoc />
 /// <typeparam name="TSelf">The type of the item implementing this</typeparam>
-public interface IIsEnum<TSelf> : ISelectableBase, IDefaultable<TSelf>
+public interface IIsEnum<TSelf> : IIsEnum, IDefaultable<TSelf>
     where TSelf : IIsEnum<TSelf>
 {
 

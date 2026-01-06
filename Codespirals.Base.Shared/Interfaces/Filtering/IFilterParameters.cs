@@ -13,6 +13,7 @@ public interface IFilterParameters
     /// <summary>
     /// How many results to return at maximum (per page)
     /// </summary>
+    /// <remarks>Hint: Setting this to a number divisible by 12 allows for seamless grouping on most screen sizes, as 12 can be divided into rows of 2, 3, 4 and 6</remarks>
     int Limit { get; }
     /// <summary>
     /// How to sort the results

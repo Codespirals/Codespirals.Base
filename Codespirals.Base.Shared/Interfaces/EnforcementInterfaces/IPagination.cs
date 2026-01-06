@@ -12,11 +12,11 @@ public interface IPagination<TParamters>
     where TParamters : IFilterParameters
 {
     /// <summary>
-    /// The parameters used to create this search
+    /// The parameters used to paginate this search
     /// </summary>
     TParamters Parameters { get; }
     /// <summary>
-    /// The total number of search results that matched the parameters
+    /// The total number of search results that matched the request
     /// </summary>
     int TotalResults { get; }
 }

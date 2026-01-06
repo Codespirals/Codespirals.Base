@@ -17,6 +17,7 @@ public interface IBeginCreateable<TCreate>
     TCreate BeginCreate();
 }
 /// <inheritdoc cref="IBeginCreateable{TCreate}" />
+/// <typeparam name="TCreate">The create object</typeparam>
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
 public interface IBeginCreateable<TCreate, TVerification>
 {

@@ -19,10 +19,13 @@ public interface IBeginUpatable<TEdit, TId>
     TEdit BeginEdit(TId id);
 }
 /// <inheritdoc cref="IBeginUpatable{TEdit, TId}" />
+/// <typeparam name="TEdit">The edit object</typeparam>
+/// <typeparam name="TId">The id of the object to edit</typeparam>
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
 public interface IBeginUpatable<TEdit, TId, TVerification>
 {
     /// <inheritdoc cref="IBeginUpatable{TEdit, TId}.BeginEdit(TId)" />
+    /// <param name="id">The Id of the item</param>
     /// <param name="verification">An item to verify the user of this method with.</param>
     TEdit BeginEdit(TId id, TVerification verification);
 }

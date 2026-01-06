@@ -40,7 +40,7 @@ public static class ServiceCollectionExtensions
     /// <param name="attributedServiceType">The type of the service. To be able to add a service through this method, it must have the <see cref="InjectableService"/> Attribute</param>
     /// <param name="lifetime">The <see cref="ServiceLifetime"/> of the service</param>
     /// <param name="configuration">The KeyValue dictionary containing all settings pertaining to the service</param>
-    /// <param name="key">An optional key for <see cref="KeyedService"/> - setting this parameter overrides any <see cref="InjectableService.DefaultKey"/></param>
+    /// <param name="key">An optional key for <see cref="KeyedService"/></param>
     public static void TryAddAttributedService(this IServiceCollection services, Type attributedServiceType, ServiceLifetime? lifetime = null, string? key = null, IConfiguration? configuration = null)
     {
         // make sure it has the InjectableService attribute
