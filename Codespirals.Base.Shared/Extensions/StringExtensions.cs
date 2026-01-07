@@ -35,6 +35,7 @@ public static class StringExtensions
         }
         return s;
     }
+
     /// <summary>
     /// Turns a string into a byte array.
     /// </summary>
@@ -52,8 +53,8 @@ public static class StringExtensions
     {
         return
         [
-            Convert.ToByte(c),
             Convert.ToByte(c >> 8),
+            Convert.ToByte(c)
         ];
     }
 }

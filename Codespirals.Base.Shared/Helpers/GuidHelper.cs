@@ -9,5 +9,6 @@ public static class GuidHelper
     /// </summary>
     /// <param name="base64String">The base64 encoded string to create the GUID from</param>
     /// <returns></returns>
-    public static Guid FromBase64(string base64String) => new(Convert.FromBase64String(base64String));
+    public static Guid FromBase64(string base64String)
+        => new(Convert.FromBase64String(base64String[..22].PadRight(24, '='))[..16]);
 }
