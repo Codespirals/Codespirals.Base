@@ -17,13 +17,13 @@ public record SearchParameters() : ISearchParameters
 
     /// <inheritdoc />
     public bool Ascending { get; set; }
+
     /// <inheritdoc cref="ISearchParameters" />
     /// <param name="query">Query parameters</param>
     /// <param name="page">What page to return.</param>
     /// <param name="limit">How many items to return. Default is 24.</param>
     /// <param name="sort">How to sort the items. Empty means default.</param>
     /// <param name="ascending">Whether to return the result in ascending or descending order.</param>
-
     public SearchParameters(string query = "", int page = 0, int limit = 24, string sort = "", bool ascending = false) : this()
     {
         Query = query;

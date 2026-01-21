@@ -21,15 +21,3 @@ public interface ICreatable<TResult, TCreate, TVerification>
     /// <param name="verification">An item to verify the user of this method with.</param>
     TResult Create(TCreate createItem, TVerification verification);
 }
-/// <inheritdoc cref="ICreatable{TResult, TCreate}"/>
-public interface ICreatableAsync<TResult, TCreate>
-{
-    /// <inheritdoc cref="ICreatable{TResult, TCreate}.Create(TCreate)"/>
-    Task<TResult> CreateAsync(TCreate createItem);
-}
-/// <inheritdoc cref="ICreatable{TResult, TCreate, TVerification}"/>
-public interface ICreatableAsync<TResult, TCreate, TVerification>
-{
-    /// <inheritdoc cref="ICreatable{TResult, TCreate, TVerification}.Create(TCreate, TVerification)"/>
-    Task<TResult> CreateAsync(TCreate createItem, TVerification verification);
-}

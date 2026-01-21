@@ -29,15 +29,3 @@ public interface IBeginUpatable<TEdit, TId, TVerification>
     /// <param name="verification">An item to verify the user of this method with.</param>
     TEdit BeginEdit(TId id, TVerification verification);
 }
-/// <inheritdoc cref="IBeginUpatable{TEdit, TId}" />
-public interface IBeginUpatableAsync<TEdit, TId>
-{
-    /// <inheritdoc cref="IBeginUpatable{TEdit, TId}.BeginEdit(TId)" />
-    Task<TEdit> BeginEditAsync(TId id);
-}
-/// <inheritdoc cref="IBeginUpatable{TEdit, TId, TVerification}" />
-public interface IBeginUpatableAsync<TEdit, TId, TVerification>
-{
-    /// <inheritdoc cref="IBeginUpatable{TEdit, TId, TVerification}.BeginEdit(TId, TVerification)" />
-    Task<TEdit> BeginEditAsync(TId id, TVerification verification);
-}

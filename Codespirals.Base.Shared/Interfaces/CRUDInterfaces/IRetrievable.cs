@@ -22,15 +22,3 @@ public interface IRetrievable<TResult, TId, TVerification>
     /// <param name="verification">An item to verify the user of this method with.</param>
     TResult Get(TId id, TVerification verification);
 }
-/// <inheritdoc cref="IRetrievable{TResult, TId}"/>
-public interface IRetrievableAsync<TResult, TId>
-{
-    /// <inheritdoc cref="IRetrievable{TResult, TId}.Get(TId)"/>
-    Task<TResult> GetAsync(TId id);
-}
-/// <inheritdoc cref="IRetrievable{TResult, TId, TVerification}"/>
-public interface IRetrievableAsync<TResult, TId, TVerification>
-{
-    /// <inheritdoc cref="IRetrievable{TResult, TId, TVerification}.Get(TId, TVerification)"/>
-    Task<TResult> GetAsync(TId id, TVerification verification);
-}

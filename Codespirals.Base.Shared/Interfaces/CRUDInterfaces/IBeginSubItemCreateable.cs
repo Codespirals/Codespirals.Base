@@ -18,22 +18,11 @@ public interface IBeginSubItemCreateable<TCreate>
     TCreate BeginCreate(string parentId);
 }
 /// <inheritdoc cref="IBeginCreateable{TCreate}" />
+/// <typeparam name="TCreate">The create object</typeparam>
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
 public interface IBeginSubItemCreateable<TCreate, TVerification>
 {
     /// <inheritdoc cref="IBeginSubItemCreateable{TCreate}.BeginCreate(string)" />
     /// <param name="verification">An item to verify the user of this method with.</param>
     TCreate BeginCreate(string parentId, TVerification verification);
-}
-/// <inheritdoc cref="IBeginCreateable{TCreate}" />
-public interface IBeginSubItemCreateableAsync<TCreate>
-{
-    /// <inheritdoc cref="IBeginSubItemCreateable{TCreate}.BeginCreate(string)" />
-    Task<TCreate> BeginCreateAsync(string parentId);
-}
-/// <inheritdoc cref="IBeginCreateable{TCreate, TVerification}" />
-public interface IBeginSubItemCreateableAsync<TCreate, TVerification>
-{
-    /// <inheritdoc cref="IBeginSubItemCreateable{TCreate, TVerification}.BeginCreate(string, TVerification)" />
-    Task<TCreate> BeginCreateAsync(string parentId, TVerification verification);
 }

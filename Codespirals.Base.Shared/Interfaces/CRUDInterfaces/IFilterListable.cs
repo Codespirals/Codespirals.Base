@@ -29,21 +29,3 @@ public interface IFilterListable<TListResult, TErrorCode, TData, TFilter, TVerif
     /// <inheritdoc cref="IFilterListable{TListResult, TErrorCode, TData, TFilter}.GetMany(TFilter)"/>
     TListResult GetMany(TFilter filter, TVerification verification);
 }
-
-/// <inheritdoc cref="IFilterListable{TListResult, TErrorCode, TData, TFilter}"/>
-public interface IFilterListableAsync<TListResult, TErrorCode, TData, TFilter>
-    where TFilter : IFilterParameters
-    where TListResult : IFilteredListResult<TListResult, TErrorCode, TData, TFilter>
-{
-    /// <inheritdoc cref="IFilterListable{TListResult, TErrorCode, TData, TFilter}.GetMany(TFilter)"/>
-    Task<TListResult> GetManyAsync(TFilter search);
-}
-
-/// <inheritdoc cref="IFilterListable{TListResult, TErrorCode, TData, TFilter}"/>
-public interface IFilterListableAsync<TListResult, TErrorCode, TData, TFilter, TVerification>
-    where TFilter : IFilterParameters
-    where TListResult : IFilteredListResult<TListResult, TErrorCode, TData, TFilter>
-{
-    /// <inheritdoc cref="IFilterListable{TListResult, TErrorCode, TData, TFilter, TVerification}.GetMany(TFilter, TVerification)"/>
-    Task<TListResult> GetManyAsync(TFilter search, TVerification verification);
-}

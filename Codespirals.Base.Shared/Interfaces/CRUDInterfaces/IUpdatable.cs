@@ -7,6 +7,7 @@
 /// <typeparam name="TEdit">The type of the object containing all data needed to update</typeparam>
 /// <typeparam name="TId">The type of the Id of the item to update</typeparam>
 public interface IUpdatable<TResult, TEdit, TId>
+    where TEdit : IIdentifiable<TId>
 {
     /// <summary>
     /// Update an item of the defined type with the given ID
@@ -14,25 +15,17 @@ public interface IUpdatable<TResult, TEdit, TId>
     /// <param name="id">The Id of the item to edit</param>
     /// <param name="editItem">An object of the edit class for this operation</param>
     /// <returns>The updated item.</returns>
-    TResult Edit(TId id, TEdit editItem);
+    TResult Edit(TEdit editItem);
 }
 /// <inheritdoc cref="IUpdatable{TResult, TEdit, TId}" />
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
+/// <typeparam name="TResult">The type of object representing the result of the operation</typeparam>
+/// <typeparam name="TEdit">The type of the object containing all data needed to update</typeparam>
+/// <typeparam name="TId">The type of the Id of the item to update</typeparam>
 public interface IUpdatable<TResult, TEdit, TId, TVerification>
+    where TEdit : IIdentifiable<TId>
 {
     /// <inheritdoc cref="IUpdatable{TResult, TEdit, TId}.Edit(TId, TEdit)" />
     /// <param name="verification">An item to verify the user of this method with.</param>
-    TResult Edit(TId id, TEdit editItem, TVerification verification);
-}
-/// <inheritdoc cref="IUpdatable{TResult, TEdit, TId}" />
-public interface IUpdatableAsync<TResult, TEdit, TId>
-{
-    /// <inheritdoc cref="IUpdatable{TResult, TEdit, TId}.Edit(TId, TEdit)" />
-    Task<TResult> EditAsync(TId id, TEdit editItem);
-}
-/// <inheritdoc cref="IUpdatable{TResult, TEdit, TVerification}" />
-public interface IUpdatableAsync<TResult, TEdit, TId, TVerification>
-{
-    /// <inheritdoc cref="IUpdatable{TResult, TEdit, TId, TVerification}.Edit(TId, TEdit, TVerification)" />
-    Task<TResult> EditAsync(TId id, TEdit editItem, TVerification verification);
+    TResult Edit(TEdit editItem, TVerification verification);
 }

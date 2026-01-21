@@ -19,6 +19,6 @@ public static class GuidExtensions
     /// <param name="id"></param>
     /// <returns></returns>
     /// <remarks>This action is deterministic, but  not reversible</remarks>
-    public static string ToUrlSafeBase64(this Guid id)
+    public static string ToBase64UrlSafe(this Guid id)
         => id.ToBase64().Trim('=').MakeUrlSafe();
 }

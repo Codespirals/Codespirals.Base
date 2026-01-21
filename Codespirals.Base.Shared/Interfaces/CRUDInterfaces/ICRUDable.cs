@@ -10,22 +10,14 @@
 /// <typeparam name="TEdit">The update or edit type</typeparam>
 /// <typeparam name="TDeleteResult">The type of object representing the result a delete operation</typeparam>
 public interface ICRUDable<TResult, TCreate, TEdit, TDeleteResult, TId> : ICreatable<TResult, TCreate>, IRetrievable<TResult, TId>, IUpdatable<TResult, TEdit, TId>, IDeletable<TDeleteResult, TId>
+    where TEdit : IIdentifiable<TId>
 {
 
 }
 /// <inheritdoc cref="ICRUDable{TResult, TCreate, TEdit, TDeleteResult, TId}"/>    
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
 public interface ICRUDable<TResult, TCreate, TEdit, TDeleteResult, TId, TVerification> : ICreatable<TResult, TCreate, TVerification>, IRetrievable<TResult, TId, TVerification>, IUpdatable<TResult, TEdit, TId, TVerification>, IDeletable<TDeleteResult, TId, TVerification>
-{
-
-}
-/// <inheritdoc cref="ICRUDable{TResult, TCreate, TEdit, TDeleteResult, TId}"/>
-public interface ICRUDableAsync<TResult, TCreate, TEdit, TDeleteResult, TId> : ICreatableAsync<TResult, TCreate>, IRetrievableAsync<TResult, TId>, IUpdatableAsync<TResult, TEdit, TId>, IDeletableAsync<TDeleteResult, TId>
-{
-
-}
-/// <inheritdoc cref="ICRUDable{TResult, TCreate, TEdit, TDeleteResult, TId, TVerification}"/>
-public interface ICRUDableAsync<TResult, TCreate, TEdit, TDeleteResult, TId, TVerification> : ICreatableAsync<TResult, TCreate, TVerification>, IRetrievableAsync<TResult, TId, TVerification>, IUpdatableAsync<TResult, TEdit, TId, TVerification>, IDeletableAsync<TDeleteResult, TId, TVerification>
+    where TEdit : IIdentifiable<TId>
 {
 
 }

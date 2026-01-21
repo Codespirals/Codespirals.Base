@@ -1,15 +1,15 @@
-﻿namespace Codespirals.Base.Extensions;
+﻿namespace Codespirals.Base.Helpers;
 /// <summary>
-/// Extensions on <see cref="object"/>
+/// A helper class to assist in identifying objects
 /// </summary>
-public static class ObjectExtensions
+public static class IdentificationHelper
 {
     /// <summary>
     /// Check if the object is a String or Char
     /// </summary>
     /// <param name="obj">The object to check</param>
     /// <returns></returns>
-    public static bool IsText(this object obj)
+    public static bool IsText(object obj)
     {
         return Type.GetTypeCode(obj.GetType()) switch
         {
@@ -17,12 +17,13 @@ public static class ObjectExtensions
             _ => false,
         };
     }
+
     /// <summary>
     /// Check if the object is any of Byte, Decimal, Double, Int, Byte, Single or Char
     /// </summary>
     /// <param name="obj">The object to check</param>
     /// <returns></returns>
-    public static bool IsNumber(this object obj)
+    public static bool IsNumber(object obj)
     {
         return Type.GetTypeCode(obj.GetType()) switch
         {
@@ -36,7 +37,7 @@ public static class ObjectExtensions
     /// </summary>
     /// <param name="obj">The object to check</param>
     /// <returns></returns>
-    public static bool IsTextOrNumber(this object obj)
+    public static bool IsTextOrNumber(object obj)
     {
         return Type.GetTypeCode(obj.GetType()) switch
         {
@@ -50,7 +51,7 @@ public static class ObjectExtensions
     /// </summary>
     /// <param name="obj">The object to check</param>
     /// <returns></returns>
-    public static bool IsBaseType(this object obj)
+    public static bool IsBaseType(object obj)
     {
         return Type.GetTypeCode(obj.GetType()) switch
         {

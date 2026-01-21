@@ -25,15 +25,3 @@ public interface IBeginCreateable<TCreate, TVerification>
     /// <param name="verification">An item to verify the user of this method with.</param>
     TCreate BeginCreate(TVerification verification);
 }
-/// <inheritdoc cref="IBeginCreateable{TCreate}" />
-public interface IBeginCreateableAsync<TCreate>
-{
-    /// <inheritdoc cref="IBeginCreateable{TCreate}.BeginCreate()" />
-    Task<TCreate> BeginCreateAsync();
-}
-/// <inheritdoc cref="IBeginCreateable{TCreate, TVerification}" />
-public interface IBeginCreateableAsync<TCreate, TVerification>
-{
-    /// <inheritdoc cref="IBeginCreateable{TCreate, TVerification}.BeginCreate(TVerification)" />
-    Task<TCreate> BeginCreateAsync(TVerification verification);
-}

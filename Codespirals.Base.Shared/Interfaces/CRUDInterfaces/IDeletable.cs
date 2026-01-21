@@ -28,15 +28,3 @@ public interface IDeletable<TResult, TId, TVerification>
     /// <param name="verification">An item to verify the user of this method with.</param>
     TResult Delete(TId id, TVerification verification);
 }
-/// <inheritdoc cref="IDeletable{TResult, TId}"/>
-public interface IDeletableAsync<TResult, TId>
-{
-    /// <inheritdoc cref="IDeletable{TResult, TId}.Delete(TId)"/>
-    Task<TResult> DeleteAsync(TId id);
-}
-/// <inheritdoc cref="IDeletable{TResult, TId, TVerification}"/>
-public interface IDeletableAsync<TResult, TId, TVerification>
-{
-    /// <inheritdoc cref="IDeletable{TResult, TId, TVerification}.Delete(TId, TVerification)"/>
-    Task<TResult> DeleteAsync(TId id, TVerification verification);
-}

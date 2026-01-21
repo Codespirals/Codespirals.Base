@@ -26,19 +26,3 @@ public interface ISearchable<TSearchResult, TErrorCode, TData, TSearchParameters
     /// <param name="verification">An item to verify the user of this method with.</param>
     TSearchResult Search(TSearchParameters search, TVerification verification);
 }
-/// <inheritdoc cref="ISearchable{TSearchResult, TErrorCode, TData, TSearchParameters}"/>
-public interface ISearchableAsync<TSearchResult, TErrorCode, TData, TSearchParameters>
-    where TSearchParameters : ISearchParameters
-    where TSearchResult : IFilteredListResult<TSearchResult, TErrorCode, TData, TSearchParameters>
-{
-    /// <inheritdoc cref="ISearchable{TSearchResult, TErrorCode, TData, TSearchParameters}.Search(TSearchParameters)"/>
-    Task<TSearchResult> SearchAsync(TSearchParameters search);
-}
-/// <inheritdoc cref="ISearchable{TSearchResult, TErrorCode, TData, TSearchParameters, TVerification}"/>
-public interface ISearchableAsync<TSearchResult, TErrorCode, TData, TSearchParameters, TVerification>
-    where TSearchParameters : ISearchParameters
-    where TSearchResult : IFilteredListResult<TSearchResult, TErrorCode, TData, TSearchParameters>
-{
-    /// <inheritdoc cref="ISearchable{TSearchResult, TErrorCode, TData, TSearchParameters, TVerification}.Search(TSearchParameters, TVerification)"/>
-    Task<TSearchResult> SearchAsync(TSearchParameters search, TVerification verification);
-}
