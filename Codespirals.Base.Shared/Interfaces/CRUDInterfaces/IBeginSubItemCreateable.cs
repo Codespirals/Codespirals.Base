@@ -24,5 +24,6 @@ public interface IBeginSubItemCreateable<TCreate, TVerification>
 {
     /// <inheritdoc cref="IBeginSubItemCreateable{TCreate}.BeginCreate(string)" />
     /// <param name="verification">An item to verify the user of this method with.</param>
+    /// <param name="parentId">The id of the parent item this sub item will be attached to</param>
     TCreate BeginCreate(string parentId, TVerification verification);
 }
