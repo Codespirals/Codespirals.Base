@@ -33,4 +33,23 @@ public static class FilterExtensions
         var page = Math.Clamp(parameters.Page, 0, maxPage);
         return items.Skip(page * limit).Take(limit);
     }
+    /// <summary>
+    /// Convert a set of filter parameters to a dictionary
+    /// </summary>
+    /// <typeparam name="TParameters"></typeparam>
+    /// <param name="parameters"></param>
+    /// <returns></returns>
+    public static Dictionary<string, string> ToDictionary<TParameters>(this TParameters parameters)
+        where TParameters : IFilterParameters
+    {
+        var dict = new Dictionary<string, string>();
+        var props = typeof(TParameters).GetProperties();
+        foreach (var prop in props)
+        {
+            var value = prop.GetValue(parameters);
+            if (value is not null)
+                dict.Add(prop.Name, value.ToString() ?? string.Empty);
+        }
+        return dict;
+    }
 }
