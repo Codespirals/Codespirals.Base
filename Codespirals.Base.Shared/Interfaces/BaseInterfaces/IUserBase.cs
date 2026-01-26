@@ -3,7 +3,7 @@
 /// <summary>
 /// The most basic information about a user
 /// </summary>
-public interface IUserBase : IUserBase<string>
+public interface IUserBase : IIdentifiable, IHasUsername
 {
 
 }
