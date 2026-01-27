@@ -43,7 +43,7 @@ public static class CustomEnumHelper
     /// <returns>The value or the <see cref="IDefaultable{TSelf}.Default"/>, if it doesn't exist</returns>
     public static TEnum GetValueFromId<TEnum>(string? id)
         where TEnum : IIsEnum<TEnum>, new()
-        => GetAllowableValues<TEnum>().FirstOrDefault(r => r.Id == id) ?? TEnum.Default();
+        => GetAllowableValues<TEnum>().FirstOrDefault(r => r.Id.Equals(id, StringComparison.OrdinalIgnoreCase)) ?? TEnum.Default();
 
     /// <summary>
     /// Check if a selectable item is part of a custom enum
@@ -56,4 +56,18 @@ public static class CustomEnumHelper
         where TEnum : IIsEnum<TEnum>, new()
         where TSelectable : ISelectableBase, new()
         => item.IsAnyOf(GetAllowableValues<TEnum>().Select(v => v.Id).ToArray());
+
+    /// <summary>
+    /// Check if a selectable item is part of a custom enum
+    /// </summary>
+    /// <typeparam name="TEnum"></typeparam>
+    /// <param name="item"></param>
+    /// <returns></returns>
+    public static bool IsAcceptableValue<TEnum>(this string item)
+        where TEnum : IIsEnum<TEnum>, new()
+    {
+        var value = GetValueFromId<TEnum>(item);
+        return value.IsAnyOf(GetAllowableValues<TEnum>().Select(v => v.Id).ToArray());
+    }
 }
+
