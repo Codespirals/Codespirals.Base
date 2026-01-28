@@ -46,7 +46,7 @@ public record FilteredListResult<TData, TFilterParameters> : IFilteredListResult
     {
         Parameters = filter;
         Success = true;
-        Data = data.ApplyPagination(filter, short.MaxValue, out var totalResults, isSorted);
+        Data = data.ApplyPagination(filter, out var totalResults, short.MaxValue, isSorted);
         TotalResults = totalResults;
     }
     /// <inheritdoc />

@@ -19,17 +19,17 @@ public static class FilterExtensions
     /// <param name="totalResults">Return a count of the list before filtering (for pagination)</param>
     /// <param name="isSorted">Indicates whether <paramref name="items"/> is pre-sorted or not. If not this methods attempts a property-name sort based on <see cref="IFilterParameters.Sort"/></param>
     /// <returns></returns>
-    public static IEnumerable<TItem> ApplyPagination<TItem, TPaginationParameters>(this IEnumerable<TItem> items, TPaginationParameters parameters, int maxLimit, out int totalResults, bool isSorted = false)
+    public static IEnumerable<TItem> ApplyPagination<TItem, TPaginationParameters>(this IEnumerable<TItem> items, TPaginationParameters parameters, out int totalResults, int maxLimit = -1, bool isSorted = true)
         where TPaginationParameters : IFilterParameters
     {
         totalResults = 0;
         if (items is null || !items.Any())
             return [];
+        totalResults = items.Count();
         if (!isSorted)
             items = items.OrderByProperty(parameters.Sort, parameters.Ascending);
-        totalResults = items.Count();
         var limit = maxLimit > 0 ? Math.Clamp(parameters.Limit, 1, maxLimit) : short.MaxValue;
-        var maxPage = items.Count() / limit;
+        var maxPage = (int)Math.Ceiling((double)totalResults / limit);
         var page = Math.Clamp(parameters.Page, 0, maxPage);
         return items.Skip(page * limit).Take(limit);
     }

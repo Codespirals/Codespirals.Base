@@ -47,7 +47,7 @@ public static class ListExtensions
                 ? list.Order()
                 : list.OrderDescending();
         var propertyInfo = typeof(TItem).GetProperty(propertyName);
-        if (propertyInfo == null)
+        if (propertyInfo is null)
             return ascending
                 ? list.Order()
                 : list.OrderDescending();
