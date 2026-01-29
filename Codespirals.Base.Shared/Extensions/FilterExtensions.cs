@@ -28,7 +28,8 @@ public static class FilterExtensions
         totalResults = items.Count();
         if (!isSorted)
             items = items.OrderByProperty(parameters.Sort, parameters.Ascending);
-        var limit = maxLimit > 0 ? Math.Clamp(parameters.Limit, 1, maxLimit) : short.MaxValue;
+        maxLimit = maxLimit > 0 ? maxLimit : short.MaxValue;
+        var limit = Math.Clamp(parameters.Limit, 1, maxLimit);
         var maxPage = (int)Math.Ceiling((double)totalResults / limit);
         var page = Math.Clamp(parameters.Page, 0, maxPage);
         return items.Skip(page * limit).Take(limit);
