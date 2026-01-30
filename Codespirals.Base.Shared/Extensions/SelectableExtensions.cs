@@ -1,4 +1,6 @@
-﻿namespace Codespirals.Base;
+﻿using Codespirals.Base.Extensions;
+
+namespace Codespirals.Base;
 
 /// <summary>
 /// Extensions on <see cref="ISelectableBase"/>
@@ -36,7 +38,7 @@ public static class SelectableExtensions
     /// <returns></returns>
     public static bool IsAnyOf<TSelectable>(this TSelectable primary, params string[] othersIds)
     where TSelectable : ISelectableBase
-        => othersIds is not null && othersIds.Any(s => primary.Is(s));
+        => primary.Id.IsAnyOf(othersIds);
 
     /// <summary>
     /// Check if the current selectable item is in a list of selectable items
@@ -47,5 +49,5 @@ public static class SelectableExtensions
     /// <returns></returns>
     public static bool IsAnyOf<TSelectable>(this TSelectable primary, params TSelectable[] others)
     where TSelectable : ISelectableBase
-        => others is not null && others.Any(s => primary.Is(s.Id));
+        => primary.Id.IsAnyOf([.. others.Select(s => s.Id)]);
 }

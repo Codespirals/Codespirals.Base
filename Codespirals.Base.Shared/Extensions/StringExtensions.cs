@@ -27,10 +27,13 @@ public static class StringExtensions
     /// <returns></returns>
     public static string MakeUrlSafe(this string s)
     {
+        var hashCode = s.GetHashCode();
         foreach (var c in WebConstants.UrlReservedCharacters)
         {
+            if (!s.Contains(c))
+                continue;
             // get a seeded random number from the current string to keep the replacements deterministic
-            var i = new Random(s.GetHashCode()).Next(StringConstants.Alphanumeric.Length);
+            var i = new Random(hashCode).Next(StringConstants.Alphanumeric.Length);
             s = s.Replace(c, StringConstants.Alphanumeric[i]);
         }
         return s;
@@ -56,5 +59,22 @@ public static class StringExtensions
             Convert.ToByte(c >> 8),
             Convert.ToByte(c)
         ];
+    }
+    /// <summary>
+    /// Checks if given string is equal to any of the strings in parameters
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="values"></param>
+    /// <returns></returns>
+    /// <remarks>Ignores case</remarks>
+    public static bool IsAnyOf(this string? value, params string[] values)
+    {
+        if (value is null) { return false; }
+        foreach (var item in values)
+        {
+            if (string.Equals(value, item, StringComparison.InvariantCultureIgnoreCase))
+                return true;
+        }
+        return false;
     }
 }
