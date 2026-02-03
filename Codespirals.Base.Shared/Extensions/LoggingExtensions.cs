@@ -11,16 +11,16 @@ public static class LoggingExtensions
     /// Start a logging session
     /// </summary>
     /// <param name="logger"></param>
-    /// <param name="service"></param>
+    /// <param name="method"></param>
     /// <param name="additionalArguments">A list of arguments to be added to the scope</param>
     /// <param name="message"></param>
     /// <returns></returns>
-    public static IDisposable? BeginLog(this ILogger logger, string? service = null, Dictionary<string, string>? additionalArguments = null, string? message = null)
+    public static IDisposable? BeginLog(this ILogger logger, string method, Dictionary<string, string>? additionalArguments = null, string? message = null)
     {
         try
         {
             var processId = Guid.NewGuid().ToString();
-            var scope = logger.BeginScope(BuildScope(processId, service, additionalArguments));
+            var scope = logger.BeginScope(BuildScope(processId, method, additionalArguments));
             message ??= "Beginning new log";
             logger.LogStep(State.Started, message);
             return scope;
@@ -61,13 +61,13 @@ public static class LoggingExtensions
         Cancelled,
         Stopped
     }
-    private static Dictionary<string, string> BuildScope(string processId, string? service = null, Dictionary<string, string>? additionalArguments = null)
+    private static Dictionary<string, string> BuildScope(string processId, string service, Dictionary<string, string>? additionalArguments = null)
     {
         var scopeItems = new Dictionary<string, string>
         {
             { "ProcessId", processId }
         };
-        if (!string.IsNullOrWhiteSpace(service)) { scopeItems.Add("Service", nameof(service)); }
+        if (!string.IsNullOrWhiteSpace(service)) { scopeItems.Add("Method", nameof(service)); }
         if (additionalArguments is not null)
             foreach (var argument in additionalArguments)
                 if (!string.IsNullOrWhiteSpace(argument.Key) && !string.IsNullOrWhiteSpace(argument.Value)) { scopeItems.Add(argument.Key, argument.Value); }

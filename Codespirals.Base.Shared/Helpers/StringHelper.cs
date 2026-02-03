@@ -31,4 +31,11 @@ public static class StringHelper
         ? $"{StringConstants.Consonants.GenerateRandomStringFromCurrentString(1, true)}{StringConstants.Vowels.GenerateRandomStringFromCurrentString(1)}{StringConstants.LowerCaseLetters.GenerateRandomStringFromCurrentString(Random.Shared.Next(1, 12))}"
         : $"{StringConstants.Vowels.GenerateRandomStringFromCurrentString(1, true)}{StringConstants.Consonants.GenerateRandomStringFromCurrentString(1)}{StringConstants.LowerCaseLetters.GenerateRandomStringFromCurrentString(Random.Shared.Next(1, 12))}";
 
+    /// <summary>
+    /// Check if string is a <see cref="Guid"/>
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static bool IsGuid(string value)
+        => !string.IsNullOrWhiteSpace(value) && Guid.TryParse(value.Trim(), out var _);
 }
