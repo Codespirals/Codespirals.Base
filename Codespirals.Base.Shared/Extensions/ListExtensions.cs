@@ -1,4 +1,5 @@
-﻿namespace Codespirals.Base.Extensions;
+﻿
+namespace Codespirals.Base.Extensions;
 
 /// <summary>
 /// Extensions on <see cref="List{T}"/>
@@ -22,7 +23,7 @@ public static class ListExtensions
     public static IEnumerable<TItem> Shuffle<TItem>(this IEnumerable<TItem> list)
     {
         var n = list.Count();
-        var temp = list.ToList();
+        List<TItem> temp = list.ToList();
         while (n > 1)
         {
             n--;

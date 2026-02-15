@@ -15,9 +15,9 @@ public static class CustomEnumHelper
     {
         try
         {
-            var results = new List<TEnum>();
+            List<TEnum> results = [];
             var properties = typeof(TEnum).GetProperties();
-            var instance = new TEnum();
+            TEnum instance = new();
             foreach (var prop in properties)
             {
                 var propValue = prop.GetValue(instance);

@@ -43,7 +43,7 @@ public static class FilterExtensions
     public static Dictionary<string, string> ToDictionary<TParameters>(this TParameters parameters)
         where TParameters : IFilterParameters
     {
-        var dict = new Dictionary<string, string>();
+        Dictionary<string, string> dict = [];
         var props = typeof(TParameters).GetProperties();
         foreach (var prop in props)
         {

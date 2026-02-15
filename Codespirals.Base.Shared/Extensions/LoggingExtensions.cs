@@ -63,7 +63,7 @@ public static class LoggingExtensions
     }
     private static Dictionary<string, string> BuildScope(string processId, string service, Dictionary<string, string>? additionalArguments = null)
     {
-        var scopeItems = new Dictionary<string, string>
+        Dictionary<string, string> scopeItems = new()
         {
             { "ProcessId", processId }
         };

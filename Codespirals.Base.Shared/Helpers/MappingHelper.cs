@@ -1,4 +1,5 @@
 ﻿namespace Codespirals.Base.Helpers;
+
 public static class MappingHelper
 {
     public static void MapProperties<TItem, TValues>(TItem item, TValues values)
