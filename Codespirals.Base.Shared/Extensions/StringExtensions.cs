@@ -77,4 +77,16 @@ public static class StringExtensions
         }
         return false;
     }
+
+    /// <summary>
+    /// Removes all whitespace from a string
+    /// </summary>
+    /// <param name="value"></param>
+    /// <returns></returns>
+    public static string? RemoveWhitespace(this string? value)
+    {
+        if (string.IsNullOrWhiteSpace(value))
+            return null;
+        return CompiledRegex.DetectWhitespace().Replace(value, string.Empty);
+    }
 }
