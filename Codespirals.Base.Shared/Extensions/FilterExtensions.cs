@@ -1,7 +1,6 @@
 ﻿using Codespirals.Base.Extensions;
-using Codespirals.Base.Filtering;
 
-namespace Codespirals.Base;
+namespace Codespirals.Base.Filtering;
 
 /// <summary>
 /// Extensions on <see cref="FilterParameters"/>

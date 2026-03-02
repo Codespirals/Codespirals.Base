@@ -39,9 +39,10 @@ public interface IPaginatedResult<TSelf, TErrorCode, TData, TFilterParameters> :
     /// <param name="data"></param>
     /// <param name="filter"></param>
     /// <param name="isSorted"></param>
+    /// <param name="maxLimit">Set an upper bound for how many items can be returned</param>
     /// <remarks>This method will attempt to sort by a property name given in <see cref="IFilterParameters.Sort"/>. If this is not desired, set <paramref name="isSorted"/> to true.</remarks>
     /// <returns></returns>
-    static abstract TSelf OkAndApplyPagination(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = true);
+    static abstract TSelf OkAndApplyPagination(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = true, int maxLimit = -1);
     /// <summary>
     /// Create a failed result
     /// </summary>

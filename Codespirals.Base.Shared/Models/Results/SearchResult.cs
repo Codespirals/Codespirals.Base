@@ -45,17 +45,17 @@ public record SearchResult<TData, TSearchParameters> : IPaginatedResult<SearchRe
         TotalResults = totalResults;
         Data = formattedData;
     }
-    private SearchResult(IEnumerable<TData> unformattedData, TSearchParameters filter, bool isSorted = true)
+    private SearchResult(IEnumerable<TData> unformattedData, TSearchParameters filter, bool isSorted = true, int maxLimit = -1)
     {
         Parameters = filter;
         Success = true;
-        Data = unformattedData.ApplyPagination(filter, out var totalResults, short.MaxValue, isSorted);
+        Data = unformattedData.ApplyPagination(filter, out var totalResults, maxLimit, isSorted);
         TotalResults = totalResults;
     }
     /// <inheritdoc />
     public static SearchResult<TData, TSearchParameters> Ok(IEnumerable<TData> formattedData, TSearchParameters filter, int totalResults) => new(formattedData, filter, totalResults);
     /// <inheritdoc />
-    public static SearchResult<TData, TSearchParameters> OkAndApplyPagination(IEnumerable<TData> data, TSearchParameters filter, bool isSorted = true) => new(data, filter, isSorted);
+    public static SearchResult<TData, TSearchParameters> OkAndApplyPagination(IEnumerable<TData> data, TSearchParameters filter, bool isSorted = true, int maxLimit = -1) => new(data, filter, isSorted, maxLimit);
     /// <inheritdoc />
     public static SearchResult<TData, TSearchParameters> Fail(TSearchParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
     /// <inheritdoc />

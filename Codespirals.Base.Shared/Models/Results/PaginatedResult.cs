@@ -42,17 +42,17 @@ public record PaginatedResult<TData, TFilterParameters> : IPaginatedResult<Pagin
         TotalResults = totalResults;
         Data = formattedData;
     }
-    private PaginatedResult(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = true)
+    private PaginatedResult(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = true, int maxLimit = -1)
     {
         Parameters = filter;
         Success = true;
-        Data = data.ApplyPagination(filter, out var totalResults, short.MaxValue, isSorted);
+        Data = data.ApplyPagination(filter, out var totalResults, maxLimit, isSorted);
         TotalResults = totalResults;
     }
     /// <inheritdoc />
     public static PaginatedResult<TData, TFilterParameters> Ok(IEnumerable<TData> formattedData, TFilterParameters filter, int totalResults) => new(formattedData, filter, totalResults);
     /// <inheritdoc />
-    public static PaginatedResult<TData, TFilterParameters> OkAndApplyPagination(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = true) => new(data, filter, isSorted);
+    public static PaginatedResult<TData, TFilterParameters> OkAndApplyPagination(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = true, int maxLimit = -1) => new(data, filter, isSorted, maxLimit);
     /// <inheritdoc />
     public static PaginatedResult<TData, TFilterParameters> Fail(TFilterParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
     /// <inheritdoc />
