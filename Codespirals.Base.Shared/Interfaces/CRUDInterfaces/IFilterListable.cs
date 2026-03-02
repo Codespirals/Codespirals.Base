@@ -11,7 +11,7 @@ namespace Codespirals.Base.CRUD;
 /// <typeparam name="TData">The type to return in the search results</typeparam>
 public interface IFilterListable<TListResult, TErrorCode, TData, TFilter>
     where TFilter : IFilterParameters
-    where TListResult : IFilteredListResult<TListResult, TErrorCode, TData, TFilter>
+    where TListResult : IPaginatedResult<TListResult, TErrorCode, TData, TFilter>
 {
     /// <summary>
     /// Get many of the given type of item, filtered by certain parameters.
@@ -24,7 +24,7 @@ public interface IFilterListable<TListResult, TErrorCode, TData, TFilter>
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
 public interface IFilterListable<TListResult, TErrorCode, TData, TFilter, TVerification>
     where TFilter : IFilterParameters
-    where TListResult : IFilteredListResult<TListResult, TErrorCode, TData, TFilter>
+    where TListResult : IPaginatedResult<TListResult, TErrorCode, TData, TFilter>
 {
     /// <inheritdoc cref="IFilterListable{TListResult, TErrorCode, TData, TFilter}.GetMany(TFilter)"/>
     TListResult GetMany(TFilter filter, TVerification verification);

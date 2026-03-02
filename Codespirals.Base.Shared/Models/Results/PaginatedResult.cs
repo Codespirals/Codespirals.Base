@@ -8,7 +8,7 @@ namespace Codespirals.Base.Results;
 /// </summary>
 /// <typeparam name="TData">The item type that was searched for</typeparam>
 /// <typeparam name="TFilterParameters">The filter parameters</typeparam>
-public record FilteredListResult<TData, TFilterParameters> : IFilteredListResult<FilteredListResult<TData, TFilterParameters>, string, TData, TFilterParameters>
+public record PaginatedResult<TData, TFilterParameters> : IPaginatedResult<PaginatedResult<TData, TFilterParameters>, string, TData, TFilterParameters>
     where TFilterParameters : IFilterParameters, new()
 {
     /// <inheritdoc />
@@ -24,25 +24,25 @@ public record FilteredListResult<TData, TFilterParameters> : IFilteredListResult
     /// <inheritdoc />
     public int TotalResults { get; private set; }
 
-    private FilteredListResult(string error, string? errorCode = null)
+    private PaginatedResult(string error, string? errorCode = null)
     {
         Success = false;
         Error = error;
         ErrorCode = errorCode;
     }
-    private FilteredListResult(TFilterParameters filter, string error, string? errorCode = null) : this(error, errorCode)
+    private PaginatedResult(TFilterParameters filter, string error, string? errorCode = null) : this(error, errorCode)
     {
         Parameters = filter;
         Success = false;
     }
-    private FilteredListResult(TFilterParameters filter, IEnumerable<TData> formattedData, int totalResults)
+    private PaginatedResult(IEnumerable<TData> formattedData, TFilterParameters filter, int totalResults)
     {
         Parameters = filter;
         Success = true;
         TotalResults = totalResults;
         Data = formattedData;
     }
-    private FilteredListResult(TFilterParameters filter, IEnumerable<TData> data, bool isSorted = false)
+    private PaginatedResult(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = true)
     {
         Parameters = filter;
         Success = true;
@@ -50,11 +50,11 @@ public record FilteredListResult<TData, TFilterParameters> : IFilteredListResult
         TotalResults = totalResults;
     }
     /// <inheritdoc />
-    public static FilteredListResult<TData, TFilterParameters> Ok(IEnumerable<TData> formattedData, TFilterParameters filter, int totalResults) => new(filter, formattedData, totalResults);
+    public static PaginatedResult<TData, TFilterParameters> Ok(IEnumerable<TData> formattedData, TFilterParameters filter, int totalResults) => new(formattedData, filter, totalResults);
     /// <inheritdoc />
-    public static FilteredListResult<TData, TFilterParameters> OkAndApplyPagination(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = false) => new(filter, data, isSorted);
+    public static PaginatedResult<TData, TFilterParameters> OkAndApplyPagination(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = true) => new(data, filter, isSorted);
     /// <inheritdoc />
-    public static FilteredListResult<TData, TFilterParameters> Fail(TFilterParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
+    public static PaginatedResult<TData, TFilterParameters> Fail(TFilterParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
     /// <inheritdoc />
-    public static FilteredListResult<TData, TFilterParameters> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
+    public static PaginatedResult<TData, TFilterParameters> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
 }

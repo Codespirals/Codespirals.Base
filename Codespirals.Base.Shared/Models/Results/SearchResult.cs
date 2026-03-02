@@ -8,7 +8,7 @@ namespace Codespirals.Base.Results;
 /// </summary>
 /// <typeparam name="TData">The item type that was searched for</typeparam>
 /// <typeparam name="TSearchParameters">The search parameters</typeparam>
-public record SearchResult<TData, TSearchParameters> : IFilteredListResult<SearchResult<TData, TSearchParameters>, string, TData, TSearchParameters>
+public record SearchResult<TData, TSearchParameters> : IPaginatedResult<SearchResult<TData, TSearchParameters>, string, TData, TSearchParameters>
     where TSearchParameters : ISearchParameters, new()
 {
     /// <inheritdoc />
@@ -38,14 +38,14 @@ public record SearchResult<TData, TSearchParameters> : IFilteredListResult<Searc
         Error = error;
         ErrorCode = errorCode;
     }
-    private SearchResult(TSearchParameters filter, IEnumerable<TData> formattedData, int totalResults)
+    private SearchResult(IEnumerable<TData> formattedData, TSearchParameters filter, int totalResults)
     {
         Parameters = filter;
         Success = true;
         TotalResults = totalResults;
         Data = formattedData;
     }
-    private SearchResult(TSearchParameters filter, IEnumerable<TData> unformattedData, bool isSorted = false)
+    private SearchResult(IEnumerable<TData> unformattedData, TSearchParameters filter, bool isSorted = true)
     {
         Parameters = filter;
         Success = true;
@@ -53,9 +53,9 @@ public record SearchResult<TData, TSearchParameters> : IFilteredListResult<Searc
         TotalResults = totalResults;
     }
     /// <inheritdoc />
-    public static SearchResult<TData, TSearchParameters> Ok(IEnumerable<TData> formattedData, TSearchParameters filter, int totalResults) => new(filter, formattedData, totalResults);
+    public static SearchResult<TData, TSearchParameters> Ok(IEnumerable<TData> formattedData, TSearchParameters filter, int totalResults) => new(formattedData, filter, totalResults);
     /// <inheritdoc />
-    public static SearchResult<TData, TSearchParameters> OkAndApplyPagination(IEnumerable<TData> data, TSearchParameters filter, bool isSorted = false) => new(filter, data, isSorted);
+    public static SearchResult<TData, TSearchParameters> OkAndApplyPagination(IEnumerable<TData> data, TSearchParameters filter, bool isSorted = true) => new(data, filter, isSorted);
     /// <inheritdoc />
     public static SearchResult<TData, TSearchParameters> Fail(TSearchParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
     /// <inheritdoc />

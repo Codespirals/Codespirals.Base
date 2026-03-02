@@ -8,7 +8,7 @@ namespace Codespirals.Base.Results;
 /// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
 /// <typeparam name="TData">The type of the search result items</typeparam>
 /// <typeparam name="TFilterParameters">The filter parameters.</typeparam>
-public interface IFilteredListResult<TErrorCode, TData, TFilterParameters> : IResultWithData<TErrorCode, IEnumerable<TData>>, IPagination<TFilterParameters>
+public interface IPaginatedResult<TErrorCode, TData, TFilterParameters> : IResultWithData<TErrorCode, IEnumerable<TData>>, IPagination<TFilterParameters>
     where TFilterParameters : IFilterParameters
 {
 
@@ -21,8 +21,8 @@ public interface IFilteredListResult<TErrorCode, TData, TFilterParameters> : IRe
 /// <typeparam name="TData">The type of the search result items</typeparam>
 /// <typeparam name="TFilterParameters">The filter parameters.</typeparam>
 /// <typeparam name="TSelf">The class implementing this</typeparam>
-public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters> : IFilteredListResult<TErrorCode, TData, TFilterParameters>
-    where TSelf : IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters>
+public interface IPaginatedResult<TSelf, TErrorCode, TData, TFilterParameters> : IPaginatedResult<TErrorCode, TData, TFilterParameters>
+    where TSelf : IPaginatedResult<TSelf, TErrorCode, TData, TFilterParameters>
     where TFilterParameters : IFilterParameters
 {
     /// <summary>
@@ -41,7 +41,7 @@ public interface IFilteredListResult<TSelf, TErrorCode, TData, TFilterParameters
     /// <param name="isSorted"></param>
     /// <remarks>This method will attempt to sort by a property name given in <see cref="IFilterParameters.Sort"/>. If this is not desired, set <paramref name="isSorted"/> to true.</remarks>
     /// <returns></returns>
-    static abstract TSelf OkAndApplyPagination(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = false);
+    static abstract TSelf OkAndApplyPagination(IEnumerable<TData> data, TFilterParameters filter, bool isSorted = true);
     /// <summary>
     /// Create a failed result
     /// </summary>

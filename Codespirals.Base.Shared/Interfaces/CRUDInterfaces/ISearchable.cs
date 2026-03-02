@@ -11,7 +11,7 @@ namespace Codespirals.Base.CRUD;
 /// <typeparam name="TData">The type to return in the search results</typeparam>
 public interface ISearchable<TSearchResult, TErrorCode, TData, TSearchParameters>
     where TSearchParameters : ISearchParameters
-    where TSearchResult : IFilteredListResult<TSearchResult, TErrorCode, TData, TSearchParameters>
+    where TSearchResult : IPaginatedResult<TSearchResult, TErrorCode, TData, TSearchParameters>
 {
     /// <inheritdoc cref="ISearchable{TSearchResult, TErrorCode, TData, TSearchParameters}.Search(TSearchParameters)"/>
     TSearchResult Search(TSearchParameters search);
@@ -20,7 +20,7 @@ public interface ISearchable<TSearchResult, TErrorCode, TData, TSearchParameters
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
 public interface ISearchable<TSearchResult, TErrorCode, TData, TSearchParameters, TVerification>
     where TSearchParameters : ISearchParameters
-    where TSearchResult : IFilteredListResult<TSearchResult, TErrorCode, TData, TSearchParameters>
+    where TSearchResult : IPaginatedResult<TSearchResult, TErrorCode, TData, TSearchParameters>
 {
     /// <inheritdoc cref="ISearchable{TSearchResult, TErrorCode, TData, TSearchParameters}.Search(TSearchParameters)"/>
     /// <param name="verification">An item to verify the user of this method with.</param>
