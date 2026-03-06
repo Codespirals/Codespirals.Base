@@ -60,6 +60,9 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Models\Validation\" />
+  </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />
   </Target>
