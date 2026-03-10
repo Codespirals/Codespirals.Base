@@ -12,10 +12,6 @@ public record SearchResult<TData, TSearchParameters> : IPaginatedResult<SearchRe
     where TSearchParameters : ISearchParameters, new()
 {
     /// <inheritdoc />
-    public TSearchParameters Parameters { get; private set; }
-    /// <inheritdoc />
-    public int TotalResults { get; private set; }
-    /// <inheritdoc />
     public bool Success { get; private set; }
     /// <inheritdoc />
     public string Error { get; private set; } = "";
@@ -23,6 +19,10 @@ public record SearchResult<TData, TSearchParameters> : IPaginatedResult<SearchRe
     public string? ErrorCode { get; private set; }
     /// <inheritdoc />
     public IEnumerable<TData> Data { get; private set; } = [];
+    /// <inheritdoc />
+    public int TotalResults { get; private set; }
+    /// <inheritdoc />
+    public TSearchParameters Parameters { get; private set; } = new();
 
     private SearchResult(string error, string? errorCode = null)
     {
@@ -58,6 +58,8 @@ public record SearchResult<TData, TSearchParameters> : IPaginatedResult<SearchRe
     public static SearchResult<TData, TSearchParameters> OkAndApplyPagination(IEnumerable<TData> data, TSearchParameters filter, bool isSorted = true, int maxLimit = -1) => new(data, filter, isSorted, maxLimit);
     /// <inheritdoc />
     public static SearchResult<TData, TSearchParameters> Fail(TSearchParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
-    /// <inheritdoc />
+    /// <inheritdoc cref="IResult{TSelf, TErrorCode}.Short(IResult{TErrorCode})" />
     public static SearchResult<TData, TSearchParameters> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
+    /// <inheritdoc />
+    public static SearchResult<TData, TSearchParameters> Short(IResult<string> result, TSearchParameters filter) => new(filter, result.Error, result.ErrorCode);
 }

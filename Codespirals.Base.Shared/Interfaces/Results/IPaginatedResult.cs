@@ -51,4 +51,11 @@ public interface IPaginatedResult<TSelf, TErrorCode, TData, TFilterParameters> :
     /// <param name="errorCode"></param>
     /// <returns></returns>
     static abstract TSelf Fail(TFilterParameters filter, string error, string? errorCode = null);
+    /// <summary>
+    /// Short a failed result but retain the filter parameters
+    /// </summary>
+    /// <param name="filter"></param>
+    /// <param name="result"></param>
+    /// <returns></returns>
+    static abstract TSelf Short(IResult<TErrorCode> result, TFilterParameters filter);
 }

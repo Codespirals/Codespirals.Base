@@ -18,11 +18,11 @@ public record PaginatedResult<TData, TFilterParameters> : IPaginatedResult<Pagin
     /// <inheritdoc />
     public string? ErrorCode { get; private set; }
     /// <inheritdoc />
-    public TFilterParameters Parameters { get; private set; } = new();
-    /// <inheritdoc />
     public IEnumerable<TData> Data { get; private set; } = [];
     /// <inheritdoc />
     public int TotalResults { get; private set; }
+    /// <inheritdoc />
+    public TFilterParameters Parameters { get; private set; } = new();
 
     private PaginatedResult(string error, string? errorCode = null)
     {
@@ -57,4 +57,7 @@ public record PaginatedResult<TData, TFilterParameters> : IPaginatedResult<Pagin
     public static PaginatedResult<TData, TFilterParameters> Fail(TFilterParameters filter, string error, string? errorCode = null) => new(filter, error, errorCode);
     /// <inheritdoc />
     public static PaginatedResult<TData, TFilterParameters> Short(IResult<string> result) => new(result.Error, result.ErrorCode);
+    /// <inheritdoc />
+    public static PaginatedResult<TData, TFilterParameters> Short(IResult<string> result, TFilterParameters filter) => new(filter, result.Error, result.ErrorCode);
+
 }
