@@ -21,20 +21,30 @@ public static class StringExtensions
             return s;
     }
     /// <summary>
-    /// Makes a string URL safe by replacing all risky characters with a deterministically random alphanumeric character
+    /// Makes a string URL safe by replacing all risky characters with a chosen <see langword="char"/> or deterministically random alphanumeric character
     /// </summary>
     /// <param name="s"></param>
+    /// <param name="replaceWith">The <see langword="char"/> to replace problematic characters with. Random if null.</param>
     /// <returns></returns>
-    public static string MakeUrlSafe(this string s)
+    public static string MakeUrlSafe(this string s, char? replaceWith = null)
     {
         var hashCode = s.GetHashCode();
-        foreach (var c in WebConstants.UrlReservedCharacters)
+        var charsToReplace = s.Intersect(WebConstants.UrlReservedCharacters);
+        if (replaceWith is not null)
         {
-            if (!s.Contains(c))
-                continue;
-            // get a seeded random number from the current string to keep the replacements deterministic
-            var i = new Random(hashCode).Next(StringConstants.Alphanumeric.Length);
-            s = s.Replace(c, StringConstants.Alphanumeric[i]);
+            foreach (var c in charsToReplace)
+            {
+                s = s.Replace(c, (char)replaceWith);
+            }
+        }
+        else
+        {
+            foreach (var c in charsToReplace)
+            {
+                // get a seeded random number from the base string to keep the replacements deterministic
+                var i = new Random(hashCode).Next(StringConstants.Alphanumeric.Length);
+                s = s.Replace(c, StringConstants.Alphanumeric[i]);
+            }
         }
         return s;
     }

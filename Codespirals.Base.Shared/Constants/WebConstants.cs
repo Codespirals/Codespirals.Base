@@ -7,5 +7,5 @@ public static class WebConstants
     /// <summary>
     /// Characters that are reserved in web URL use
     /// </summary>
-    public const string UrlReservedCharacters = "/:;!?=+*&$%@#|[]{}<>^'\"";
+    public const string UrlReservedCharacters = " /:;!?=+*&$%@#|[]{}<>^'\"";
 }

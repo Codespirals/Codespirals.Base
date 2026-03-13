@@ -9,7 +9,7 @@
     <Company>codespirals</Company>
     <Authors>codespirals</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.235.26069</Version>
+    <Version>1.0.237.26072</Version>
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>codespirals;modular;abstractions;</PackageTags>
     <PackageOutputPath>$(OneDrive)\NuGet</PackageOutputPath>
