@@ -17,7 +17,7 @@ public interface IFilterListable<TListResult, TErrorCode, TData, TFilter>
     /// Get many of the given type of item, filtered by certain parameters.
     /// </summary>
     /// <param name="filter">The filter parameters.</param>
-    /// <returns>A filtered list of items of the given type <see cref="TData"/></returns>
+    /// <returns>A filtered list of items of the given data type</returns>
     TListResult GetMany(TFilter filter);
 }
 /// <inheritdoc cref="IFilterListable{TListResult, TErrorCode, TData, TFilter}"/>

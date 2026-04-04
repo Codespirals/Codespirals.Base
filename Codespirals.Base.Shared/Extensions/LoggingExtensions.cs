@@ -5,7 +5,7 @@ namespace Codespirals.Base;
 /// <summary>
 /// Extensions on <see cref="ILogger"/>
 /// </summary>
-public static class LoggingExtensions
+public static partial class LoggingExtensions
 {
     /// <summary>
     /// Start a logging session
@@ -48,19 +48,6 @@ public static class LoggingExtensions
     /// <param name="exception"></param>
     public static void LogException(this ILogger logger, State state, Exception exception)
         => logger.LogCritical(exception, "Exception triggered! Current state of operation: {state}\r\n{message}", state, exception.Message);
-
-    /// <summary>
-    /// States an operation can be in
-    /// </summary>
-    public enum State
-    {
-        Started,
-        InProgress,
-        ActionSkipped,
-        Success,
-        Cancelled,
-        Stopped
-    }
     private static Dictionary<string, string> BuildScope(string processId, string service, Dictionary<string, string>? additionalArguments = null)
     {
         Dictionary<string, string> scopeItems = new()

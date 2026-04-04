@@ -14,7 +14,9 @@ public interface ICRUDable<TResult, TCreate, TEdit, TDeleteResult, TId> : ICreat
 {
 
 }
-/// <inheritdoc cref="ICRUDable{TResult, TCreate, TEdit, TDeleteResult, TId}"/>    
+/// <inheritdoc cref="ICRUDable{TResult, TCreate, TEdit, TDeleteResult, TId}"/>
+/// <typeparam name="TResult"></typeparam>
+/// <typeparam name="TCreate">The type containing all the information needed to create a new object</typeparam>
 /// <typeparam name="TVerification">A way to verify the current user has permission to use this method.</typeparam>
 public interface ICRUDable<TResult, TCreate, TEdit, TDeleteResult, TId, TVerification> : ICreatable<TResult, TCreate, TVerification>, IRetrievable<TResult, TId, TVerification>, IUpdatable<TResult, TEdit, TId, TVerification>, IDeletable<TDeleteResult, TId, TVerification>
     where TEdit : IIdentifiable<TId>

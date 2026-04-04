@@ -1,6 +1,9 @@
 ﻿namespace Codespirals.Base;
 
-public interface IImageBase : IHasUrl
+/// <summary>
+/// 
+/// </summary>
+public interface IImage : IHasUrl
 {
     /// <summary>
     /// A short description of what is in the image. Mainly to help people with impaired vision
