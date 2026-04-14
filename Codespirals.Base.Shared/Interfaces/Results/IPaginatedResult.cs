@@ -14,9 +14,7 @@ public interface IPaginatedResult<TErrorCode, TData, TFilterParameters> : IResul
 
 }
 
-/// <summary>
-/// The result from a searh query and all data necessary to implement pagination
-/// </summary>
+/// <inheritdoc cref="IPaginatedResult{TErrorCode, TData, TFilterParameters}"/>
 /// <typeparam name="TErrorCode">An optional error code for swift and easy error tracking.</typeparam>
 /// <typeparam name="TData">The type of the search result items</typeparam>
 /// <typeparam name="TFilterParameters">The filter parameters.</typeparam>
