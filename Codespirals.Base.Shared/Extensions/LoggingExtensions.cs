@@ -1,6 +1,6 @@
 ﻿using Microsoft.Extensions.Logging;
 
-namespace Codespirals.Base;
+namespace Codespirals.Base.Logging;
 
 /// <summary>
 /// Extensions on <see cref="ILogger"/>
