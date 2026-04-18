@@ -15,7 +15,7 @@ public static partial class LoggingExtensions
     /// <param name="additionalArguments">A list of arguments to be added to the scope</param>
     /// <param name="message"></param>
     /// <returns></returns>
-    public static IDisposable? BeginLog(this ILogger logger, string method, Dictionary<string, string>? additionalArguments = null, string? message = null)
+    public static IDisposable? BeginLog(this ILogger logger, string method, string? message = null, params (string, string)[] additionalArguments)
     {
         try
         {
@@ -48,7 +48,7 @@ public static partial class LoggingExtensions
     /// <param name="exception"></param>
     public static void LogException(this ILogger logger, State state, Exception exception)
         => logger.LogCritical(exception, "Exception triggered! Current state of operation: {state}\r\n{message}", state, exception.Message);
-    private static Dictionary<string, string> BuildScope(string processId, string service, Dictionary<string, string>? additionalArguments = null)
+    private static Dictionary<string, string> BuildScope(string processId, string service, params (string, string)[] additionalArguments)
     {
         Dictionary<string, string> scopeItems = new()
         {
@@ -57,7 +57,7 @@ public static partial class LoggingExtensions
         if (!string.IsNullOrWhiteSpace(service)) { scopeItems.Add("Method", nameof(service)); }
         if (additionalArguments is not null)
             foreach (var argument in additionalArguments)
-                if (!string.IsNullOrWhiteSpace(argument.Key) && !string.IsNullOrWhiteSpace(argument.Value)) { scopeItems.Add(argument.Key, argument.Value); }
+                if (!string.IsNullOrWhiteSpace(argument.Item1) && !string.IsNullOrWhiteSpace(argument.Item2)) { scopeItems.Add(argument.Item1, argument.Item2); }
         return scopeItems;
     }
 }
