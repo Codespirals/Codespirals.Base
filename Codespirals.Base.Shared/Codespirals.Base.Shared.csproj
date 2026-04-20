@@ -7,9 +7,9 @@
     <PackageProjectUrl>https://codespirals.dev/</PackageProjectUrl>
     <Title>$(AssemblyName)</Title>
     <Company>codespirals</Company>
-    <Authors>codespirals</Authors>
+    <Authors>codespirals,Eliterate</Authors>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.0.245.26108</Version>
+    <Version>1.1.1.26110</Version>
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>codespirals;modular;abstractions;</PackageTags>
     <PackageOutputPath>$(OneDrive)\NuGet</PackageOutputPath>
@@ -23,6 +23,7 @@
   <PropertyGroup>
     <Today>$([System.DateTime]::Now.ToString('yyyy.MM.dd'))</Today>
     <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Product>Codespirals.Base</Product>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <NoWarn>1701;1702;IDE0130;</NoWarn>
