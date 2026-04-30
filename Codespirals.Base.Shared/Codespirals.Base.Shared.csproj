@@ -4,21 +4,21 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
     <Copyright>$(Company)</Copyright>
-    <PackageProjectUrl>https://codespirals.dev/</PackageProjectUrl>
     <Title>$(AssemblyName)</Title>
+    <RootNamespace>Codespirals.Base</RootNamespace>
     <Company>codespirals</Company>
     <Authors>codespirals,Eliterate</Authors>
+    <Version>1.1.2.26120</Version>
+    <NeutralLanguage>en</NeutralLanguage>
+    <RepositoryUrl>https://github.com/Codespirals/Codespirals.Base.git</RepositoryUrl>
+    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-    <Version>1.1.1.26110</Version>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageIcon>logo.png</PackageIcon>
     <PackageTags>codespirals;modular;abstractions;</PackageTags>
-    <PackageOutputPath>$(OneDrive)\NuGet</PackageOutputPath>
-    <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
     <PackageLicenseExpression>CC0-1.0</PackageLicenseExpression>
-    <RootNamespace>Codespirals.Base</RootNamespace>
-    <PackageReadmeFile>README.md</PackageReadmeFile>
-    <RepositoryUrl>https://github.com/Codespirals/Codespirals.Base.git</RepositoryUrl>
-    <NeutralLanguage>en</NeutralLanguage>
+    <PackageProjectUrl>https://codespirals.dev/</PackageProjectUrl>
+    <PackageOutputPath>$(OneDrive)\NuGet</PackageOutputPath>
   </PropertyGroup>
   <PropertyGroup>
     <Today>$([System.DateTime]::Now.ToString('yyyy.MM.dd'))</Today>
@@ -32,24 +32,19 @@
     <NoWarn>1701;1702;IDE0130;</NoWarn>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Remove="Interfaces\Selectalbes\**" />
-    <EmbeddedResource Remove="Interfaces\Selectalbes\**" />
-    <None Remove="Interfaces\Selectalbes\**" />
-  </ItemGroup>
-  <ItemGroup>
     <None Remove="Resources\Images\logo.png" />
     <None Remove="Resources\README.md" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\Images\icon.png">
       <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       <Pack>True</Pack>
     </EmbeddedResource>
     <EmbeddedResource Include="Resources\Images\logo.png">
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </EmbeddedResource>
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="9.0.11" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="9.0.11" />
@@ -60,9 +55,6 @@
       <PackagePath>\</PackagePath>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Resource>
-  </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Models\Validation\" />
   </ItemGroup>
   <Target Name="PreBuild" BeforeTargets="PreBuildEvent">
     <Exec Command="PowerShell -ExecutionPolicy Bypass -NoProfile -File AutoUpdateVersionNumber.ps1" />
