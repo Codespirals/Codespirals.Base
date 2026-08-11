@@ -25,11 +25,14 @@ public static class StringExtensions
     /// </summary>
     /// <param name="s"></param>
     /// <param name="replaceWith">The <see langword="char"/> to replace problematic characters with. Random if null.</param>
+    /// <param name="keepForwardSlash">Keep forward slashes intact.</param>
     /// <returns></returns>
-    public static string MakeUrlSafe(this string s, char? replaceWith = null)
+    public static string MakeUrlSafe(this string s, char? replaceWith = null, bool keepForwardSlash = false)
     {
         var hashCode = s.GetHashCode();
         var charsToReplace = s.Intersect(WebConstants.UrlReservedCharacters);
+        if (keepForwardSlash)
+            charsToReplace = charsToReplace.Except(['/']);
         if (replaceWith is not null)
         {
             foreach (var c in charsToReplace)
