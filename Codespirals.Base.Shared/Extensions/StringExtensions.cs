@@ -53,6 +53,14 @@ public static class StringExtensions
     }
 
     /// <summary>
+    /// Splits a path into sections ('/'), makes them data safe and then puts the path back together
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    public static string MakePathSafe(this string path)
+        => string.Join('/', path.Split('/').Select(Uri.EscapeDataString));
+
+    /// <summary>
     /// Turns a string into a byte array.
     /// </summary>
     /// <param name="s"></param>
