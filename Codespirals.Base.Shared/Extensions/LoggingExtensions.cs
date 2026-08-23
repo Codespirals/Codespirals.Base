@@ -20,10 +20,9 @@ public static partial class LoggingExtensions
         try
         {
             var processId = Guid.NewGuid().ToString();
-            var scope = logger.BeginScope(BuildScope(processId, method, additionalArguments));
-            message ??= "Beginning new log";
-            logger.LogStep(State.Started, message);
-            return scope;
+            var scope = string.Join('\n', BuildScope(processId, method, additionalArguments).Select(x => $"{x.Key}:{x.Value}"));
+            logger.LogStep(State.Started, $"{scope}\n{message ??= "Beginning new log"}");
+            return logger.BeginScope(scope);
         }
         catch (Exception ex)
         {

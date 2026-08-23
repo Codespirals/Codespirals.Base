@@ -8,7 +8,7 @@
     <RootNamespace>Codespirals.Base</RootNamespace>
     <Company>codespirals</Company>
     <Authors>codespirals,Eliterate</Authors>
-    <Version>1.1.4.26235</Version>
+    <Version>1.1.5.26235</Version>
     <NeutralLanguage>en</NeutralLanguage>
     <RepositoryUrl>https://github.com/Codespirals/Codespirals.Base.git</RepositoryUrl>
     <RunPostBuildEvent>OnOutputUpdated</RunPostBuildEvent>
