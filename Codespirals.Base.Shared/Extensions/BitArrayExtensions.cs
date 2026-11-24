@@ -8,6 +8,22 @@ namespace Codespirals.Base.Extensions;
 public static class BitArrayExtensions
 {
     /// <summary>
+    /// Gets the values from a <see cref="BitArray"/> as an array of <see cref="bool"/>s
+    /// </summary>
+    /// <param name="array"></param>
+    /// <returns></returns>
+    public static bool[] GetValues(this BitArray array)
+    {
+        var res = new bool[array.Length];
+        var i = 0;
+        foreach (var item in array)
+        {
+            res[i] = (bool)item;
+            i++;
+        }
+        return res;
+    }
+    /// <summary>
     /// Combine two <see cref="BitArray"/>s
     /// </summary>
     /// <param name="current"></param>
