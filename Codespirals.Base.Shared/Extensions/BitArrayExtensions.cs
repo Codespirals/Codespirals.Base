@@ -91,7 +91,7 @@ public static class BitArrayExtensions
     /// <param name="length"></param>
     /// <param name="cutLeft"></param>
     /// <returns>The current <see cref="BitArray"/>, cut to length</returns>
-    public static BitArray CutToLength(BitArray current, int length, bool cutLeft = true)
+    public static BitArray CutToLength(this BitArray current, int length, bool cutLeft = true)
     {
         if (current.Length < length)
             return current;
