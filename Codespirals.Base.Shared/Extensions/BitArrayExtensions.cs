@@ -84,4 +84,26 @@ public static class BitArrayExtensions
 
         return current;
     }
+    /// <summary>
+    /// Simply a method to set <see cref="BitArray.Length"/> to make it easier to use with Select
+    /// </summary>
+    /// <param name="current"></param>
+    /// <param name="length"></param>
+    /// <param name="cutLeft"></param>
+    /// <returns>The current <see cref="BitArray"/>, cut to length</returns>
+    public static BitArray CutToLength(BitArray current, int length, bool cutLeft = true)
+    {
+        if (current.Length < length)
+            return current;
+
+        if (cutLeft)
+        {
+            var dif = current.Length - length;
+            _ = current.LeftShift(dif);
+            current.Length = length;
+        }
+        else
+            current.Length = length;
+        return current;
+    }
 }
